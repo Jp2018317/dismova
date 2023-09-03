@@ -6,15 +6,6 @@ import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import {
   Sheet,
   SheetContent,
   SheetDescription,
@@ -24,10 +15,7 @@ import {
 } from "@/components/ui/sheet";
 
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { VscAccount } from "react-icons/vsc";
 import { BiSearch } from "react-icons/bi"
-
-import { ModeToggle } from "./ui/modeToggle";
 import Logo from "./logo";
 import Sidebar from "./Sidebar";
 

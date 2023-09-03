@@ -19,8 +19,8 @@ import {
   } from "@/components/ui/sheet";
   
 import { Button } from "./ui/button";
-import { ModeToggle } from "./ui/modeToggle";
 import { Dispatch, SetStateAction} from "react";
+import { ModeToggle } from "./ui/ModeToggle";
 
 interface DarkMode {
     setDarkMode: Dispatch<SetStateAction<string>>;
