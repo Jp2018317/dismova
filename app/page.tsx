@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="pt-[100px] h-screen">
+    <main className="h-screen">
       <div className="h-screen">
         a
       </div>
