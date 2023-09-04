@@ -1,4 +1,6 @@
-export default function Home () {
+import React from 'react';
+
+export default function Home() {
   return (
     <main className="h-screen">
       <div className="h-screen">
@@ -8,5 +10,5 @@ export default function Home () {
         a
       </div>
     </main>
-  )
+  );
 }

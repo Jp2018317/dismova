@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import * as React from 'react'
+import * as React from 'react';
 
-import { cn } from '@/lib/utils'
-import { Input } from './ui/input'
-import { Label } from './ui/label'
-import { Button } from './ui/button'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-import { FcGoogle } from 'react-icons/fc'
+import { cn } from '@/lib/utils';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { Button } from './ui/button';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm ({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  async function onSubmit (event: React.SyntheticEvent) {
-    event.preventDefault()
-    setIsLoading(true)
+  async function onSubmit(event: React.SyntheticEvent) {
+    event.preventDefault();
+    setIsLoading(true);
 
     setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
+      setIsLoading(false);
+    }, 3000);
   }
 
   return (
@@ -62,13 +62,14 @@ export function UserAuthForm ({ className, ...props }: UserAuthFormProps) {
       <Button variant="outline" type="button" disabled={isLoading}>
         {isLoading
           ? (
-          <AiOutlineLoading3Quarters className="mr-2 h-4 w-4 animate-spin" />
-            )
+            <AiOutlineLoading3Quarters className="mr-2 h-4 w-4 animate-spin" />
+          )
           : (
-          <FcGoogle className="mr-2 h-4 w-4" />
-            )}{' '}
+            <FcGoogle className="mr-2 h-4 w-4" />
+          )}
+        {' '}
         Google
       </Button>
     </div>
-  )
+  );
 }

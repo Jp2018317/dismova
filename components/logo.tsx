@@ -1,8 +1,10 @@
+import React from 'react';
+
 interface Props {
   className?: string
 }
 
-export default function Logo ({ className }: Props) {
+export default function Logo({ className }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,5 +26,5 @@ export default function Logo ({ className }: Props) {
         <path d="M661 1849 c-26 -25 -31 -38 -31 -78 0 -26 7 -56 16 -69 35 -51 45 -52 454 -52 419 0 435 2 464 59 27 51 21 98 -18 137 l-34 34 -410 0 -410 0 -31 -31z" />
       </g>
     </svg>
-  )
+  );
 }
