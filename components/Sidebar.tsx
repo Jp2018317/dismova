@@ -1,13 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 
 import { VscAccount } from 'react-icons/vsc';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { LiaBarsSolid } from 'react-icons/lia';
 import { IoMdSettings } from 'react-icons/io';
-import { BsTelephone } from 'react-icons/bs';
+import { BsTelephone, BsHeadphones } from 'react-icons/bs';
+import { LuMonitorSpeaker } from 'react-icons/lu';
 
 import {
   Sheet,
@@ -17,8 +18,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-
-import { type Dispatch, type SetStateAction } from 'react';
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
@@ -54,6 +53,7 @@ export default function Sidebar({ darkMode, setDarkMode }: DarkMode) {
           </SheetHeader>
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
+
           <ul className="py-1">
             <li>
               <Button variant="ghost" className="w-full">
@@ -74,6 +74,34 @@ export default function Sidebar({ darkMode, setDarkMode }: DarkMode) {
                 >
                   <AiOutlineShoppingCart className="dark:text-white w-6 h-6" />
                   Mi Carrito
+                </Link>
+              </Button>
+            </li>
+          </ul>
+
+          <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
+
+          <ul className="py-1">
+            <li>
+              <h2 className="px-2 py-1 text-sm font-semibold dark:text-white">
+                Productos
+              </h2>
+              <Button variant="ghost" className="w-full">
+                <Link
+                  href="/carrito"
+                  className="w-full flex items-center justify-start gap-2"
+                >
+                  <LuMonitorSpeaker className="dark:text-white w-6 h-6" />
+                  Bocinas y Bafles
+                </Link>
+              </Button>
+              <Button variant="ghost" className="w-full">
+                <Link
+                  href="/carrito"
+                  className="w-full flex items-center justify-start gap-2"
+                >
+                  <BsHeadphones className="dark:text-white w-6 h-6" />
+                  Audifonos y otros
                 </Link>
               </Button>
             </li>
@@ -108,7 +136,9 @@ export default function Sidebar({ darkMode, setDarkMode }: DarkMode) {
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
-          <ModeToggle setDarkMode={setDarkMode} darkMode={darkMode} />
+          <div className="w-full text-end">
+            <ModeToggle setDarkMode={setDarkMode} darkMode={darkMode} />
+          </div>
         </SheetContent>
       </Sheet>
     </div>
