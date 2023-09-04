@@ -1,8 +1,10 @@
+import React from 'react';
+
 interface Props {
-    className?:string;
+  className?: string
 }
 
-export default function Logo({className}:Props) {
+export default function Logo({ className }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

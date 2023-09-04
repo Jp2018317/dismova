@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Home() {
   return (
     <main className="h-screen">
@@ -8,5 +10,5 @@ export default function Home() {
         a
       </div>
     </main>
-  )
+  );
 }
