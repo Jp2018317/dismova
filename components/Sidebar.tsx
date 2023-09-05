@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { VscAccount } from 'react-icons/vsc';
@@ -18,16 +18,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
 
 export default function Sidebar() {
+  const [open, setOpen] = useState(false);
   return (
     <div className="flex items-center max-xs:text-xs dark:text-zinc-200">
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
-          <LiaBarsSolid className="text-zinc-900 dark:text-zinc-200 w-6 h-6" />
+          <LiaBarsSolid className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-6 h-6" />
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
@@ -51,7 +53,7 @@ export default function Sidebar() {
 
           <ul className="py-1">
             <li>
-              <Button variant="ghost" className="w-full">
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
                   href="/perfil"
                   className="w-full flex items-center justify-start gap-2"
@@ -62,7 +64,7 @@ export default function Sidebar() {
               </Button>
             </li>
             <li>
-              <Button variant="ghost" className="w-full">
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
                   href="/carrito"
                   className="w-full flex items-center justify-start gap-2"
@@ -81,7 +83,7 @@ export default function Sidebar() {
               <h2 className="px-2 py-1 text-sm font-semibold dark:text-white">
                 Productos
               </h2>
-              <Button variant="ghost" className="w-full">
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
                   href="/carrito"
                   className="w-full flex items-center justify-start gap-2"
@@ -90,7 +92,7 @@ export default function Sidebar() {
                   Bocinas y Bafles
                 </Link>
               </Button>
-              <Button variant="ghost" className="w-full">
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
                   href="/carrito"
                   className="w-full flex items-center justify-start gap-2"
@@ -106,7 +108,7 @@ export default function Sidebar() {
 
           <ul className="py-1">
             <li>
-              <Button variant="ghost" className="w-full">
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
                   href="/"
                   className="w-full flex items-center justify-start gap-2"
@@ -117,23 +119,23 @@ export default function Sidebar() {
               </Button>
             </li>
             <li>
-              <Button variant="ghost" className="w-full">
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
                   href="/contacto"
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <BsTelephone className="dark:text-white w-5 h-5" />
-                  Contáctanos
+                  Contactanos
                 </Link>
               </Button>
             </li>
             <li>
-              <Button variant="ghost" className="w-full">
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
                   href="/perfil/configuracion"
                   className="w-full flex items-center justify-start gap-2"
                 >
-                  <IoMdSettings className="dark:text-white w-6 h-6" />
+                  <IoMdSettings className="dark:text-white w-5 h-5" />
                   Configuración
                 </Link>
               </Button>

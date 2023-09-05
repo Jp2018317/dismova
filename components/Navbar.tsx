@@ -44,34 +44,34 @@ export default function NavBar() {
 
   return (
     <nav className="sticky z-40 top-0 flex flex-col">
-      <section className="w-full z-30 h-[60px] flex justify-between px-6 sm:px-8 bg-white dark:bg-zinc-950">
+      <section className="w-full z-30 h-[60px] flex justify-between px-4 sm:px-8 bg-background">
         <Link
           href={ROUTES.root}
           className="h-full flex flex-col items-center justify-center"
         >
           <Logo className="max-sm:w-[70px] max-sm:h-[25]" />
-          <p className="text-[10px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#61b4e4] to-[#2B32B2] dark:to-[#4d94ff]">DISMOVA</p>
+          <p className="text-[10px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476]">DISMOVA</p>
         </Link>
 
         <form className="relative flex items-center">
           <Input
-            type="search"
-            className="md:w-96 xs:w-52 w-48 h-8 pr-2 focus-visible:ring-offset-0 text-xs"
+            type="text"
+            className="md:w-96 sm:w-72 h-8 pr-10 mx-2 focus-visible:ring-offset-0 text-xs"
             placeholder="Search"
           />
           <Button
             type="submit"
-            className="absolute right-0 h-8 w-10 p-0 rounded-l-none border border-l-0"
+            className="absolute right-0 p-0 h-8 w-8 sm:w-10 mr-2 rounded-l-none border border-primary border-l-0"
           >
             <BiSearch className="w-4 h-4" />
           </Button>
         </form>
 
-        <div className="flex items-center max-xs:text-xs dark:text-zinc-200 ml-4 gap-8">
+        <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4 sm:gap-8">
           <div className="max-xs:hidden flex items-center">
             <Sheet>
               <SheetTrigger>
-                <AiOutlineShoppingCart className="text-zinc-900 dark:text-zinc-200 w-6 h-6" />
+                <AiOutlineShoppingCart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-6 h-6" />
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>

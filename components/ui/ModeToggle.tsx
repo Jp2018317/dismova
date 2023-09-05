@@ -10,14 +10,14 @@ export function ModeToggle() {
   const { setTheme } = useTheme();
   const handleTheme = () => {
     const theme = localStorage.getItem('theme');
-    if(!theme){
-      return setTheme('light')
+    if (!theme) {
+      return setTheme('light');
     }
-    if(theme == 'light'){
-      return setTheme('dark')
+    if (theme == 'light') {
+      return setTheme('dark');
     }
-    return setTheme('light')
-  }
+    return setTheme('light');
+  };
 
   return (
     <Button
