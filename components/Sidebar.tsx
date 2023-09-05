@@ -1,13 +1,13 @@
 'use client';
 
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
 import { VscAccount } from 'react-icons/vsc';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { LiaBarsSolid } from 'react-icons/lia';
 import { IoMdSettings } from 'react-icons/io';
-import { BsTelephone, BsHeadphones } from 'react-icons/bs';
+import { BsHeadphones, BsTelephone } from 'react-icons/bs';
 import { LuMonitorSpeaker } from 'react-icons/lu';
 
 import {
@@ -22,12 +22,7 @@ import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
 
-interface DarkMode {
-  setDarkMode: Dispatch<SetStateAction<string>>
-  darkMode: string
-}
-
-export default function Sidebar({ darkMode, setDarkMode }: DarkMode) {
+export default function Sidebar() {
   return (
     <div className="flex items-center max-xs:text-xs dark:text-zinc-200">
       <Sheet>
@@ -137,7 +132,7 @@ export default function Sidebar({ darkMode, setDarkMode }: DarkMode) {
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
           <div className="w-full text-end">
-            <ModeToggle setDarkMode={setDarkMode} darkMode={darkMode} />
+            <ModeToggle />
           </div>
         </SheetContent>
       </Sheet>
