@@ -6,7 +6,6 @@ import Link from 'next/link';
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -14,11 +13,11 @@ import {
 
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
+import { ROUTES } from '@/config';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Logo from './logo';
 import Sidebar from './Sidebar';
-import {ROUTES} from "@/config";
 
 export default function NavBar() {
   const [fade, setFade] = useState('border-b');
@@ -43,7 +42,6 @@ export default function NavBar() {
     };
   }, [prevScrollY]);
 
-
   return (
     <nav className="sticky top-0 flex flex-col">
       <section className="w-full z-[110] h-[60px] flex justify-between px-6 sm:px-8 bg-white dark:bg-zinc-950">
@@ -62,8 +60,9 @@ export default function NavBar() {
             placeholder="Search"
           />
           <Button
-              type="submit"
-              className="absolute right-0 h-8 w-10 p-0 rounded-l-none border border-l-0 border-zinc-800 dark:bg-zinc-950 dark:text-white dark:hover:text-black dark:hover:bg-white">
+            type="submit"
+            className="absolute right-0 h-8 w-10 p-0 rounded-l-none border border-l-0 border-zinc-800 dark:bg-zinc-950 dark:text-white dark:hover:text-black dark:hover:bg-white"
+          >
             <BiSearch className="w-4 h-4" />
           </Button>
         </form>
@@ -90,16 +89,16 @@ export default function NavBar() {
       >
         <ul className="w-full text-center grid grid-cols-4 gap-10 font-normal text-sm text-white">
           <li>
-              <Link href={ROUTES.root}>Ofertas</Link>
+            <Link href={ROUTES.root}>Ofertas</Link>
           </li>
           <li>
-              <Link href={ROUTES.root}>Ofertas</Link>
+            <Link href={ROUTES.root}>Ofertas</Link>
           </li>
           <li>
-              <Link href={ROUTES.root}>Ofertas</Link>
+            <Link href={ROUTES.root}>Ofertas</Link>
           </li>
           <li>
-              <Link href={ROUTES.root}>Ofertas</Link>
+            <Link href={ROUTES.root}>Ofertas</Link>
           </li>
         </ul>
       </section>
