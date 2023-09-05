@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import { VscAccount } from 'react-icons/vsc';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineHome } from 'react-icons/ai';
 import { LiaBarsSolid } from 'react-icons/lia';
 import { IoMdSettings } from 'react-icons/io';
 import { BsHeadphones, BsTelephone } from 'react-icons/bs';
@@ -27,7 +27,7 @@ export default function Sidebar() {
     <div className="flex items-center max-xs:text-xs dark:text-zinc-200">
       <Sheet>
         <SheetTrigger>
-          <LiaBarsSolid className="dark:text-white w-6 h-6" />
+          <LiaBarsSolid className="text-zinc-900 dark:text-zinc-200 w-6 h-6" />
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
@@ -105,6 +105,17 @@ export default function Sidebar() {
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
           <ul className="py-1">
+            <li>
+              <Button variant="ghost" className="w-full">
+                <Link
+                  href="/"
+                  className="w-full flex items-center justify-start gap-2"
+                >
+                  <AiOutlineHome className="dark:text-white w-5 h-5" />
+                  Inicio
+                </Link>
+              </Button>
+            </li>
             <li>
               <Button variant="ghost" className="w-full">
                 <Link
