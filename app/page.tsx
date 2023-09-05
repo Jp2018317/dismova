@@ -1,14 +1,5 @@
 import React from 'react';
 
 export default function Home() {
-  return (
-    <main className="h-screen">
-      <div className="h-screen">
-        a
-      </div>
-      <div className="h-screen">
-        a
-      </div>
-    </main>
-  );
+  return <main className="min-h-[400vh]">a</main>;
 }

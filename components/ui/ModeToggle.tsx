@@ -7,29 +7,24 @@ import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { type Dispatch, type SetStateAction } from 'react';
 
-interface DarkMode {
-  setDarkMode: Dispatch<SetStateAction<string>>
-  darkMode: string
-}
-
-export function ModeToggle({ darkMode, setDarkMode }: DarkMode) {
+export function ModeToggle() {
   const { setTheme } = useTheme();
-
-  function handleChange() {
-    if (darkMode === 'light') {
-      setTheme('dark');
-      setDarkMode('dark');
-    } else {
-      setTheme('light');
-      setDarkMode('light');
+  const handleTheme = () => {
+    const theme = localStorage.getItem('theme');
+    if(!theme){
+      return setTheme('light')
     }
+    if(theme == 'light'){
+      return setTheme('dark')
+    }
+    return setTheme('light')
   }
 
   return (
     <Button
       variant="outline"
       size="icon"
-      onClick={handleChange}
+      onClick={handleTheme}
     >
       <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
       <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
