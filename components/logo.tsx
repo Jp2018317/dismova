@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 interface Props {
   className?: string
@@ -11,7 +12,7 @@ export default function Logo({ className }: Props) {
       width="90"
       height="30"
       viewBox="0 0 800 300"
-      className={`fill-current text-black dark:text-white ${className}`}
+      className={cn('fill-current text-black dark:text-white', className)}
     >
       <g
         transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)"
