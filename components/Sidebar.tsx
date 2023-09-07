@@ -19,6 +19,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
+import { ROUTES } from '@/config';
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
@@ -41,10 +42,10 @@ export default function Sidebar() {
             </SheetTitle>
             <SheetDescription className="flex justify-evenly py-2">
               <Button asChild>
-                <Link href="/login">Ingresar</Link>
+                <Link href={ROUTES.auth.login}>Ingresar</Link>
               </Button>
               <Button asChild variant="ghost">
-                <Link href="/registro">Registrarme</Link>
+                <Link href={ROUTES.auth.signup}>Registrarme</Link>
               </Button>
             </SheetDescription>
           </SheetHeader>
@@ -55,7 +56,7 @@ export default function Sidebar() {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href="/perfil"
+                  href={ROUTES.account}
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <VscAccount className="dark:text-white w-6 h-6" />
@@ -66,7 +67,7 @@ export default function Sidebar() {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href="/carrito"
+                  href={ROUTES.cart}
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <AiOutlineShoppingCart className="dark:text-white w-6 h-6" />
@@ -85,7 +86,7 @@ export default function Sidebar() {
               </h2>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href="/carrito"
+                  href={ROUTES.cart}
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <LuMonitorSpeaker className="dark:text-white w-6 h-6" />
@@ -94,7 +95,7 @@ export default function Sidebar() {
               </Button>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href="/carrito"
+                  href={ROUTES.cart}
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <BsHeadphones className="dark:text-white w-6 h-6" />
@@ -110,7 +111,7 @@ export default function Sidebar() {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href="/"
+                  href={ROUTES.root}
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <AiOutlineHome className="dark:text-white w-5 h-5" />
@@ -132,7 +133,7 @@ export default function Sidebar() {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href="/perfil/configuracion"
+                  href={ROUTES.account + ROUTES.settings}
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <IoMdSettings className="dark:text-white w-5 h-5" />
