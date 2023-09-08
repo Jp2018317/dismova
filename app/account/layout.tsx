@@ -1,24 +1,25 @@
 import React from 'react';
 
 import { Separator } from '@/components/ui/separator';
-import { SidebarNav } from '@/app/perfil/components/sidebar-nav';
+import { SidebarNav } from '@/app/account/components/sidebar-nav';
+import { ROUTES } from '@/config';
 
-const sidebarNavItems = [
+const routes = [
   {
     title: 'Mi Cuenta',
-    href: '/perfil',
+    href: ROUTES.account,
   },
   {
     title: 'Mis Pedidos',
-    href: '/perfil/pedidos',
+    href: ROUTES.account + ROUTES.orders,
   },
   {
     title: 'Apariencia',
-    href: '/perfil/apariencia',
+    href: ROUTES.account + ROUTES.appearance,
   },
   {
     title: 'Configuración',
-    href: '/perfil/configuracion',
+    href: ROUTES.account + ROUTES.settings,
   },
 ];
 
@@ -38,7 +39,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
       <Separator className="max-lg:hidden" />
       <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 ">
         <aside className="  lg:w-1/5">
-          <SidebarNav items={sidebarNavItems} />
+          <SidebarNav items={routes} />
           <Separator className="mt-5" />
         </aside>
         <div className="flex-1 lg:max-w-2xl">{children}</div>

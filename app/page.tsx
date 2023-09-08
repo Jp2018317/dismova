@@ -1,5 +1,6 @@
-import React from 'react';
+import { redirect } from 'next/navigation';
+import { ROUTES } from '@/config';
 
-export default function Home() {
-  return <main className="min-h-[400vh]">a</main>;
+export default function ToProducts() {
+  return redirect(ROUTES.products);
 }
