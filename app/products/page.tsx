@@ -1,5 +1,10 @@
 import React from 'react';
+import ProductView from './components/ProductView';
 
 export default function Home() {
-  return <main className="min-h-[400vh]">a</main>;
+  return (
+    <div>
+      <ProductView />
+    </div>
+  );
 }
