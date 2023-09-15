@@ -8,9 +8,9 @@ import { BiChevronLeft } from 'react-icons/bi';
 export default async function LoginPage() {
   return (
     <section className="relative w-full grid place-items-center">
-      <button type="button" className="absolute top-5 left-5 flex items-center text-sm">
+      <Link href={ROUTES.root} className="absolute top-5 left-5 flex items-center text-sm">
         <BiChevronLeft className="w-8 h-8 text-zinc-500" />
-      </button>
+      </Link>
       <div className="w-full max-w-lg px-10 space-y-4">
         <div
           className="lg:hidden flex flex-col items-center justify-center"
