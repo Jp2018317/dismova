@@ -1,25 +1,16 @@
 import { ReactNode } from 'react';
-import { montserrat } from '@/lib/fonts';
 import Logo from '@/components/logo';
+import { montserrat } from '@/lib/fonts';
 
 export default async function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <main className="h-screen flex">
-      <section className="bg-black dark:bg-white w-full grid place-items-center text-5xl text-white dark:text-black">
-        <div className="relative w-1/2 h-1/2 backdrop-blur-2xl">
-          <Logo className="w-full h-full text-white dark:text-black" />
-          <h3 className={`absolute inset-x-0 bottom-10 text-center font-light tracking-wider  ${montserrat.className}`}>
-            <span className="text-blue-500">D</span>
-            {' '}
-            I S
-            {' '}
-            <span className="text-yellow-500">M</span>
-            {' '}
-            O V
-            {' '}
-            <span className="text-red-500">A</span>
-            {' '}
-          </h3>
+      <section className="bg-black max-lg:hidden w-full grid place-items-center">
+        <div
+          className="h-full py-20 flex flex-col items-center justify-center space-y-2"
+        >
+          <Logo className="w-96 h-28 text-white" />
+          <p className={`text-4xl tracking-[1rem] pl-[1rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476] ${montserrat.className}`}>DISMOVA</p>
         </div>
       </section>
       {children}
