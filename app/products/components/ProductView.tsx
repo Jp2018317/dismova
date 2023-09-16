@@ -1,7 +1,17 @@
 'use client';
 
 import { useState } from 'react';
+
 import { Drawer } from 'vaul';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+import Image from 'next/image';
+import bocina from '@/public/images/bafles/Bocina.webp';
 
 import {
   AiOutlineClose, AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineUsb,
@@ -9,6 +19,7 @@ import {
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { BsLightningCharge, BsUsbMicro } from 'react-icons/bs';
 import { PiRadioLight } from 'react-icons/pi';
+
 import Tag from './Tag';
 
 export default function ProductView() {
@@ -27,43 +38,62 @@ export default function ProductView() {
             <div className="mx-auto my-3 w-20 h-1.5 flex-shrink-0 rounded-full bg-secondary" />
           </div>
 
-          <div className="flex max-lg:flex-col bg-background h-[82vh] lg:h-full">
+          <div className="flex max-lg:flex-col bg-background h-[82dvh] lg:h-full">
 
-            <div className="relative w-full bg-secondary font-bold max-lg:h-[35%] h-full">
+            <div className="relative w-full bg-secondary font-bold max-lg:h-[40%] lg:w-1/2 h-full">
 
-              <div className="absolute top-4 lg:top-8 w-20 lg:w-32 h-10 lg:h-16">
+              <div className="absolute top-4 lg:top-8 w-20 lg:w-32 h-10 lg:h-16 z-50">
                 <p className="pl-1 lg:pl-4 text-[10px] lg:text-sm">AUDIO PRO</p>
                 <div className="text-white text-sm lg:text-lg flex pl-1 lg:pl-4 items-center bg-primary h-6 lg:h-10 w-20 lg:w-32 rounded-r-full">
                   ISP-3016
                 </div>
               </div>
 
-              <div className="absolute top-3 right-3 lg:hidden">
+              <div className="absolute top-3 right-3 lg:hidden z-50">
                 <button type="button" onClick={() => setOpenDrawer(false)}>
                   <AiOutlineClose className="w-4 lg:w-6 h-4 lg:h-6 text-zinc-700 dark:text-zinc-300" />
                 </button>
               </div>
 
-              <div className="absolute top-1/2 left-1 lg:left-3">
-                <button type="button">
-                  <BiChevronLeft className="w-5 lg:w-8 h-5 lg:h-8 text-zinc-400 dark:text-zinc-600" />
-                </button>
-              </div>
-              <div className="absolute top-1/2 right-1 lg:right-3">
-                <button type="button">
-                  <BiChevronRight className="w-5 lg:w-8 h-5 lg:h-8 text-zinc-700 dark:text-zinc-300" />
-                </button>
-              </div>
+              <Swiper
+                modules={[EffectCoverflow, Pagination, Navigation]}
+                allowTouchMove={false}
+                spaceBetween={30}
+                slidesPerView={1}
+                loop
+                onSlideChange={() => console.log('slide change')}
+                pagination={{ el: '.swiper-pagination', clickable: true, bulletClass: 'swiper-pagination-bullet' }}
+                navigation={{
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                }}
+                className="h-full w-full"
+              >
+                <SwiperSlide>
+                  <div className="flex justify-center items-center w-full h-full">
+                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[80%] w-full lg:max-w-lg transition duration-100" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="flex justify-center items-center w-full h-full">
+                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[80%] w-full lg:max-w-lg transition duration-100" />
+                  </div>
+                </SwiperSlide>
 
-              <div className="absolute left-1/2 bottom-4 lg:bottom-6 grid grid-cols-3 -translate-x-1/2">
-                <input type="button" className="rounded-full text-secondary bg-primary w-[10px] lg:w-4 h-[10px] lg:h-4 mx-2" />
-                <input type="button" className="rounded-full text-secondary bg-zinc-500 w-[10px] lg:w-4 h-[10px] lg:h-4 mx-2" />
-                <input type="button" className="rounded-full text-secondary bg-zinc-500 w-[10px] lg:w-4 h-[10px] lg:h-4 mx-2" />
-              </div>
+                <button className="swiper-button-prev absolute top-1/2 left-2 lg:left-4 z-50" type="button">
+                  <BiChevronLeft className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
+                </button>
+                <button className="swiper-button-next absolute top-1/2 right-2 lg:right-4 z-50" type="button">
+                  <BiChevronRight className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
+                </button>
+
+                <div className="swiper-pagination absolute left-1/2 bottom-2 lg:bottom-6 -translate-x-1/2 z-[999]" />
+
+              </Swiper>
 
             </div>
 
-            <div className="relative w-full p-4 lg:p-8 max-lg:h-[65%] h-full">
+            <div className="relative w-full p-4 lg:p-8 max-lg:h-[60%] h-full">
 
               <div className="absolute top-4 right-4 max-lg:hidden">
                 <button type="button" onClick={() => setOpenDrawer(false)}>
@@ -74,11 +104,11 @@ export default function ProductView() {
               <h1 className="max-xs:text-xl lg:mt-4 max-sm:text-2xl text-3xl lg:text-4xl font-extrabold max-w-[65%]">Product Name and maybe its best feature</h1>
 
               <div className="absolute lg:mt-4 top-4 lg:top-8 right-4 lg:right-8 px-2 font-semibold">
-                <h3 className="text-2xl lg:text-4xl flex justify-end">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl flex justify-end">
                   <p className="text-primary">Q</p>
                   499.00
                 </h3>
-                <div className="flex justify-end text-sm lg:text-lg">
+                <div className="flex justify-end text-sm md:text-base lg:text-lg">
                   <p className="font-extrabold pr-1">Stock:</p>
                   <p>10</p>
                 </div>
