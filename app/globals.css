@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.swiper-pagination-bullet-active {
+  background-color: #e11d48 !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
