@@ -32,15 +32,15 @@ export default function ProductView() {
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
-        <Drawer.Content className="bg-background h-[85vh] lg:h-full z-[990] mt-24 fixed bottom-0 left-0 right-0">
+        <Drawer.Content className="bg-background rounded-t-2xl  h-[85dvh] lg:h-full z-50 mt-24 fixed bottom-0 left-0 right-0">
 
           <div className="lg:hidden h-6 rounded-t-full bg-background flex justify-center items-center">
             <div className="mx-auto my-3 w-20 h-1.5 flex-shrink-0 rounded-full bg-secondary" />
           </div>
 
-          <div className="flex max-lg:flex-col bg-background h-[82dvh] lg:h-full">
+          <div className="flex max-lg:flex-col h-full max-lg:h-[calc(100%-24px)]">
 
-            <div className="relative w-full bg-secondary font-bold max-lg:h-[40%] lg:w-1/2 h-full">
+            <div className="relative w-full bg-zinc-100 dark:bg-zinc-900 font-bold max-lg:h-[35%] lg:w-1/2 h-full">
 
               <div className="absolute top-4 lg:top-8 w-20 lg:w-32 h-10 lg:h-16 z-50">
                 <p className="pl-1 lg:pl-4 text-[10px] lg:text-sm">AUDIO PRO</p>
@@ -57,11 +57,9 @@ export default function ProductView() {
 
               <Swiper
                 modules={[EffectCoverflow, Pagination, Navigation]}
-                allowTouchMove={false}
                 spaceBetween={30}
                 slidesPerView={1}
                 loop
-                onSlideChange={() => console.log('slide change')}
                 pagination={{ el: '.swiper-pagination', clickable: true, bulletClass: 'swiper-pagination-bullet' }}
                 navigation={{
                   nextEl: '.swiper-button-next',
@@ -70,13 +68,13 @@ export default function ProductView() {
                 className="h-full w-full"
               >
                 <SwiperSlide>
-                  <div className="flex justify-center items-center w-full h-full">
-                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[80%] w-full lg:max-w-lg transition duration-100" />
+                  <div className="flex justify-center lg:items-center h-full">
+                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[85%] max-lg:mt-2 w-full lg:max-w-lg xl:max-w-xl" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <div className="flex justify-center items-center w-full h-full">
-                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[80%] w-full lg:max-w-lg transition duration-100" />
+                  <div className="flex justify-center lg:items-center h-full">
+                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[85%] max-lg:mt-2 w-full lg:max-w-lg xl:max-w-xl" />
                   </div>
                 </SwiperSlide>
 
@@ -87,13 +85,13 @@ export default function ProductView() {
                   <BiChevronRight className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
                 </button>
 
-                <div className="swiper-pagination absolute left-1/2 bottom-2 lg:bottom-6 -translate-x-1/2 z-[999]" />
+                <div className="swiper-pagination absolute left-1/2 bottom-0 lg:bottom-6 -translate-x-1/2 z-[999]" />
 
               </Swiper>
 
             </div>
 
-            <div className="relative w-full p-4 lg:p-8 max-lg:h-[60%] h-full">
+            <div className="relative w-full p-4 lg:p-8 max-lg:h-[65%] h-full">
 
               <div className="absolute top-4 right-4 max-lg:hidden">
                 <button type="button" onClick={() => setOpenDrawer(false)}>
@@ -137,7 +135,7 @@ export default function ProductView() {
                     <button type="button" className="w-8 md:w-12 h-8 md:h-11 rounded-l-xl bg-primary flex justify-center items-center hover:bg-primary/90 ">
                       <AiOutlineMinus className="w-4 md:w-6 h-4 md:h-6 text-white font-semibold" />
                     </button>
-                    <div className="w-14 md:w-20 bg-zinc-300 dark:bg-zinc-800 flex justify-center items-center max-md:text-xs">2</div>
+                    <div className="w-14 md:w-20 bg-secondary flex justify-center items-center max-md:text-xs">2</div>
                     <button type="button" className="w-8 md:w-12 h-8 md:h-11 rounded-r-xl bg-primary flex justify-center items-center hover:bg-primary/90 ">
                       <AiOutlinePlus className="w-4 md:w-6 h-4 md:h-6 text-white font-semibold" />
                     </button>
