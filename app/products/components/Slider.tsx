@@ -11,42 +11,44 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 export default function Slider() {
   return (
-    <Swiper
-      modules={[EffectCoverflow, Pagination, Navigation]}
-      spaceBetween={30}
-      slidesPerView={1}
-      pagination={{ el: '.swiper-pagination', clickable: true, bulletClass: 'swiper-pagination-bullet' }}
-      navigation={{
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      }}
-      className="h-full w-full"
-    >
-      <SwiperSlide>
-        <div className="flex justify-center items-center h-full">
-          Slide1
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="flex justify-center items-center h-full">
-          Slide2
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="flex justify-center items-center h-full">
-          Slide3
-        </div>
-      </SwiperSlide>
+    <div className="w-full h-80 lg:h-96 max-w-7xl">
+      <Swiper
+        modules={[EffectCoverflow, Pagination, Navigation]}
+        spaceBetween={30}
+        slidesPerView={1}
+        pagination={{ el: '.swiper-pagination', clickable: true, bulletClass: 'swiper-pagination-bullet' }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        className="h-full w-full"
+      >
+        <SwiperSlide>
+          <div className="flex justify-center items-center h-full">
+            Slide1
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="flex justify-center items-center h-full">
+            Slide2
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="flex justify-center items-center h-full">
+            Slide3
+          </div>
+        </SwiperSlide>
 
-      <button className="swiper-button-prev absolute top-1/2 -translate-y-1/2 left-2 lg:left-4 z-50" type="button">
-        <BiChevronLeft className="w-8 lg:w-12 h-8 lg:h-12 text-zinc-400 dark:text-zinc-600" />
-      </button>
-      <button className="swiper-button-next absolute top-1/2 -translate-y-1/2 right-2 lg:right-4 z-50" type="button">
-        <BiChevronRight className="w-8 lg:w-12 h-8 lg:h-12 text-zinc-400 dark:text-zinc-600" />
-      </button>
+        <button className="swiper-button-prev absolute top-1/2 -translate-y-1/2 left-2 lg:left-4 z-50" type="button">
+          <BiChevronLeft className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
+        </button>
+        <button className="swiper-button-next absolute top-1/2 -translate-y-1/2 right-2 lg:right-4 z-50" type="button">
+          <BiChevronRight className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
+        </button>
 
-      <div className="swiper-pagination absolute left-1/2 bottom-5 -translate-x-1/2 z-[999]" />
+        <div className="swiper-pagination absolute left-1/2 bottom-5 -translate-x-1/2 z-[999]" />
 
-    </Swiper>
+      </Swiper>
+    </div>
   );
 }
