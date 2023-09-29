@@ -1,8 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
-import { Drawer } from 'vaul';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
@@ -10,152 +7,150 @@ import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import Image from 'next/image';
-import bocina from '@/public/images/bafles/Bocina.webp';
-
-import {
-  AiOutlineClose, AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineUsb,
-} from 'react-icons/ai';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { Button } from '@/components/ui/button';
 import { BsLightningCharge, BsUsbMicro } from 'react-icons/bs';
 import { PiRadioLight } from 'react-icons/pi';
-
+import {
+  AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineUsb,
+} from 'react-icons/ai';
+import { Separator } from '@/components/ui/separator';
 import Tag from './Tag';
 
 export default function ProductView() {
-  const [openDrawer, setOpenDrawer] = useState<boolean>();
-
   return (
-    <Drawer.Root open={openDrawer}>
-      <Drawer.Trigger asChild onClick={() => setOpenDrawer(true)}>
-        <button type="button">Open Drawer</button>
-      </Drawer.Trigger>
-      <Drawer.Portal>
-        <Drawer.Overlay className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
-        <Drawer.Content className="bg-background rounded-t-2xl  h-[85dvh] lg:h-full z-50 mt-24 fixed bottom-0 left-0 right-0">
-
-          <div className="lg:hidden h-6 rounded-t-full bg-background flex justify-center items-center">
-            <div className="mx-auto my-3 w-20 h-1.5 flex-shrink-0 rounded-full bg-secondary" />
-          </div>
-
-          <div className="flex max-lg:flex-col h-full max-lg:h-[calc(100%-24px)]">
-
-            <div className="relative w-full bg-zinc-100 dark:bg-zinc-900 font-bold max-lg:h-[35%] lg:w-1/2 h-full">
-
-              <div className="absolute top-4 lg:top-8 w-20 lg:w-32 h-10 lg:h-16 z-50">
-                <p className="pl-1 lg:pl-4 text-[10px] lg:text-sm">AUDIO PRO</p>
-                <div className="text-white text-sm lg:text-lg flex pl-1 lg:pl-4 items-center bg-primary h-6 lg:h-10 w-20 lg:w-32 rounded-r-full">
-                  ISP-3016
+    <div className="w-full flex flex-col items-center">
+      <section className="relative w-full flex justify-center pt-2 md:pt-4">
+        <div className="h-full lg:h-[30rem] w-full flex max-md:flex-col justify-center max-w-7xl ">
+          <div className="md:w-1/2 h-full flex">
+            <Swiper
+              modules={[EffectCoverflow, Pagination, Navigation]}
+              spaceBetween={30}
+              slidesPerView={1}
+              pagination={{ el: '.swiper-pagination', clickable: true, bulletClass: 'swiper-pagination-bullet' }}
+              navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }}
+              className="h-[22rem] lg:h-[30rem] w-full"
+            >
+              <SwiperSlide className="px-8 py-10">
+                <div className="bg-secondary flex justify-center items-center h-full">
+                  Slide1
                 </div>
-              </div>
+              </SwiperSlide>
+              <SwiperSlide className="px-8 py-10">
+                <div className="bg-secondary flex justify-center items-center h-full">
+                  Slide2
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="px-8 py-10">
+                <div className="bg-secondary flex justify-center items-center h-full">
+                  Slide3
+                </div>
+              </SwiperSlide>
 
-              <div className="absolute top-3 right-3 lg:hidden z-50">
-                <button type="button" onClick={() => setOpenDrawer(false)}>
-                  <AiOutlineClose className="w-4 lg:w-6 h-4 lg:h-6 text-zinc-700 dark:text-zinc-300" />
-                </button>
-              </div>
+              <button className="swiper-button-prev absolute top-1/2 -translate-y-1/2 left-2 z-50" type="button">
+                <BiChevronLeft className="w-6 lg:w-8 h-6 lg:h-8 text-zinc-400 dark:text-zinc-600" />
+              </button>
+              <button className="swiper-button-next absolute top-1/2 -translate-y-1/2 right-2 z-50" type="button">
+                <BiChevronRight className="w-6 lg:w-8 h-6 lg:h-8 text-zinc-400 dark:text-zinc-600" />
+              </button>
 
-              <Swiper
-                modules={[EffectCoverflow, Pagination, Navigation]}
-                spaceBetween={30}
-                slidesPerView={1}
-                loop
-                pagination={{ el: '.swiper-pagination', clickable: true, bulletClass: 'swiper-pagination-bullet' }}
-                navigation={{
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-                }}
-                className="h-full w-full"
-              >
-                <SwiperSlide>
-                  <div className="flex justify-center lg:items-center h-full">
-                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[85%] max-lg:mt-2 w-full lg:max-w-lg xl:max-w-xl" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="flex justify-center lg:items-center h-full">
-                    <Image src={bocina} alt="" className="max-lg:w-60 max-lg:h-[85%] max-lg:mt-2 w-full lg:max-w-lg xl:max-w-xl" />
-                  </div>
-                </SwiperSlide>
+              <div className="swiper-pagination absolute left-1/2 mt-4 -translate-x-1/2 z-[999]" />
 
-                <button className="swiper-button-prev absolute top-1/2 left-2 lg:left-4 z-50" type="button">
-                  <BiChevronLeft className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
-                </button>
-                <button className="swiper-button-next absolute top-1/2 right-2 lg:right-4 z-50" type="button">
-                  <BiChevronRight className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
-                </button>
+            </Swiper>
 
-                <div className="swiper-pagination absolute left-1/2 bottom-0 lg:bottom-6 -translate-x-1/2 z-[999]" />
+            <ul className="h-full w-24 grid grid-rows-4 gap-y-1 md:gap-y-2 py-4 max-md:pr-4 items-center">
+              <Tag icon={<BsUsbMicro className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada Micro SD" />
+              <Tag icon={<BsLightningCharge className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Batería recargable" />
+              <Tag icon={<AiOutlineUsb className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada USB" />
+              <Tag icon={<PiRadioLight className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Radio FM" />
+            </ul>
+          </div>
+          <div className="relative md:w-1/2 h-full md:h-[22rem] lg:h-[30rem] w-full p-4 lg:p-6">
+            <h1 className="text-2xl md:text-xl lg:text-3xl font-extrabold max-w-[70%] ">Product Name and maybe its best feature</h1>
 
-              </Swiper>
-
+            <div className="absolute top-6 right-6 font-semibold">
+              <h3 className="text-2xl md:text-xl lg:text-3xl flex justify-end">
+                <p className="text-primary">Q</p>
+                499.00
+              </h3>
             </div>
 
-            <div className="relative w-full p-4 lg:p-8 max-lg:h-[65%] h-full">
+            <Separator className="my-4 md:my-2 lg:my-4" />
 
-              <div className="absolute top-4 right-4 max-lg:hidden">
-                <button type="button" onClick={() => setOpenDrawer(false)}>
-                  <AiOutlineClose className="w-4 lg:w-6 h-4 lg:h-6 text-zinc-700 dark:text-zinc-300" />
-                </button>
-              </div>
-
-              <h1 className="max-xs:text-xl lg:mt-4 max-sm:text-2xl text-3xl lg:text-4xl font-extrabold max-w-[65%]">Product Name and maybe its best feature</h1>
-
-              <div className="absolute lg:mt-4 top-4 lg:top-8 right-4 lg:right-8 px-2 font-semibold">
-                <h3 className="text-2xl md:text-3xl lg:text-4xl flex justify-end">
-                  <p className="text-primary">Q</p>
-                  499.00
-                </h3>
-                <div className="flex justify-end text-sm md:text-base lg:text-lg">
-                  <p className="font-extrabold pr-1">Stock:</p>
-                  <p>10</p>
+            <div>
+              <h3 className="w-full max-md:text-base max-lg:text-xs font-semibold tracking-wider mb-2">Descripción</h3>
+              <span className="w-full max-md:text-base max-lg:text-xs">Descripción real del producto, incluye capacidades, cantidades, conexiones, etc. Cada producto tiene alrededor de 4 a 6 etiquetas y unas 5 cualidades por lo que dependiendo del producto se vera mas lleno o mas vacio</span>
+              <div className="flex gap-x-4 max-md:mt-2">
+                <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
+                  <h3 className="my-2 lg:mt-4 font-semibold tracking-wider">Categoría:</h3>
+                  <p className="my-2 lg:mt-4">Bocinas</p>
+                </div>
+                <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
+                  <h3 className="my-2 lg:mt-4 font-semibold tracking-wider">Stock:</h3>
+                  <p className="my-2 lg:mt-4">10</p>
                 </div>
               </div>
+            </div>
 
-              <div className="w-full mt-2 lg:mt-4">
-                <div className="w-16 lg:w-28 h-6 lg:h-10 lg:mb-4 rounded-full bg-primary text-white flex items-center justify-center max-lg:text-[10px] font-bold">
-                  Etiquetas
-                </div>
-                <ul className="w-full my-2 grid grid-cols-6 gap-2 lg:gap-4 max-w-xs lg:max-w-lg">
-                  <Tag icon={<BsUsbMicro className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada Micro SD" />
-                  <Tag icon={<BsLightningCharge className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Batería recargable" />
-                  <Tag icon={<AiOutlineUsb className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada USB" />
-                  <Tag icon={<PiRadioLight className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Radio FM" />
-                </ul>
+            <Separator className="my-4 md:my-2 lg:my-4" />
 
-                <p className="w-full mt-2 lg:mt-5 max-xs:text-sm sm:text-lg md:text-xl">Descripción real del producto, incluye capacidades, cantidades, conexiones, etc. Cada producto tiene alrededor de 4 a 6 etiquetas y unas 5 cualidades por lo que dependiendo del producto se vera mas lleno o mas vacio</p>
+            <div className="w-full md:absolute bottom-4 lg:bottom-6 left-1/2 md:-translate-x-1/2 md:px-4 lg:px-6 flex justify-between items-end">
 
-              </div>
-
-              <div className="w-full flex justify-between absolute bottom-4 lg:bottom-8 left-0 px-4 lg:px-8">
-
-                <div className="flex flex-col justify-end">
-                  <p className="text-sm md:text-lg font-bold pb-1 md:pb-2">Cantidad</p>
-                  <div className="flex h-8 md:h-11">
-                    <button type="button" className="w-8 md:w-12 h-8 md:h-11 rounded-l-xl bg-primary flex justify-center items-center hover:bg-primary/90 ">
-                      <AiOutlineMinus className="w-4 md:w-6 h-4 md:h-6 text-white font-semibold" />
-                    </button>
-                    <div className="w-14 md:w-20 bg-secondary flex justify-center items-center max-md:text-xs">2</div>
-                    <button type="button" className="w-8 md:w-12 h-8 md:h-11 rounded-r-xl bg-primary flex justify-center items-center hover:bg-primary/90 ">
-                      <AiOutlinePlus className="w-4 md:w-6 h-4 md:h-6 text-white font-semibold" />
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-end gap-2 md:gap-4">
-                  <button type="submit" className="bg-primary h-8 md:h-12 rounded-full text-white max-md:text-xs px-4 md:px-8 hover:bg-primary/90">Comprar</button>
-                  <button type="submit" className="bg-background border border-primary h-8 md:h-12 rounded-full max-md:text-xs px-4 md:px-8 flex justify-center items-center">
-                    Añadir al carrito
-                    <AiOutlineShoppingCart className="w-4 md:w-6 h-4 md:h-6 ml-1" />
+              <div className="flex flex-col justify-end">
+                <p className=" max-md:text-base max-lg:text-xs font-bold pb-1 max-md:pb-2">Cantidad</p>
+                <div className="flex">
+                  <button type="button" className="w-8 lg:w-10 h-8 lg:h-10 rounded-l-lg bg-primary flex justify-center items-center">
+                    <AiOutlineMinus className="w-4 h-4 text-white" />
+                  </button>
+                  <div className="w-14 lg:w-16 h-8 lg:h-10 bg-secondary flex justify-center items-center text-xs lg:text-sm">2</div>
+                  <button type="button" className="w-8 lg:w-10 h-8 lg:h-10 rounded-r-lg bg-primary flex justify-center items-center">
+                    <AiOutlinePlus className="w-4 h-4 text-white" />
                   </button>
                 </div>
-
               </div>
+
+              <button type="submit" className="bg-primary h-8 lg:h-10 rounded-2xl max-lg:text-xs text-sm py-2 px-4 lg:px-6 flex justify-center items-center tracking-wider text-white font-semibold">
+                Añadir al carrito
+                <AiOutlineShoppingCart className="w-4 lg:w-5 h-4 lg:h-5 ml-1" />
+              </button>
 
             </div>
           </div>
-        </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
+        </div>
+      </section>
+      <section className="w-full h-full px-5 max-w-7xl">
+        <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Mas Productos</h2>
+        <p className="w-full text-center lg:text-xl ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center gap-10 h-full p-5">
+          <div className="w-full lg:h-96 h-80 flex justify-center">
+            <div className="relative bg-secondary rounded-xl h-full w-full max-w-xl p-5">
+              a
+              <div className="absolute left-1/2 bottom-5 -translate-x-1/2 px-5 w-full flex justify-center">
+                <Button className="w-40 font-semibold">Bocinas</Button>
+              </div>
+            </div>
+          </div>
+          <div className="max-md:hidden w-full lg:h-96 h-80 flex justify-center">
+            <div className="relative bg-secondary rounded-xl h-full w-full max-w-xl p-5">
+              a
+              <div className="absolute left-1/2 bottom-5 -translate-x-1/2 px-5 w-full flex justify-center">
+                <Button className="w-40 font-semibold">Audifonos</Button>
+              </div>
+            </div>
+          </div>
+          <div className="max-lg:hidden w-full lg:h-96 h-80 flex justify-center">
+            <div className="relative bg-secondary rounded-xl h-full w-full max-w-xl p-5">
+              a
+              <div className="absolute left-1/2 bottom-5 -translate-x-1/2 px-5 w-full flex justify-center">
+                <Button className="w-40 font-semibold">Accesorios</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
