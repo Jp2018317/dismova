@@ -3,10 +3,21 @@ import { Button } from '@/components/ui/button';
 import Slider from './components/Slider';
 
 export default function Home() {
+  const swiperInfo = [
+    {
+      title: 'Slide1',
+    },
+    {
+      title: 'Slide2',
+    },
+    {
+      title: 'Slide3',
+    },
+  ];
   return (
     <div className="w-full flex flex-col items-center">
       <section className="bg-secondary w-full flex justify-center">
-        <Slider />
+        <Slider swiperInfo={swiperInfo} swiper="h-80 lg:h-96 w-full max-w-7xl" rightButton="right-1 lg:right-2" leftButton="left-1 lg:left-2" />
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
         <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Categorias</h2>

@@ -1,13 +1,9 @@
 'use client';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { Button } from '@/components/ui/button';
 import { BsLightningCharge, BsUsbMicro } from 'react-icons/bs';
 import { PiRadioLight } from 'react-icons/pi';
@@ -16,59 +12,36 @@ import {
 } from 'react-icons/ai';
 import { Separator } from '@/components/ui/separator';
 import Tag from './Tag';
+import Slider from './Slider';
 
 export default function ProductView() {
+  const swiperInfo = [
+    {
+      title: 'Slide1',
+    },
+    {
+      title: 'Slide2',
+    },
+    {
+      title: 'Slide3',
+    },
+  ];
   return (
     <div className="w-full flex flex-col items-center">
-      <section className="relative w-full flex justify-center pt-2 md:pt-4">
-        <div className="h-full lg:h-[30rem] w-full flex max-md:flex-col justify-center max-w-7xl ">
-          <div className="md:w-1/2 h-full flex">
-            <Swiper
-              modules={[EffectCoverflow, Pagination, Navigation]}
-              spaceBetween={30}
-              slidesPerView={1}
-              pagination={{ el: '.swiper-pagination', clickable: true, bulletClass: 'swiper-pagination-bullet' }}
-              navigation={{
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              }}
-              className="h-[22rem] lg:h-[30rem] w-full"
-            >
-              <SwiperSlide className="px-8 py-10">
-                <div className="bg-secondary flex justify-center items-center h-full">
-                  Slide1
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="px-8 py-10">
-                <div className="bg-secondary flex justify-center items-center h-full">
-                  Slide2
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="px-8 py-10">
-                <div className="bg-secondary flex justify-center items-center h-full">
-                  Slide3
-                </div>
-              </SwiperSlide>
+      <section className="relative w-full flex justify-center pt-2">
+        <div className="lg:h-[35rem] w-full flex max-md:flex-col justify-center max-w-7xl ">
+          <div className="md:w-1/2 flex">
 
-              <button className="swiper-button-prev absolute top-1/2 -translate-y-1/2 left-2 z-50" type="button">
-                <BiChevronLeft className="w-6 lg:w-8 h-6 lg:h-8 text-zinc-400 dark:text-zinc-600" />
-              </button>
-              <button className="swiper-button-next absolute top-1/2 -translate-y-1/2 right-2 z-50" type="button">
-                <BiChevronRight className="w-6 lg:w-8 h-6 lg:h-8 text-zinc-400 dark:text-zinc-600" />
-              </button>
+            <Slider swiperInfo={swiperInfo} swiper="h-[22rem] lg:h-[35rem] w-full" swiperSlide="px-8 py-12" swiperContent="bg-secondary flex justify-center items-center h-full" />
 
-              <div className="swiper-pagination absolute left-1/2 mt-4 -translate-x-1/2 z-[999]" />
-
-            </Swiper>
-
-            <ul className="h-full w-24 grid grid-rows-4 gap-y-1 md:gap-y-2 py-4 max-md:pr-4 items-center">
+            <ul className="h-full w-24 grid grid-rows-4 gap-y-1 py-4 max-md:pr-4 items-center">
               <Tag icon={<BsUsbMicro className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada Micro SD" />
               <Tag icon={<BsLightningCharge className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Batería recargable" />
               <Tag icon={<AiOutlineUsb className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada USB" />
               <Tag icon={<PiRadioLight className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Radio FM" />
             </ul>
           </div>
-          <div className="relative md:w-1/2 h-full md:h-[22rem] lg:h-[30rem] w-full p-4 lg:p-6">
+          <div className="relative md:w-1/2 h-full md:h-[22rem] lg:h-[35rem] w-full p-4 lg:p-6">
             <h1 className="text-2xl md:text-xl lg:text-3xl font-extrabold max-w-[70%] ">Product Name and maybe its best feature</h1>
 
             <div className="absolute top-6 right-6 font-semibold">
@@ -83,14 +56,17 @@ export default function ProductView() {
             <div>
               <h3 className="w-full max-md:text-base max-lg:text-xs font-semibold tracking-wider mb-2">Descripción</h3>
               <span className="w-full max-md:text-base max-lg:text-xs">Descripción real del producto, incluye capacidades, cantidades, conexiones, etc. Cada producto tiene alrededor de 4 a 6 etiquetas y unas 5 cualidades por lo que dependiendo del producto se vera mas lleno o mas vacio</span>
-              <div className="flex gap-x-4 max-md:mt-2">
+
+              <Separator className="my-4 md:my-2 lg:my-4" />
+
+              <div className="flex gap-x-4">
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
-                  <h3 className="my-2 lg:mt-4 font-semibold tracking-wider">Categoría:</h3>
-                  <p className="my-2 lg:mt-4">Bocinas</p>
+                  <h3 className="my-2 font-semibold tracking-wider">Categoría:</h3>
+                  <p className="my-2">Bocinas</p>
                 </div>
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
-                  <h3 className="my-2 lg:mt-4 font-semibold tracking-wider">Stock:</h3>
-                  <p className="my-2 lg:mt-4">10</p>
+                  <h3 className="my-2 font-semibold tracking-wider">Stock:</h3>
+                  <p className="my-2">10</p>
                 </div>
               </div>
             </div>
@@ -121,7 +97,11 @@ export default function ProductView() {
           </div>
         </div>
       </section>
+
       <section className="w-full h-full px-5 max-w-7xl">
+
+        <Separator className="my-4 md:my-2 lg:my-4" />
+
         <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Mas Productos</h2>
         <p className="w-full text-center lg:text-xl ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center gap-10 h-full p-5">
