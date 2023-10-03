@@ -13,7 +13,7 @@ export default function Product() {
     {
       id: '1',
       product: 'Bocina',
-      category: 'Bafles',
+      category: 'bafles',
     },
     {
       id: '2',

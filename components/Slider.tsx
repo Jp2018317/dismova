@@ -28,7 +28,10 @@ export default function Slider({
     0: {
       slidesPerView: 1,
     },
-    550: {
+    600: {
+      slidesPerView: 2,
+    },
+    768: {
       slidesPerView: 2,
     },
     900: {
@@ -38,7 +41,11 @@ export default function Slider({
     0: {
       slidesPerView: 1,
     },
-    550: {
+    600: {
+      slidesPerView: 2,
+      spaceBetween: 0,
+    },
+    768: {
       slidesPerView: 1,
     },
     900: {
@@ -58,11 +65,11 @@ export default function Slider({
       className={`${!productsList && 'h-[22rem] lg:h-[35rem]'}`}
     >
       {swiperInfo.map((slide) => (
-        <SwiperSlide className={`relative ${!productsList ? 'px-8 py-12' : 'pb-10'}`} key={slide.id}>
+        <SwiperSlide className={`relative ${!productsList ? 'px-4 xs:px-8 py-12' : 'pb-10'}`} key={slide.id}>
           <div className="w-full h-full">
             <div className="bg-secondary w-full h-full flex justify-center items-center rounded-xl">
               <Redirect className="flex flex-col justify-center items-center w-full h-full" href={`/products/${slide.product}`}>
-                <div className={`relative my-4 ${productsList ? 'w-48 h-48' : 'w-60 h-60 lg:w-96 lg:h-96'}`}>
+                <div className={`relative my-4 ${productsList ? 'w-48 h-48' : 'w-44 h-44 xs:w-60 xs:h-60 lg:w-96 lg:h-96'}`}>
                   <Image src={`/images/${slide.category}/${slide.product}.webp`} fill alt={slide.product} />
                 </div>
                 {
