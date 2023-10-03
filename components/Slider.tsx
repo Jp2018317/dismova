@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
+import { useToast } from '@/components/ui/use-toast';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -14,6 +16,7 @@ import Link from 'next/link';
 import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
+import { ToastAction } from './ui/toast';
 
 type SliderProps = {
   swiperInfo: { id: string, product: string, category: string, title?: string, price?: number }[];
@@ -23,6 +26,7 @@ type SliderProps = {
 export default function Slider({
   swiperInfo, productsList,
 }: SliderProps) {
+  const { toast } = useToast();
   const Redirect = productsList ? Link : 'div';
   const breakpoints = productsList ? {
     0: {
@@ -99,10 +103,32 @@ export default function Slider({
             { productsList
               ? (
                 <div className="absolute flex flex-col top-4 right-4 space-y-2">
-                  <Button variant="secondary" size="icon" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-all">
+                  <Button
+                    onClick={() => {
+                      toast({
+                        title: 'Añadido al Carrito',
+                        description: `${slide.product} ha sido añadido al carrito de compras`,
+                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
+                      });
+                    }}
+                    variant="secondary"
+                    size="icon"
+                    className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary transition-all"
+                  >
                     <AiOutlineShoppingCart className="w-6 h-6" />
                   </Button>
-                  <Button variant="secondary" size="icon" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-all">
+                  <Button
+                    onClick={() => {
+                      toast({
+                        title: 'Añadido a Favoritos',
+                        description: `${slide.product} ha sido añadido a la lista de favoritos`,
+                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
+                      });
+                    }}
+                    variant="secondary"
+                    size="icon"
+                    className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary transition-all"
+                  >
                     <AiFillHeart className="w-6 h-6" />
                   </Button>
                 </div>
