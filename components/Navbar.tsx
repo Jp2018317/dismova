@@ -3,21 +3,16 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import { ROUTES } from '@/config';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Logo from './logo';
 import Sidebar from './Sidebar';
+import Cart from './cart/Cart';
+
+const queryClient = new QueryClient();
 
 export default function NavBar() {
   const [fade, setFade] = useState('border-b');
@@ -69,18 +64,9 @@ export default function NavBar() {
           </form>
 
           <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4 sm:gap-8">
-            <div className="max-xs:hidden flex items-center">
-              <Sheet>
-                <SheetTrigger>
-                  <AiOutlineShoppingCart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-6 h-6" />
-                </SheetTrigger>
-                <SheetContent>
-                  <SheetHeader>
-                    <SheetTitle className="text-center">Mi Carrito</SheetTitle>
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
-            </div>
+            <QueryClientProvider client={queryClient}>
+              <Cart />
+            </QueryClientProvider>
 
             <Sidebar />
           </div>
