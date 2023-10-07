@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
+import { useToast } from '@/components/ui/use-toast';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -14,6 +16,7 @@ import Link from 'next/link';
 import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
+import { ToastAction } from './ui/toast';
 
 type SliderProps = {
   swiperInfo: { id: string, product: string, category: string, title?: string, price?: number }[];
@@ -23,12 +26,16 @@ type SliderProps = {
 export default function Slider({
   swiperInfo, productsList,
 }: SliderProps) {
+  const { toast } = useToast();
   const Redirect = productsList ? Link : 'div';
   const breakpoints = productsList ? {
     0: {
       slidesPerView: 1,
     },
-    550: {
+    600: {
+      slidesPerView: 2,
+    },
+    768: {
       slidesPerView: 2,
     },
     900: {
@@ -38,7 +45,11 @@ export default function Slider({
     0: {
       slidesPerView: 1,
     },
-    550: {
+    600: {
+      slidesPerView: 2,
+      spaceBetween: 0,
+    },
+    768: {
       slidesPerView: 1,
     },
     900: {
@@ -58,11 +69,11 @@ export default function Slider({
       className={`${!productsList && 'h-[22rem] lg:h-[35rem]'}`}
     >
       {swiperInfo.map((slide) => (
-        <SwiperSlide className={`relative ${!productsList ? 'px-8 py-12' : 'pb-10'}`} key={slide.id}>
+        <SwiperSlide className={`relative ${!productsList ? 'px-4 xs:px-8 py-12' : 'pb-10'}`} key={slide.id}>
           <div className="w-full h-full">
             <div className="bg-secondary w-full h-full flex justify-center items-center rounded-xl">
               <Redirect className="flex flex-col justify-center items-center w-full h-full" href={`/products/${slide.product}`}>
-                <div className={`relative my-4 ${productsList ? 'w-48 h-48' : 'w-60 h-60 lg:w-96 lg:h-96'}`}>
+                <div className={`relative my-4 ${productsList ? 'w-48 h-48' : 'w-44 h-44 xs:w-60 xs:h-60 lg:w-96 lg:h-96'}`}>
                   <Image src={`/images/${slide.category}/${slide.product}.webp`} fill alt={slide.product} />
                 </div>
                 {
@@ -92,10 +103,32 @@ export default function Slider({
             { productsList
               ? (
                 <div className="absolute flex flex-col top-4 right-4 space-y-2">
-                  <Button variant="secondary" size="icon" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-all">
+                  <Button
+                    onClick={() => {
+                      toast({
+                        title: 'Añadido al Carrito',
+                        description: `${slide.product} ha sido añadido al carrito de compras`,
+                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
+                      });
+                    }}
+                    variant="secondary"
+                    size="icon"
+                    className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary transition-all"
+                  >
                     <AiOutlineShoppingCart className="w-6 h-6" />
                   </Button>
-                  <Button variant="secondary" size="icon" className="text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-all">
+                  <Button
+                    onClick={() => {
+                      toast({
+                        title: 'Añadido a Favoritos',
+                        description: `${slide.product} ha sido añadido a la lista de favoritos`,
+                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
+                      });
+                    }}
+                    variant="secondary"
+                    size="icon"
+                    className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary transition-all"
+                  >
                     <AiFillHeart className="w-6 h-6" />
                   </Button>
                 </div>

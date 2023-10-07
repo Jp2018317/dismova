@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { VscAccount } from 'react-icons/vsc';
-import { AiOutlineShoppingCart, AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { LiaBarsSolid } from 'react-icons/lia';
 import { IoMdSettings } from 'react-icons/io';
 import { BsHeadphones, BsTelephone } from 'react-icons/bs';
@@ -72,6 +72,17 @@ export default function Sidebar() {
                 >
                   <AiOutlineShoppingCart className="dark:text-white w-6 h-6" />
                   Mi Carrito
+                </Link>
+              </Button>
+            </li>
+            <li>
+              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
+                <Link
+                  href={ROUTES.favorites}
+                  className="w-full flex items-center justify-start gap-2"
+                >
+                  <AiOutlineHeart className="dark:text-white w-6 h-6" />
+                  Favoritos
                 </Link>
               </Button>
             </li>

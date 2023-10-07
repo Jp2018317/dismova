@@ -53,8 +53,8 @@ export default function Home() {
         <LandingSlider />
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
-        <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Categorias</h2>
-        <p className="w-full text-center lg:text-xl ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
+        <h2 className="w-full text-2xl font-semibold text-center pt-6 lg:text-3xl">Categorias</h2>
+        <p className="w-full text-center lg:text-xl px-4 pt-2 ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
         <div className="py-4">
           <Slider swiperInfo={swiperInfo} productsList />
         </div>
