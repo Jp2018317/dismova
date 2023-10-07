@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { CartItem } from '@/types';
 
 export default function Item({
-  name, description, price, initStock, category,
+  name, description, price, stock, category,
 }: CartItem) {
   return (
     <div className="w-full border border-border rounded-xl flex h-40 p-2 gap-x-2">
@@ -24,15 +24,14 @@ export default function Item({
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2 w-full flex justify-between">
           <h2 className="text-sm lg:text-xl font-semibold flex">
             <p className="text-primary">Q</p>
-            {price}
-            .00
+            {price.toFixed(2)}
           </h2>
           <div className="flex flex-col justify-end">
             <div className="flex">
               <button type="button" className="w-5 lg:w-7 h-6 lg:h-7 rounded-l-lg bg-primary flex justify-center items-center">
                 <AiOutlineMinus className="text-white" />
               </button>
-              <div className="w-9 h-6 lg:h-7 bg-secondary flex justify-center items-center text-xs">{initStock}</div>
+              <div className="w-9 h-6 lg:h-7 bg-secondary flex justify-center items-center text-xs">{stock}</div>
               <button type="button" className="w-5 lg:w-7 h-6 lg:h-7 rounded-r-lg bg-primary flex justify-center items-center">
                 <AiOutlinePlus className="text-white" />
               </button>
