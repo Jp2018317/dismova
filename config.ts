@@ -5,7 +5,7 @@ export const ROUTES = {
     signup: '/auth/signup',
   },
   products: '/products',
-  cart: '/cart',
+  cart: '/products/cart',
   favorites: '/favorites',
   account: '/account',
   orders: '/orders',
