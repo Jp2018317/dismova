@@ -5,3 +5,10 @@ export type CartItem = {
   category: string;
   stock: number;
 };
+
+export type FavItem = {
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+};
