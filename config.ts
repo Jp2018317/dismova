@@ -6,7 +6,7 @@ export const ROUTES = {
   },
   products: '/products',
   cart: '/products/cart',
-  favorites: '/favorites',
+  favorites: '/products/favoritos',
   account: '/account',
   orders: '/orders',
   appearance: '/appearance',

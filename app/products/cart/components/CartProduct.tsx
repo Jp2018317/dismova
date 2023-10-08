@@ -1,11 +1,11 @@
 import {
-  AiOutlineClose, AiOutlineMinus, AiOutlinePlus,
+  AiFillDelete, AiOutlineMinus, AiOutlinePlus,
 } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CartItem } from '@/types';
 
-export default function Products({
+export default function CartProduct({
   name, description, price, stock, category,
 }: CartItem) {
   return (
@@ -45,7 +45,7 @@ export default function Products({
         </div>
 
         <button className="absolute top-2 right-2 text-zinc-700 dark:text-white" type="button">
-          <AiOutlineClose className="w-4 h-4 hover:text-red-600" />
+          <AiFillDelete className="w-5 h-5 hover:text-red-600" />
         </button>
       </div>
     </div>
