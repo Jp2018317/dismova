@@ -5,6 +5,7 @@ import {
   Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,
 } from '../ui/sheet';
 import Item from './Item';
+import { Button } from '../ui/button';
 
 type Props = {
   cartItems: CartItem[];
@@ -21,8 +22,6 @@ export default function Cart({ cartItems }:Props) {
           <SheetHeader>
             <SheetTitle className="flex justify-between items-center mb-2 p-3 w-full">
               <h1 className="text-2xl">Mi carrito</h1>
-              <Link href="/products/cart" className="bg-primary text-sm rounded-xl px-4 py-2 font-medium text-white">Comprar</Link>
-
             </SheetTitle>
           </SheetHeader>
           <div className="flex flex-col gap-y-4">
@@ -37,14 +36,19 @@ export default function Cart({ cartItems }:Props) {
               />
             ))}
           </div>
-          {
-            cartItems.length > 5
-              && (
-              <div className="w-full flex justify-center mt-4">
-                <Link href="/products/cart" className="underline-offset-4 rounded-xl px-4 py-2 font-medium hover:underline">Ver Todos</Link>
+          { cartItems.length === 0 && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-10">
+              <h2 className="text-xl font-semibold w-full text-center mb-2">Aun no hay productos!</h2>
+              <h3 className="font-medium w-full text-center mb-6">Aqui se mostraran los productos que agregues a tu carrito de compras</h3>
+              <div className="w-full flex justify-center">
+                <Button>Buscar Productos</Button>
               </div>
-              )
-          }
+            </div>
+          )}
+          <div className="flex justify-between items-center mt-4">
+            { cartItems.length > 5 && <Link href="/products/cart" className="underline-offset-4 text-sm rounded-xl px-4 py-2 font-medium hover:underline">Ver Todos</Link> }
+            { cartItems.length > 0 && <Link href="/products/cart" className="bg-primary text-sm rounded-xl px-4 py-2 font-medium text-white">Comprar</Link> }
+          </div>
         </SheetContent>
       </Sheet>
     </div>

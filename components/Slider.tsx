@@ -16,7 +16,6 @@ import Link from 'next/link';
 import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
-import { ToastAction } from './ui/toast';
 
 type SliderProps = {
   swiperInfo: { id: string, product: string, category: string, title?: string, price?: number }[];
@@ -108,7 +107,7 @@ export default function Slider({
                       toast({
                         title: 'Añadido al Carrito',
                         description: `${slide.product} ha sido añadido al carrito de compras`,
-                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
+                        action: <Link href="/products/cart" className="text-sm border border-border px-3 py-2 rounded-lg text-center"><p className="w-16">Ver Más</p></Link>,
                       });
                     }}
                     variant="secondary"
@@ -122,7 +121,7 @@ export default function Slider({
                       toast({
                         title: 'Añadido a Favoritos',
                         description: `${slide.product} ha sido añadido a la lista de favoritos`,
-                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
+                        action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center"><p className="w-16">Ver Más</p></Link>,
                       });
                     }}
                     variant="secondary"

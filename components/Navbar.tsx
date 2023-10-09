@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { BiSearch } from 'react-icons/bi';
 import { ROUTES } from '@/config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { CartItem } from '@/app/config/types';
+import { cartItems } from '@/app/config/constants';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Logo from './logo';
@@ -14,57 +14,6 @@ import Sidebar from './Sidebar';
 import ShoppingCart from './cart/ShoppingCart';
 
 const queryClient = new QueryClient();
-
-const cartItems: CartItem[] = [
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-  {
-    name: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'bafles', stock: 2,
-  },
-];
 
 export default function NavBar() {
   const [fade, setFade] = useState('border-b');
