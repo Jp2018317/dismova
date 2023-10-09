@@ -5,15 +5,11 @@ import Link from 'next/link';
 
 import { BiSearch } from 'react-icons/bi';
 import { ROUTES } from '@/config';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { cartItems } from '@/app/config/constants';
+import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Logo from './logo';
 import Sidebar from './Sidebar';
-import ShoppingCart from './cart/ShoppingCart';
-
-const queryClient = new QueryClient();
 
 export default function NavBar() {
   const [fade, setFade] = useState('border-b');
@@ -64,10 +60,13 @@ export default function NavBar() {
             </Button>
           </form>
 
-          <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4 sm:gap-8">
-            <QueryClientProvider client={queryClient}>
-              <ShoppingCart cartItems={cartItems} />
-            </QueryClientProvider>
+          <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4 md:gap-8">
+            <Link href="/products/favoritos" className="max-sm:hidden hover:text-primary">
+              <AiOutlineHeart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
+            </Link>
+            <Link href="/products/cart" className="max-sm:hidden hover:text-primary">
+              <AiOutlineShoppingCart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
+            </Link>
 
             <Sidebar />
           </div>
