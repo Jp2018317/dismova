@@ -24,18 +24,18 @@ export default function FavProduct({
   name, description, price, category,
 }: FavItem) {
   return (
-    <div className="w-full border border-border rounded-xl flex h-40 sm:h-44  p-2 gap-x-2">
-      <div className="bg-secondary rounded-xl h-full flex items-center">
+    <div className="w-full border border-border rounded-xl flex h-36 sm:h-44">
+      <div className="bg-secondary rounded-l-xl h-full flex items-center">
         <Link href="/products/id" className="relative h-28 sm:h-40 w-28 sm:w-40">
           <Image src={`/images/${category}/${name}.webp`} fill alt={`${name}`} />
         </Link>
       </div>
-      <div className=" gap-x-4 relative h-full w-full p-2 ">
+      <div className="gap-x-4 relative h-full w-full p-3">
         <div className="w-[80%] col-span-2">
           <h2 className="font-semibold text-sm sm:text-lg">{name}</h2>
           <span className="text-xs sm:text-sm line-clamp-2 leading-5 mt-1">{description}</span>
         </div>
-        <div className="absolute bottom-2 left-2 w-full flex items-center">
+        <div className="absolute bottom-3 left-3 w-full flex items-center">
           <h2 className="font-semibold flex sm:text-lg">
             <p className="text-primary">Q</p>
             {price.toFixed(2)}
@@ -43,7 +43,7 @@ export default function FavProduct({
         </div>
         <AlertDialog>
           <AlertDialogTrigger>
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-3 right-3">
               <TbHeartBroken className="w-6 sm:w-7 h-6 sm:h-7 dark:text-white hover:text-primary dark:hover:text-primary" />
             </div>
           </AlertDialogTrigger>
@@ -60,7 +60,7 @@ export default function FavProduct({
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-        <div className="absolute bottom-2 right-2">
+        <div className="absolute bottom-3 right-3">
           <button
             onClick={() => {
               toast({

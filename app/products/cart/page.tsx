@@ -22,15 +22,15 @@ export default function Cart() {
   const totalProducts = cartItems.reduce((acc, item) => acc + item.stock, 0);
 
   return (
-    <div className="w-full h-full max-w-7xl px-5 max-h-[30rem] sm:max-h-[32rem]">
+    <div className="w-full h-full max-w-7xl px-5 max-h-[29rem] sm:max-h-[35rem]">
       <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 py-4 lg:py-8">
         <div className="w-full h-full">
-          <div className="flex w-full px-2 pb-4">
-            <h1 className="w-44 font-semibold text-2xl">Mi Carrito</h1>
+          <div className="flex w-full pb-4">
+            <h1 className="w-52 font-semibold text-2xl">Mi Carrito</h1>
             {
               cartItems.length > 0
                && (
-               <div className="max-sm:hidden grid grid-cols-5 gap-x-4 items-end w-full pr-4">
+               <div className="max-sm:hidden grid grid-cols-5 gap-x-4 items-end w-full max-lg:px-4">
                  <h2 className="w-full col-span-2 font-semibold text-sm pb-1 text-center">Nombre:</h2>
                  <h2 className="w-full font-semibold text-sm pb-1 text-center">Cantidad</h2>
                  <h2 className="w-full font-semibold text-sm pb-1 text-center">Precio</h2>
@@ -39,7 +39,7 @@ export default function Cart() {
                )
             }
           </div>
-          <div className="max-h-[30rem] sm:max-h-[32rem] overflow-y-auto space-y-4">
+          <div className="max-h-[29rem] sm:max-h-[35rem] overflow-y-auto space-y-4">
             { cartItems.map((item: CartItem) => (
               <CartProduct
                 key={item.name}
@@ -91,7 +91,7 @@ export default function Cart() {
             </div>
             <AlertDialog>
               <AlertDialogTrigger className="w-full">
-                <Button variant="ghost" className="w-full border border-zinc-400 dark:border-zinc-700">Vaciar Carrito</Button>
+                <div className="h-10 border border-border rounded-lg text-sm font-medium flex items-center justify-center">Vaciar Carrito</div>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
@@ -110,7 +110,7 @@ export default function Cart() {
         </div>
 
       </section>
-      <section className="w-full h-full px-5 max-w-7xl">
+      <section className="w-full h-full max-w-7xl">
 
         <Separator className="my-4 md:my-2 lg:my-4" />
 

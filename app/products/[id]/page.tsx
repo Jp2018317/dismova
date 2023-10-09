@@ -18,7 +18,7 @@ export default function Product() {
 
             <Slider swiperInfo={Products} />
 
-            <ul className="h-full w-24 grid grid-rows-4 gap-y-1 py-4 max-md:pr-4 items-center">
+            <ul className="h-full w-24 grid grid-rows-4 gap-y-1 py-4 px-4 items-center">
               <Tag icon={<BsUsbMicro className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada Micro SD" />
               <Tag icon={<BsLightningCharge className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Batería recargable" />
               <Tag icon={<AiOutlineUsb className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada USB" />
@@ -26,10 +26,10 @@ export default function Product() {
             </ul>
           </div>
           <div className="relative md:w-1/2 h-full md:h-[22rem] lg:h-[35rem] w-full p-4 lg:p-6">
-            <h1 className="text-2xl md:text-xl lg:text-3xl font-extrabold max-w-[70%] ">Product Name and maybe its best feature</h1>
+            <h1 className="text-2xl md:text-xl lg:text-3xl font-bold xs:max-w-[70%] mb-2">Product Name and maybe its best feature</h1>
 
-            <div className="absolute top-6 right-6 font-semibold">
-              <h3 className="text-2xl md:text-xl lg:text-3xl flex justify-end">
+            <div className="xs:absolute top-4 lg:top-6 right-4 lg:right-6 font-bold">
+              <h3 className="text-xl xs:text-2xl md:text-xl lg:text-3xl flex">
                 <p className="text-primary">Q</p>
                 499.00
               </h3>
@@ -38,18 +38,18 @@ export default function Product() {
             <Separator className="my-4 md:my-2 lg:my-4" />
 
             <div>
-              <h3 className="w-full max-md:text-base max-lg:text-xs font-semibold tracking-wider mb-2">Descripción</h3>
+              <h3 className="w-full max-md:text-base max-lg:text-xs font-bold tracking-wider mb-2">Descripción</h3>
               <span className="w-full max-md:text-base max-lg:text-xs">Descripción real del producto, incluye capacidades, cantidades, conexiones, etc. Cada producto tiene alrededor de 4 a 6 etiquetas y unas 5 cualidades por lo que dependiendo del producto se vera mas lleno o mas vacio</span>
 
               <Separator className="my-4 md:my-2 lg:my-4" />
 
-              <div className="flex gap-x-4">
+              <div className="xs:flex gap-x-4">
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
-                  <h3 className="my-2 font-semibold tracking-wider">Categoría:</h3>
+                  <h3 className="my-2 font-bold tracking-wider">Categoría:</h3>
                   <p className="my-2">Bocinas</p>
                 </div>
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
-                  <h3 className="my-2 font-semibold tracking-wider">Stock:</h3>
+                  <h3 className="my-2 font-bold tracking-wider">Stock:</h3>
                   <p className="my-2">10</p>
                 </div>
               </div>
@@ -62,19 +62,19 @@ export default function Product() {
               <div className="flex flex-col justify-end">
                 <p className=" max-md:text-base max-lg:text-xs font-bold pb-1 max-md:pb-2">Cantidad</p>
                 <div className="flex">
-                  <button type="button" className="w-8 lg:w-10 h-8 lg:h-10 rounded-l-lg bg-primary flex justify-center items-center">
+                  <button type="button" className="w-8 lg:w-10 h-8 lg:h-8 rounded-l-lg bg-primary flex justify-center items-center">
                     <AiOutlineMinus className="w-4 h-4 text-white" />
                   </button>
-                  <div className="w-14 lg:w-16 h-8 lg:h-10 bg-secondary flex justify-center items-center text-xs lg:text-sm">2</div>
-                  <button type="button" className="w-8 lg:w-10 h-8 lg:h-10 rounded-r-lg bg-primary flex justify-center items-center">
+                  <div className="w-14 lg:w-16 h-8 lg:h-8 bg-secondary flex justify-center items-center text-xs lg:text-sm">2</div>
+                  <button type="button" className="w-8 lg:w-10 h-8 lg:h-8 rounded-r-lg bg-primary flex justify-center items-center">
                     <AiOutlinePlus className="w-4 h-4 text-white" />
                   </button>
                 </div>
               </div>
 
-              <button type="submit" className="bg-primary h-8 lg:h-10 rounded-2xl max-lg:text-xs text-sm py-2 px-4 lg:px-6 flex justify-center items-center tracking-wider text-white font-semibold">
+              <button type="submit" className="bg-primary h-8 lg:h-10 rounded-2xl max-lg:text-xs text-sm px-4 lg:px-6 flex justify-center items-center text-white font-bold">
+                <AiOutlineShoppingCart className="w-4 lg:w-5 h-4 lg:h-5 mr-2" />
                 Añadir al carrito
-                <AiOutlineShoppingCart className="w-4 lg:w-5 h-4 lg:h-5 ml-1" />
               </button>
 
             </div>

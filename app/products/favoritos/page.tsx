@@ -9,7 +9,7 @@ export default function Cart() {
     <div className="w-full h-full max-w-7xl px-5">
       <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 py-4 lg:py-8">
         <div className="w-full h-full">
-          <h1 className="w-44 font-semibold text-2xl pl-4 mb-4">Mis Favoritos</h1>
+          <h1 className="w-44 font-semibold text-2xl mb-4">Mis Favoritos</h1>
           <div className="grid lg:grid-cols-2 gap-3 sm:gap-5">
             { favItems.map((item: FavItem) => (
               <FavProduct

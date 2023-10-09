@@ -20,18 +20,18 @@ export default function CartProduct({
   name, description, price, stock, category,
 }: CartItem) {
   return (
-    <div className="w-full border border-border rounded-xl flex max-sm:h-36 h-40 p-2 gap-x-2">
-      <div className="bg-secondary rounded-xl h-full flex items-center">
-        <Link href="/products/id" className="relative h-full max-sm:h-28 max-sm:w-28 w-36">
+    <div className="w-full border border-border rounded-xl flex h-36 sm:h-44">
+      <div className="bg-secondary rounded-l-xl h-full flex items-center">
+        <Link href="/products/id" className="relative h-28 sm:h-40 w-28 sm:w-40">
           <Image src={`/images/${category}/${name}.webp`} fill alt={`${name}`} />
         </Link>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-5 gap-x-4 relative h-full w-full p-2 ">
+      <div className="grid grid-cols-1 sm:grid-cols-5 gap-x-4 relative h-full w-full p-3">
         <div className="w-[80%] col-span-2">
           <h2 className="font-semibold text-sm lg:text-lg">{name}</h2>
-          <span className="text-xs line-clamp-2 leading-5 mt-1">{description}</span>
+          <span className="text-xs lg:text-sm line-clamp-2 leading-5 mt-1">{description}</span>
         </div>
-        <div className="max-sm:absolute bottom-2 left-2 flex justify-center items-center">
+        <div className="max-sm:absolute bottom-3 left-3 flex justify-center items-center">
           <div className="flex">
             <button type="button" className="w-6 h-6 rounded-l-lg bg-primary flex justify-center items-center">
               <AiOutlineMinus className="text-white" />
@@ -42,25 +42,22 @@ export default function CartProduct({
             </button>
           </div>
         </div>
-        <div className="max-sm:absolute bottom-9 right-2 w-full flex justify-end sm:justify-center items-center">
+        <div className="max-sm:absolute bottom-10 right-3 w-full flex justify-end sm:justify-center items-center">
           <h2 className="max-sm:text-xs max-lg:text-sm font-semibold flex">
             <p className="text-primary">Q</p>
             {price.toFixed(2)}
           </h2>
         </div>
-        <div className="max-sm:absolute bottom-2 right-2 w-full flex justify-end sm:justify-center items-center">
+        <div className="max-sm:absolute bottom-3 right-3 w-full flex justify-end sm:justify-center items-center">
           <h2 className="max-sm:text-base max-lg:text-sm font-semibold flex">
             <p className="text-primary">Q</p>
             {(price * stock).toFixed(2)}
           </h2>
         </div>
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-3 right-3">
           <AlertDialog>
             <AlertDialogTrigger>
-              <button className="w-5 h-5 text-zinc-700 dark:text-white" type="button">
-                <AiFillDelete className="w-full h-full hover:text-red-600" />
-              </button>
-
+              <AiFillDelete className="w-5 h-5 text-zinc-700 dark:text-white hover:text-red-600" />
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
