@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { BiSearch } from 'react-icons/bi';
 import { ROUTES } from '@/config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { CartItem } from '@/types';
+import { CartItem } from '@/app/config/types';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Logo from './logo';

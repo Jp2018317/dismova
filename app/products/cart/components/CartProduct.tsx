@@ -3,7 +3,7 @@ import {
 } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CartItem } from '@/types';
+import { CartItem } from '@/app/config/types';
 
 export default function CartProduct({
   name, description, price, stock, category,

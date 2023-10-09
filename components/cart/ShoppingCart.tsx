@@ -1,6 +1,6 @@
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import Link from 'next/link';
-import { CartItem } from '@/types';
+import { CartItem } from '@/app/config/types';
 import {
   Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,
 } from '../ui/sheet';
@@ -19,10 +19,14 @@ export default function Cart({ cartItems }:Props) {
         </SheetTrigger>
         <SheetContent className="overflow-y-auto">
           <SheetHeader>
-            <SheetTitle className="text-center mb-5">Mi Carrito</SheetTitle>
+            <SheetTitle className="flex justify-between items-center mb-2 p-3 w-full">
+              <h1 className="text-2xl">Mi carrito</h1>
+              <Link href="/products/cart" className="bg-primary text-sm rounded-xl px-4 py-2 font-medium text-white">Comprar</Link>
+
+            </SheetTitle>
           </SheetHeader>
           <div className="flex flex-col gap-y-4">
-            { cartItems.slice(0, 6).map((item) => (
+            { cartItems.slice(0, 5).map((item) => (
               <Item
                 key={item.name}
                 name={item.name}
@@ -33,9 +37,14 @@ export default function Cart({ cartItems }:Props) {
               />
             ))}
           </div>
-          <div className="w-full flex mt-5 justify-end">
-            <Link href="/products/cart" className="bg-primary rounded-xl px-4 py-2 font-medium text-white">Comprar</Link>
-          </div>
+          {
+            cartItems.length > 5
+              && (
+              <div className="w-full flex justify-center mt-4">
+                <Link href="/products/cart" className="underline-offset-4 rounded-xl px-4 py-2 font-medium hover:underline">Ver Todos</Link>
+              </div>
+              )
+          }
         </SheetContent>
       </Sheet>
     </div>

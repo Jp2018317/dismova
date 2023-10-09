@@ -3,7 +3,7 @@ import {
 } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FavItem } from '@/types';
+import { FavItem } from '@/app/config/types';
 import { TbHeartBroken } from 'react-icons/tb';
 
 export default function FavProduct({

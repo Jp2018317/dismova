@@ -6,93 +6,17 @@ import {
 import { BsLightningCharge, BsUsbMicro } from 'react-icons/bs';
 import { PiRadioLight } from 'react-icons/pi';
 import Slider from '@/components/Slider';
+import { Products, moreProducts } from '@/app/config/constants';
 import Tag from '../components/Tag';
 
 export default function Product() {
-  const swiperInfo1 = [
-    {
-      id: '1',
-      product: 'Bocina',
-      category: 'bafles',
-    },
-    {
-      id: '2',
-      product: 'Bocina',
-      category: 'bafles',
-    },
-    {
-      id: '3',
-      product: 'Bocina',
-      category: 'bafles',
-    },
-    {
-      id: '4',
-      product: 'Bocina',
-      category: 'bafles',
-    },
-    {
-      id: '5',
-      product: 'Bocina',
-      category: 'bafles',
-    },
-    {
-      id: '6',
-      product: 'Bocina',
-      category: 'bafles',
-    },
-  ];
-
-  const swiperInfo2 = [
-    {
-      id: '1',
-      product: 'Bocina',
-      title: 'Titulo del producto 1 y una breve descripción o detalles importantes',
-      category: 'bafles',
-      price: 499,
-    },
-    {
-      id: '2',
-      product: 'Bocina',
-      title: 'Titulo del producto 2 y una breve descripción o detalles importantes',
-      category: 'bafles',
-      price: 499,
-    },
-    {
-      id: '3',
-      product: 'Bocina',
-      title: 'Titulo del producto 3 y una breve descripción o detalles importantes',
-      category: 'bafles',
-      price: 499,
-    },
-    {
-      id: '4',
-      product: 'Bocina',
-      title: 'Titulo del producto 4 y una breve descripción o detalles importantes',
-      category: 'bafles',
-      price: 499,
-    },
-    {
-      id: '5',
-      product: 'Bocina',
-      title: 'Titulo del producto 5 y una breve descripción o detalles importantes',
-      category: 'bafles',
-      price: 499,
-    },
-    {
-      id: '6',
-      product: 'Bocina',
-      title: 'Titulo del producto 6 y una breve descripción o detalles importantes',
-      category: 'bafles',
-      price: 499,
-    },
-  ];
   return (
     <div className="w-full flex flex-col items-center">
       <section className="relative w-full flex justify-center pt-2">
         <div className="lg:h-[35rem] w-full flex max-md:flex-col justify-center max-w-7xl ">
           <div className="md:w-1/2 flex">
 
-            <Slider swiperInfo={swiperInfo1} />
+            <Slider swiperInfo={Products} />
 
             <ul className="h-full w-24 grid grid-rows-4 gap-y-1 py-4 max-md:pr-4 items-center">
               <Tag icon={<BsUsbMicro className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada Micro SD" />
@@ -165,7 +89,7 @@ export default function Product() {
         <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Mas Productos</h2>
         <p className="w-full text-center lg:text-xl ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
         <div className="py-4">
-          <Slider swiperInfo={swiperInfo2} productsList />
+          <Slider swiperInfo={moreProducts} productsList />
         </div>
       </section>
     </div>
