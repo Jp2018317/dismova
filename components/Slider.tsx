@@ -1,58 +1,49 @@
 'use client';
 
-import Image from 'next/image';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
-
-import { useToast } from '@/components/ui/use-toast';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
-import Link from 'next/link';
-import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
-import { Button } from './ui/button';
-import { Separator } from './ui/separator';
-import { ToastAction } from './ui/toast';
+import Product from '@/app/products/components/Product';
 
 type SliderProps = {
-  swiperInfo: { id: string, product: string, category: string, title?: string, price?: number }[];
+  swiperInfo: {
+    id: string, name: string, description?: string, category: string, price?: number
+  }[];
   productsList?: boolean
 };
 
 export default function Slider({
   swiperInfo, productsList,
 }: SliderProps) {
-  const { toast } = useToast();
-  const Redirect = productsList ? Link : 'div';
   const breakpoints = productsList ? {
     0: {
       slidesPerView: 1,
     },
-    600: {
+    500: {
       slidesPerView: 2,
     },
-    768: {
-      slidesPerView: 2,
-    },
-    900: {
+    750: {
       slidesPerView: 3,
+    },
+    1000: {
+      slidesPerView: 4,
     },
   } : {
     0: {
       slidesPerView: 1,
     },
-    600: {
-      slidesPerView: 2,
-      spaceBetween: 0,
-    },
-    768: {
+    500: {
       slidesPerView: 1,
     },
-    900: {
+    750: {
+      slidesPerView: 1,
+    },
+    1000: {
       slidesPerView: 1,
     },
   };
@@ -70,79 +61,21 @@ export default function Slider({
     >
       {swiperInfo.map((slide) => (
         <SwiperSlide className={`relative ${!productsList ? 'px-4 xs:px-8 py-12' : 'pb-10'}`} key={slide.id}>
-          <div className="w-full h-full">
-            <div className="bg-secondary w-full h-full flex justify-center items-center rounded-xl">
-              <Redirect className="flex flex-col justify-center items-center w-full h-full" href={`/products/${slide.product}`}>
-                <div className={`relative my-4 ${productsList ? 'w-48 h-48' : 'w-44 h-44 xs:w-60 xs:h-60 lg:w-96 lg:h-96'}`}>
-                  <Image src={`/images/${slide.category}/${slide.product}.webp`} fill alt={slide.product} />
-                </div>
-                {
-                  productsList ? (
-                    <>
-                      <Separator className="dark:bg-zinc-700" />
-                      <div className="w-full p-6 dark:text-white">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center font-semibold">
-                            Category:
-                            <p className="font-medium ml-2">{slide.category}</p>
-                          </div>
-                          <h3 className="flex text-xl font-semibold">
-                            <p className="text-primary mr-1">Q</p>
-                            {slide.price}
-                            .00
-                          </h3>
-                        </div>
-                        <h1 className="md:text-lg mt-4">{slide.title}</h1>
-                      </div>
-                    </>
-                  ) : null
-                }
-              </Redirect>
-            </div>
-
-            { productsList
-              ? (
-                <div className="absolute flex flex-col top-4 right-4 space-y-2">
-                  <Button
-                    onClick={() => {
-                      toast({
-                        title: 'Añadido al Carrito',
-                        description: `${slide.product} ha sido añadido al carrito de compras`,
-                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
-                      });
-                    }}
-                    variant="secondary"
-                    size="icon"
-                    className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary transition-all"
-                  >
-                    <AiOutlineShoppingCart className="w-6 h-6" />
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      toast({
-                        title: 'Añadido a Favoritos',
-                        description: `${slide.product} ha sido añadido a la lista de favoritos`,
-                        action: <ToastAction altText="Ver más">Ver más</ToastAction>,
-                      });
-                    }}
-                    variant="secondary"
-                    size="icon"
-                    className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary transition-all"
-                  >
-                    <AiFillHeart className="w-6 h-6" />
-                  </Button>
-                </div>
-              )
-              : null}
-          </div>
+          <Product
+            name={slide.name}
+            description={slide.description}
+            category={slide.category}
+            price={slide.price}
+            productsList={productsList}
+          />
         </SwiperSlide>
       ))}
 
-      <button className={`swiper-button-prev absolute top-1/2 -translate-y-1/2 z-50 ${productsList ? 'left-2' : 'left-8 '}`} type="button">
-        <BiChevronLeft className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
+      <button className={`swiper-button-prev absolute bg-black/60 rounded-full top-1/2 z-50 ${productsList ? 'left-3 -translate-y-8' : 'left-6 lg:left-12'}`} type="button">
+        <BiChevronLeft className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
       </button>
-      <button className={`swiper-button-next absolute top-1/2 -translate-y-1/2 z-50 ${productsList ? 'right-2' : 'right-8'}`} type="button">
-        <BiChevronRight className="w-6 lg:w-10 h-6 lg:h-10 text-zinc-400 dark:text-zinc-600" />
+      <button className={`swiper-button-next absolute bg-black/60 rounded-full top-1/2 z-50 ${productsList ? 'right-3 -translate-y-8' : 'right-6 lg:right-12'}`} type="button">
+        <BiChevronRight className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
       </button>
 
       <div className="swiper-pagination" />

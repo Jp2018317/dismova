@@ -156,7 +156,7 @@ export default function Sidebar() {
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
-          <div className="w-full text-end">
+          <div className="w-full text-end p-2">
             <ModeToggle />
           </div>
         </SheetContent>
