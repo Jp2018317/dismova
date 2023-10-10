@@ -26,11 +26,11 @@ export default function Cart() {
       <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 py-4 lg:py-8">
         <div className="w-full h-full">
           <div className="flex w-full pb-4">
-            <h1 className="w-52 font-semibold text-2xl">Mi Carrito</h1>
+            <h1 className="w-48 font-semibold text-2xl">Mi Carrito</h1>
             {
               cartItems.length > 0
                && (
-               <div className="max-sm:hidden grid grid-cols-5 gap-x-4 items-end w-full max-lg:px-4">
+               <div className="max-sm:hidden grid grid-cols-5 gap-x-4 items-end w-full px-4">
                  <h2 className="w-full col-span-2 font-semibold text-sm pb-1 text-center">Nombre:</h2>
                  <h2 className="w-full font-semibold text-sm pb-1 text-center">Cantidad</h2>
                  <h2 className="w-full font-semibold text-sm pb-1 text-center">Precio</h2>
@@ -91,7 +91,7 @@ export default function Cart() {
             </div>
             <AlertDialog>
               <AlertDialogTrigger className="w-full">
-                <div className="h-10 border border-border rounded-lg text-sm font-medium flex items-center justify-center">Vaciar Carrito</div>
+                <div className="h-10 border border-border dark:border-zinc-700 rounded-lg text-sm font-medium flex items-center justify-center">Vaciar Carrito</div>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
