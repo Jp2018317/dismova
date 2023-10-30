@@ -7,6 +7,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { SignInFResolver, SignInTypeSchema } from '@/resolvers/sign-in-resolver';
 
+// Supabase
+import { createBrowserClient } from '@supabase/ssr';
+
 // Shadcn
 import { Button } from '@/components/ui/button';
 import {
@@ -18,15 +21,16 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Database } from '@/database.types';
 import { useRouter } from 'next/navigation';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AuthError } from '@supabase/gotrue-js';
 
 function LoginForm() {
   const [authError, setAuthError] = useState<AuthError>();
-  const supabase = createClientComponentClient<Database>();
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
 
   const router = useRouter();
 
