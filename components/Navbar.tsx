@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { BiSearch } from 'react-icons/bi';
 import { ROUTES } from '@/config';
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import { supabase } from '@/app/auth/confirm/route';
+import { User } from '@supabase/supabase-js';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Logo from './logo';
@@ -14,6 +16,18 @@ import Sidebar from './Sidebar';
 export default function NavBar() {
   const [fade, setFade] = useState('border-b');
   const [prevScrollY, setPrevScrollY] = useState(0);
+  const [userLogged, setUserLogged] = useState<User | null>();
+
+  async function getUser() {
+    const loggedUser = await supabase.auth.getUser();
+    if (!loggedUser.error) {
+      setUserLogged(loggedUser?.data.user);
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,7 +82,7 @@ export default function NavBar() {
               <AiOutlineShoppingCart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
             </Link>
 
-            <Sidebar />
+            <Sidebar user={userLogged || null} />
           </div>
         </div>
       </section>

@@ -11,7 +11,7 @@ export default async function SignUpPage() {
       <Link href={ROUTES.root} className="absolute top-5 left-5 flex items-center text-sm">
         <BiChevronLeft className="w-8 h-8 text-zinc-500" />
       </Link>
-      <div className="w-full max-w-md px-10 space-y-4">
+      <div className="w-full max-w-xl lg:max-w-lg xl:max-w-xl px-10 space-y-4">
         <div
           className="lg:hidden flex flex-col items-center justify-center"
         >

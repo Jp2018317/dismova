@@ -1,14 +1,11 @@
 'use client';
 
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // NPM
 import { useForm } from 'react-hook-form';
 import { SignInFResolver, SignInTypeSchema } from '@/resolvers/sign-in-resolver';
-
-// Supabase
-import { createBrowserClient } from '@supabase/ssr';
 
 // Shadcn
 import { Button } from '@/components/ui/button';
@@ -21,18 +18,24 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { AuthError } from '@supabase/gotrue-js';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/app/auth/confirm/route';
+import { AuthError } from '@supabase/supabase-js';
 
 function LoginForm() {
   const [authError, setAuthError] = useState<AuthError>();
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  );
-
   const router = useRouter();
+
+  async function getUser() {
+    const loggedUser = await supabase.auth.getUser();
+    if (loggedUser.data.user) {
+      router.push('/products');
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  });
 
   const form = useForm<SignInTypeSchema>({
     resolver: SignInFResolver,
@@ -54,7 +57,7 @@ function LoginForm() {
     }
 
     setAuthError(undefined);
-    router.refresh();
+    router.push('/products');
   }
 
   return (
