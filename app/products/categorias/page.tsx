@@ -9,17 +9,17 @@ export default function Categories() {
       <div className="w-full text-center pb-6">
         <h1 className="font-semibold text-2xl">Categoria Bocinas</h1>
       </div>
-      <div className="w-full h-full flex max-lg:flex-col gap-6">
+      <div className="w-full h-fit flex max-lg:flex-col gap-6">
         <Filter />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full h-fit">
           {moreProducts.map((item) => (
             <Product
-              key={item.name}
-              name={item.name}
+              key={item.id}
+              shortTitle={item.shortTitle}
               description={item.description}
               category={item.category}
               price={item.price}
-              productsList
+              code={item.code}
             />
           ))}
         </div>

@@ -7,16 +7,29 @@ import { BsLightningCharge, BsUsbMicro } from 'react-icons/bs';
 import { PiRadioLight } from 'react-icons/pi';
 import Slider from '@/components/Slider';
 import { Products, moreProducts } from '@/app/config/constants';
+import { Product } from '@/app/config/types';
+import Link from 'next/link';
 import Tag from '../components/Tag';
 
-export default function Product() {
+export default function ProducIdView() {
+  const productId: Product = Products;
+  const swiperInfo = [
+    {
+      id: productId.id,
+      shortTitle: productId.shortTitle,
+      category: productId.category,
+      code: productId.code,
+      images: productId.images,
+    },
+  ];
+
   return (
     <div className="w-full flex flex-col items-center">
       <section className="relative w-full flex justify-center pt-2">
         <div className="lg:h-[35rem] w-full flex max-md:flex-col justify-center max-w-7xl ">
           <div className="md:w-1/2 flex">
 
-            <Slider swiperInfo={Products} />
+            <Slider swiperInfo={swiperInfo} images={productId.images} />
 
             <ul className="h-full w-24 grid grid-rows-4 gap-y-1 py-4 px-4 items-center">
               <Tag icon={<BsUsbMicro className="text-zinc-800 dark:text-zinc-300 w-full h-6 lg:h-10" />} title="Entrada Micro SD" />
@@ -26,12 +39,12 @@ export default function Product() {
             </ul>
           </div>
           <div className="relative md:w-1/2 h-full md:h-[22rem] lg:h-[35rem] w-full p-4 lg:p-6">
-            <h1 className="text-2xl md:text-xl lg:text-3xl font-bold xs:max-w-[70%] mb-2">Product Name and maybe its best feature</h1>
+            <h1 className="text-2xl md:text-xl lg:text-3xl font-bold xs:max-w-[70%] mb-2">{productId.shortTitle}</h1>
 
             <div className="xs:absolute top-4 lg:top-6 right-4 lg:right-6 font-bold">
               <h3 className="text-xl xs:text-2xl md:text-xl lg:text-3xl flex">
                 <p className="text-primary">Q</p>
-                499.00
+                {productId.price.toFixed(2)}
               </h3>
             </div>
 
@@ -39,18 +52,18 @@ export default function Product() {
 
             <div>
               <h3 className="w-full max-md:text-base max-lg:text-xs font-bold tracking-wider mb-2">Descripción</h3>
-              <span className="w-full max-md:text-base max-lg:text-xs">Descripción real del producto, incluye capacidades, cantidades, conexiones, etc. Cada producto tiene alrededor de 4 a 6 etiquetas y unas 5 cualidades por lo que dependiendo del producto se vera mas lleno o mas vacio</span>
+              <span className="w-full max-md:text-base max-lg:text-xs">{productId.description}</span>
 
               <Separator className="my-4 md:my-2 lg:my-4" />
 
               <div className="xs:flex gap-x-4">
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Categoría:</h3>
-                  <p className="my-2">Bocinas</p>
+                  <Link href="/products/categorias" className="my-2 hover:underline underline-offset-2  ">{productId.category}</Link>
                 </div>
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Stock:</h3>
-                  <p className="my-2">10</p>
+                  <p className="my-2">{productId.stock}</p>
                 </div>
               </div>
             </div>
@@ -89,7 +102,7 @@ export default function Product() {
         <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Mas Productos</h2>
         <p className="w-full text-center lg:text-xl ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
         <div className="py-4">
-          <Slider swiperInfo={moreProducts} productsList />
+          <Slider swiperInfo={moreProducts} />
         </div>
       </section>
     </div>

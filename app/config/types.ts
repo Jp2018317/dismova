@@ -12,3 +12,27 @@ export type FavItem = {
   price: number;
   category: string;
 };
+
+export type Product = {
+  id: string,
+  longTitle?: string,
+  shortTitle: string,
+  description?: string,
+  category: string,
+  price: number,
+  stock?: number,
+  code: string,
+  images: {
+    name: string
+  }[]
+};
+
+export type ProductId = {
+  id: string,
+  shortTitle: string,
+  category: string,
+  code: string,
+  images: {
+    name: string
+  }[]
+};

@@ -18,7 +18,7 @@ export default function Home() {
         <h2 className="w-full text-2xl font-semibold text-center pt-6 lg:text-3xl">Nuestros Productos</h2>
         <p className="w-full text-center lg:text-xl px-4 pt-2 ">Echa un vistazo a la lista de productos que ofrecemos!</p>
         <div className="py-4">
-          <Slider swiperInfo={moreProducts} productsList />
+          <Slider swiperInfo={moreProducts} />
         </div>
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
@@ -46,7 +46,7 @@ export default function Home() {
         <h2 className="w-full text-2xl font-semibold text-center pt-6 lg:text-3xl">Nuestros Productos</h2>
         <p className="w-full text-center lg:text-xl px-4 pt-2 ">Echa un vistazo a la lista de productos que ofrecemos!</p>
         <div className="py-4">
-          <Slider swiperInfo={moreProducts} productsList />
+          <Slider swiperInfo={moreProducts} />
         </div>
       </section>
     </div>
