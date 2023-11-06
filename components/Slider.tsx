@@ -86,6 +86,7 @@ export default function Slider({
                      <Image
                        src={`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${slide.category}/${slide.code}/${img.name}.webp?t=2023-11-05T02%3A42%3A54.379Z`}
                        fill
+                       loading="lazy"
                        alt={slide.code}
                        className={cn(
                          'duration-200 ease-in-out',

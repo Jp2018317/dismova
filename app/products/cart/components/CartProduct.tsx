@@ -1,3 +1,5 @@
+'use client';
+
 import {
   AiFillDelete, AiOutlineMinus, AiOutlinePlus,
 } from 'react-icons/ai';
@@ -15,15 +17,22 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { CartItem } from '@/app/config/types';
+import { useState } from 'react';
 
 export default function CartProduct({
   name, description, price, stock, category,
 }: CartItem) {
+  const [image, setImage] = useState(`/images/${category}/${name}.webp`);
   return (
     <div className="w-full border border-border rounded-xl flex h-36 sm:h-44">
       <div className="bg-secondary rounded-l-xl h-full flex items-center">
         <Link href="/products/id" className="relative h-28 sm:h-40 w-28 sm:w-40">
-          <Image src={`/images/${category}/${name}.webp`} fill alt={`${name}`} />
+          <Image
+            src={image}
+            fill
+            alt={`${name}`}
+            onError={() => setImage('/images/NoImage.webp')}
+          />
         </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-5 gap-x-4 relative h-full w-full p-3">
