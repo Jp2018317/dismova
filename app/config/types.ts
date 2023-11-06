@@ -25,6 +25,10 @@ export type Product = {
   images: {
     name: string
   }[]
+  tags: {
+    icon: string
+    name: string
+  }[]
 };
 
 export type ProductId = {
