@@ -18,7 +18,7 @@ function cn(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Product({
+export default function ProductCard({
   shortTitle, description, category, price, code,
 }: SwiperInfoProps) {
   const { toast } = useToast();
@@ -45,7 +45,7 @@ export default function Product({
       <div className="w-full">
         <div className="w-full p-4 dark:text-white space-y-4">
           <div className="w-full col-span-2">
-            <h2 className="font-semibold text-sm lg:text-lg">{shortTitle}</h2>
+            <h2 className="font-semibold text-sm lg:text-lg line-clamp-1">{shortTitle}</h2>
             <span className="text-xs line-clamp-2 leading-5 mt-1">{description}</span>
           </div>
           {

@@ -22,9 +22,7 @@ export type Product = {
   price: number,
   stock?: number,
   code: string,
-  images: {
-    name: string
-  }[]
+  imgAmmount: number
   tags: {
     icon: string
     name: string

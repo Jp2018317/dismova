@@ -10,13 +10,11 @@ import 'swiper/css/pagination';
 
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
-import Product from '@/app/products/components/Product';
+import ProductCard from '@/app/products/components/ProductCard';
+import { Product } from '@/app/config/types';
 
 type SliderProps = {
-  swiperInfo: {
-    id: string, longTitle?: string, shortTitle: string, description?: string,
-    category: string, price?: number, code: string
-  }[];
+  swiperInfo: Product[]
   images?: { name: string }[];
 };
 
@@ -104,7 +102,7 @@ export default function Slider({
          ))
          : swiperInfo.map((slide) => (
            <SwiperSlide className="relative mb-8" key={slide.id}>
-             <Product
+             <ProductCard
                shortTitle={slide.shortTitle}
                description={slide.description}
                category={slide.category}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { moreProducts } from '@/app/config/constants';
-import Product from '../components/Product';
+import Product from '../components/ProductCard';
 import Filter from './components/Filter';
 
 export default function Categories() {
