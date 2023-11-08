@@ -4,23 +4,31 @@ import {
   AiOutlineShoppingCart,
 } from 'react-icons/ai';
 import Slider from '@/components/Slider';
-import { Products, moreProducts } from '@/app/config/constants';
 import { Product } from '@/app/config/types';
 import Link from 'next/link';
-import Tag from '../components/Tag';
+import { cookies } from 'next/headers';
+import { createServerClient } from '@supabase/ssr';
 import ProductsAmount from '../components/ProductsAmount';
 
-export default function ProducIdView() {
-  const productId: Product = Products;
-  const swiperInfo = [
+export default async function ProducIdView({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const cookieStore = cookies();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      id: productId.id,
-      shortTitle: productId.shortTitle,
-      category: productId.category,
-      code: productId.code,
-      images: productId.images,
+      cookies: cookieStore,
     },
-  ];
+  );
+
+  const { data } = await supabase.from('Products').select('*').eq('code', params.id);
+  const product: Product[] = data || [];
+
+  const moreProductsData = await supabase.from('Products').select('*');
+  const moreProducts: Product[] = moreProductsData.data || [];
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -28,24 +36,15 @@ export default function ProducIdView() {
         <div className="lg:h-[35rem] w-full flex max-md:flex-col justify-center max-w-7xl ">
           <div className="md:w-1/2 flex">
 
-            <Slider swiperInfo={swiperInfo} images={productId.images} />
-
-            <ul className="h-full w-24 grid grid-rows-4 gap-y-1 py-4 px-4 items-center">
-              {productId.tags.map((tag) => (
-                <Tag
-                  title={tag.name}
-                  icon={tag.icon}
-                />
-              ))}
-            </ul>
+            <Slider swiperInfo={product} showImages />
           </div>
           <div className="relative md:w-1/2 h-full md:h-[22rem] lg:h-[35rem] w-full p-4 lg:p-6">
-            <h1 className="text-2xl md:text-xl lg:text-3xl font-bold xs:max-w-[70%] mb-2">{productId.longTitle}</h1>
+            <h1 className="text-2xl md:text-xl lg:text-3xl font-bold xs:max-w-[70%] mb-2">{product[0].longTitle}</h1>
 
             <div className="xs:absolute top-4 lg:top-6 right-4 lg:right-6 font-bold">
               <h3 className="text-xl xs:text-2xl md:text-xl lg:text-3xl flex">
                 <p className="text-primary">Q</p>
-                {productId.price.toFixed(2)}
+                {product[0].price.toFixed(2)}
               </h3>
             </div>
 
@@ -53,18 +52,18 @@ export default function ProducIdView() {
 
             <div>
               <h3 className="w-full max-md:text-base max-lg:text-xs font-bold tracking-wider mb-2">Descripción</h3>
-              <span className="w-full max-md:text-base max-lg:text-xs">{productId.description}</span>
+              <span className="w-full max-md:text-base max-lg:text-xs">{product[0].description}</span>
 
               <Separator className="my-4 md:my-2 lg:my-4" />
 
               <div className="xs:flex gap-x-4">
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Categoría:</h3>
-                  <Link href="/products/categorias" className="my-2 hover:underline underline-offset-2  ">{productId.category}</Link>
+                  <Link href="/products/categorias" className="my-2 hover:underline underline-offset-2  ">{product[0].category}</Link>
                 </div>
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Stock:</h3>
-                  <p className="my-2">{productId.stock}</p>
+                  <p className="my-2">{product[0].stock}</p>
                 </div>
               </div>
             </div>
@@ -75,7 +74,7 @@ export default function ProducIdView() {
 
               <div className="flex flex-col justify-end">
                 <p className=" max-md:text-base max-lg:text-xs font-bold pb-1 max-md:pb-2">Cantidad</p>
-                <ProductsAmount stock={productId.stock ? productId.stock : 0} />
+                <ProductsAmount stock={product[0].stock ? product[0].stock : 0} />
               </div>
 
               <button type="submit" className="bg-primary h-8 lg:h-10 rounded-2xl max-lg:text-xs text-sm px-4 lg:px-6 flex justify-center items-center text-white font-bold">

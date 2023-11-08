@@ -15,13 +15,13 @@ import { Product } from '@/app/config/types';
 
 type SliderProps = {
   swiperInfo: Product[]
-  images?: { name: string }[];
+  showImages?: Boolean;
 };
 
 export default function Slider({
-  swiperInfo, images,
+  swiperInfo, showImages,
 }: SliderProps) {
-  const breakpoints = images ? {
+  const breakpoints = showImages ? {
     0: {
       slidesPerView: 1,
     },
@@ -71,18 +71,18 @@ export default function Slider({
       onSlideChange={() => { setIsLast(true); setIsFirst(true); }}
       onReachBeginning={() => setIsFirst(false)}
       onReachEnd={() => setIsLast(false)}
-      className={`${images && 'h-[22rem] lg:h-[35rem]'}`}
+      className={`${showImages && 'h-[22rem] lg:h-[35rem]'}`}
     >
       {
-       images
+       showImages
          ? swiperInfo.map((slide) => (
-           images.map((img) => (
-             <SwiperSlide className="relative px-4 xs:px-8 py-12" key={img.name}>
+           Array.from({ length: slide.imgAmmount }).map((_, index) => (
+             <SwiperSlide className="relative px-4 xs:px-8 py-12">
                <div className="w-full h-full flex flex-col justify-center items-center">
                  <div className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary rounded-xl">
                    <div className="rounded-xl relative my-4 w-44 h-44 xs:w-52 xs:h-52 lg:w-96 lg:h-96">
                      <Image
-                       src={`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${slide.category}/${slide.code}/${img.name}.webp?t=2023-11-05T02%3A42%3A54.379Z`}
+                       src={`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${slide.category}/${slide.code}/${index + 1}.webp?t=2023-11-05T02%3A42%3A54.379Z`}
                        fill
                        loading="lazy"
                        alt={slide.code}
@@ -113,10 +113,10 @@ export default function Slider({
          ))
       }
 
-      <button disabled={!isFirst} className={`swiper-button-prev absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!images ? 'left-3 -translate-y-8' : 'left-6 lg:left-12'}`} type="button">
+      <button disabled={!isFirst} className={`swiper-button-prev absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!showImages ? 'left-3 -translate-y-8' : 'left-6 lg:left-12'}`} type="button">
         <BiChevronLeft className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
       </button>
-      <button disabled={!isLast} className={`swiper-button-next absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!images ? 'right-3 -translate-y-8' : 'right-6 lg:right-12'}`} type="button">
+      <button disabled={!isLast} className={`swiper-button-next absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!showImages ? 'right-3 -translate-y-8' : 'right-6 lg:right-12'}`} type="button">
         <BiChevronRight className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
       </button>
 
