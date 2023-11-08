@@ -5,19 +5,19 @@ import { BsHeadphones } from 'react-icons/bs';
 import { MdOutlineCable } from 'react-icons/md';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import Link from 'next/link';
-import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import LandingSlider from './components/LandingSlider';
 import { Product } from '../config/types';
+import { customCookieMethods } from '../config/constants';
 
 export default async function Home() {
-  const cookieStore = cookies();
+  const cookies = customCookieMethods;
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      cookies: cookieStore,
+      cookies,
     },
   );
 

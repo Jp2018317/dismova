@@ -20,13 +20,13 @@ import { useState } from 'react';
 import { CartItem } from '@/app/config/types';
 
 export default function CartProduct({
-  shortTitle, description, price, stock, category,
+  shortTitle, description, price, stock, category, code,
 }: CartItem) {
   const [image, setImage] = useState(`/images/${category}/${shortTitle}.webp`);
   return (
     <div className="w-full border border-border rounded-xl flex h-36 sm:h-44">
       <div className="bg-secondary rounded-l-xl h-full flex items-center">
-        <Link href="/products/id" className="relative h-28 sm:h-40 w-28 sm:w-40">
+        <Link href={`/products/${code}`} className="relative h-28 sm:h-40 w-28 sm:w-40">
           <Image
             src={image}
             fill

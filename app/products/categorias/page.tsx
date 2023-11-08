@@ -1,18 +1,18 @@
 import React from 'react';
 import { Product } from '@/app/config/types';
-import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
+import { customCookieMethods } from '@/app/config/constants';
 import ProductCard from '../components/ProductCard';
 import Filter from './components/Filter';
 
 export default async function Categories() {
-  const cookieStore = cookies();
+  const cookies = customCookieMethods;
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      cookies: cookieStore,
+      cookies,
     },
   );
 

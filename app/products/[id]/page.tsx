@@ -6,8 +6,8 @@ import {
 import Slider from '@/components/Slider';
 import { Product } from '@/app/config/types';
 import Link from 'next/link';
-import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
+import { customCookieMethods } from '@/app/config/constants';
 import ProductsAmount from '../components/ProductsAmount';
 
 export default async function ProducIdView({
@@ -15,12 +15,13 @@ export default async function ProducIdView({
 }: {
   params: { id: string };
 }) {
-  const cookieStore = cookies();
+  const cookies = customCookieMethods;
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      cookies: cookieStore,
+      cookies,
     },
   );
 

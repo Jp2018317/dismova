@@ -1,3 +1,6 @@
+import { CookieOptions } from '@supabase/ssr';
+import Cookies from 'js-cookie';
+
 export const Products = {
   id: '6',
   longTitle: 'OB73004 BOCINA PORTATIL 3" 5000 W PMPO TWS RECARGABLE BT FM USB MICRO SD LUZ LED',
@@ -76,3 +79,9 @@ export const favItems = [
     shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', code: 'ISP-4090',
   },
 ];
+
+export const customCookieMethods: CookieOptions = {
+  get: (key: string) => Cookies.get(key),
+  set: (key: string, value: string, options: any) => Cookies.set(key, value, options),
+  remove: (key: string) => Cookies.remove(key),
+};
