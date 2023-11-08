@@ -68,6 +68,7 @@ export default function Slider({
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       }}
+      lazyPreloadPrevNext={1}
       onSlideChange={() => { setIsLast(true); setIsFirst(true); }}
       onReachBeginning={() => setIsFirst(false)}
       onReachEnd={() => setIsLast(false)}
