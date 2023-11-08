@@ -13,11 +13,12 @@ export default function Cart() {
           <div className="grid lg:grid-cols-2 gap-3 sm:gap-5">
             { favItems.map((item: FavItem) => (
               <FavProduct
-                key={item.name}
-                name={item.name}
+                key={item.code}
+                shortTitle={item.shortTitle}
                 description={item.description}
                 category={item.category}
                 price={item.price}
+                code={item.code}
               />
             ))}
           </div>

@@ -37,42 +37,42 @@ export const Products = {
 
 export const cartItems = [
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.99, category: 'Bafles', stock: 2,
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.99, category: 'Bafles', stock: 2, code: 'ISP-4020',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2,
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2, code: 'ISP-4030',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2,
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2, code: 'ISP-4050',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2,
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2, code: 'ISP-4060',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2,
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2, code: 'ISP-4080',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2,
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', stock: 2, code: 'ISP-4090',
   },
 ];
 
 export const favItems = [
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.99, category: 'Bafles',
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.99, category: 'Bafles', code: 'ISP-4020',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles',
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', code: 'ISP-4030',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles',
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', code: 'ISP-4050',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles',
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', code: 'ISP-4060',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles',
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', code: 'ISP-4080',
   },
   {
-    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles',
+    shortTitle: 'Bocina', description: 'Bocina de gama alta con rgb marca Fussion', price: 499.00, category: 'Bafles', code: 'ISP-4090',
   },
 ];

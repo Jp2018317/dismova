@@ -1,16 +1,18 @@
 export type CartItem = {
-  name: string;
+  shortTitle: string;
   description: string;
   price: number;
   category: string;
   stock: number;
+  code: string;
 };
 
 export type FavItem = {
-  name: string;
+  shortTitle: string;
   description: string;
   price: number;
   category: string;
+  code: string;
 };
 
 export type Product = {

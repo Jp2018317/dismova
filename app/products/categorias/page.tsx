@@ -1,9 +1,24 @@
 import React from 'react';
-import { moreProducts } from '@/app/config/constants';
-import Product from '../components/ProductCard';
+import { Product } from '@/app/config/types';
+import { cookies } from 'next/headers';
+import { createServerClient } from '@supabase/ssr';
+import ProductCard from '../components/ProductCard';
 import Filter from './components/Filter';
 
-export default function Categories() {
+export default async function Categories() {
+  const cookieStore = cookies();
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: cookieStore,
+    },
+  );
+
+  const { data } = await supabase.from('Products').select('*');
+
+  const products:Product[] = data || [];
   return (
     <section className="w-full h-full max-w-7xl p-4">
       <div className="w-full text-center pb-6">
@@ -12,8 +27,8 @@ export default function Categories() {
       <div className="w-full h-fit flex max-lg:flex-col gap-6">
         <Filter />
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full h-fit">
-          {moreProducts.map((item) => (
-            <Product
+          {products.map((item: Product) => (
+            <ProductCard
               key={item.id}
               shortTitle={item.shortTitle}
               description={item.description}
