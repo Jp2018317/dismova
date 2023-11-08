@@ -7,7 +7,7 @@ import { VscAccount } from 'react-icons/vsc';
 import { AiOutlineShoppingCart, AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { LiaBarsSolid } from 'react-icons/lia';
 import { IoMdSettings } from 'react-icons/io';
-import { BsHeadphones, BsTelephone } from 'react-icons/bs';
+import { BsHeadphones, BsTelephone, BsDoorOpen } from 'react-icons/bs';
 import { LuMonitorSpeaker } from 'react-icons/lu';
 
 import {
@@ -20,12 +20,23 @@ import {
 } from '@/components/ui/sheet';
 
 import { ROUTES } from '@/config';
+import { User } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
 
-export default function Sidebar() {
+type Props = {
+  user: User | null
+};
+
+export default function Sidebar({ user }: Props) {
   const [open, setOpen] = useState(false);
+
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
   return (
     <div className="flex items-center max-xs:text-xs dark:text-zinc-200">
       <Sheet open={open} onOpenChange={setOpen}>
@@ -40,14 +51,23 @@ export default function Sidebar() {
               </div>
               <p className="text-sm text-center font-bold">DISMOVA</p>
             </SheetTitle>
-            <SheetDescription className="flex justify-evenly py-2">
-              <Button asChild>
-                <Link href={ROUTES.auth.login}>Ingresar</Link>
-              </Button>
-              <Button asChild variant="ghost">
-                <Link href={ROUTES.auth.signup}>Registrarme</Link>
-              </Button>
-            </SheetDescription>
+            {
+              user ? (
+                <SheetDescription className="flex justify-center py-2">
+                  {user.email}
+                </SheetDescription>
+              )
+                : (
+                  <SheetDescription className="flex justify-evenly py-2">
+                    <Button asChild>
+                      <Link href={ROUTES.auth.login}>Ingresar</Link>
+                    </Button>
+                    <Button asChild variant="ghost">
+                      <Link href={ROUTES.auth.signup}>Registrarme</Link>
+                    </Button>
+                  </SheetDescription>
+                )
+            }
           </SheetHeader>
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
@@ -153,6 +173,30 @@ export default function Sidebar() {
               </Button>
             </li>
           </ul>
+
+          {
+            user && (
+            <>
+              <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
+
+              <ul className="py-1">
+                <li>
+                  <Button
+                    onClick={() => {
+                      supabase.auth.signOut();
+                      window.location.reload();
+                    }}
+                    variant="ghost"
+                    className="w-full flex items-center justify-start gap-2 dark:text-white hover:text-red-500 dark:hover:text-red-500"
+                  >
+                    <BsDoorOpen className="w-5 h-5" />
+                    Cerrar sesión
+                  </Button>
+                </li>
+              </ul>
+            </>
+            )
+          }
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartItem } from '@/app/config/types';
+import { CartItem, Product } from '@/app/config/types';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import Slider from '@/components/Slider';
@@ -14,12 +14,27 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { cartItems, moreProducts } from '@/app/config/constants';
+import { cartItems, customCookieMethods } from '@/app/config/constants';
+import { createServerClient } from '@supabase/ssr';
 import CartProduct from './components/CartProduct';
 
-export default function Cart() {
+export default async function Cart() {
   const total = cartItems.reduce((acc, item) => acc + item.price * item.stock, 0);
   const totalProducts = cartItems.reduce((acc, item) => acc + item.stock, 0);
+
+  const cookies = customCookieMethods;
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies,
+    },
+  );
+
+  const { data } = await supabase.from('Products').select('*');
+
+  const products:Product[] = data || [];
 
   return (
     <div className="w-full h-full max-w-7xl px-5 max-h-[29rem] sm:max-h-[35rem]">
@@ -42,12 +57,13 @@ export default function Cart() {
           <div className="max-h-[29rem] sm:max-h-[35rem] overflow-y-auto space-y-4">
             { cartItems.map((item: CartItem) => (
               <CartProduct
-                key={item.name}
-                name={item.name}
+                key={item.code}
+                shortTitle={item.shortTitle}
                 description={item.description}
                 category={item.category}
                 price={item.price}
                 stock={item.stock}
+                code={item.code}
               />
             ))}
           </div>
@@ -117,7 +133,7 @@ export default function Cart() {
         <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Mas Productos</h2>
         <p className="w-full text-center lg:text-xl ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
         <div className="py-4">
-          <Slider swiperInfo={moreProducts} productsList />
+          <Slider swiperInfo={products} />
         </div>
       </section>
     </div>

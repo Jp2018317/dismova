@@ -5,10 +5,26 @@ import { BsHeadphones } from 'react-icons/bs';
 import { MdOutlineCable } from 'react-icons/md';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import Link from 'next/link';
-import { moreProducts } from '../config/constants';
+import { createServerClient } from '@supabase/ssr';
 import LandingSlider from './components/LandingSlider';
+import { Product } from '../config/types';
+import { customCookieMethods } from '../config/constants';
 
-export default function Home() {
+export default async function Home() {
+  const cookies = customCookieMethods;
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies,
+    },
+  );
+
+  const { data } = await supabase.from('Products').select('*');
+
+  const products:Product[] = data || [];
+
   return (
     <div className="w-full flex flex-col items-center">
       <section className="bg-secondary w-full flex justify-center">
@@ -18,7 +34,7 @@ export default function Home() {
         <h2 className="w-full text-2xl font-semibold text-center pt-6 lg:text-3xl">Nuestros Productos</h2>
         <p className="w-full text-center lg:text-xl px-4 pt-2 ">Echa un vistazo a la lista de productos que ofrecemos!</p>
         <div className="py-4">
-          <Slider swiperInfo={moreProducts} productsList />
+          <Slider swiperInfo={products} />
         </div>
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
@@ -46,7 +62,7 @@ export default function Home() {
         <h2 className="w-full text-2xl font-semibold text-center pt-6 lg:text-3xl">Nuestros Productos</h2>
         <p className="w-full text-center lg:text-xl px-4 pt-2 ">Echa un vistazo a la lista de productos que ofrecemos!</p>
         <div className="py-4">
-          <Slider swiperInfo={moreProducts} productsList />
+          <Slider swiperInfo={products} />
         </div>
       </section>
     </div>

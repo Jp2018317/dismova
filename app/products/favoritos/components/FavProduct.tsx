@@ -21,18 +21,18 @@ import {
 } from '@/components/ui/alert-dialog';
 
 export default function FavProduct({
-  name, description, price, category,
+  shortTitle, description, price, category, code,
 }: FavItem) {
   return (
     <div className="w-full border border-border rounded-xl flex h-36 sm:h-44">
       <div className="bg-secondary rounded-l-xl h-full flex items-center">
-        <Link href="/products/id" className="relative h-28 sm:h-40 w-28 sm:w-40">
-          <Image src={`/images/${category}/${name}.webp`} fill alt={`${name}`} />
+        <Link href={`/products/${code}`} className="relative h-28 sm:h-40 w-28 sm:w-40">
+          <Image src={`/images/${category}/${shortTitle}.webp`} fill alt={`${shortTitle}`} />
         </Link>
       </div>
       <div className="gap-x-4 relative h-full w-full p-3">
         <div className="w-[80%] col-span-2">
-          <h2 className="font-semibold text-sm sm:text-lg">{name}</h2>
+          <h2 className="font-semibold text-sm sm:text-lg">{shortTitle}</h2>
           <span className="text-xs sm:text-sm line-clamp-2 leading-5 mt-1">{description}</span>
         </div>
         <div className="absolute bottom-3 left-3 w-full flex items-center">
@@ -65,7 +65,7 @@ export default function FavProduct({
             onClick={() => {
               toast({
                 title: 'Añadido al Carrito',
-                description: `El producto ${name} fue añadido al carrito`,
+                description: `El producto ${shortTitle} fue añadido al carrito`,
               });
             }}
             type="submit"

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   AiFillDelete, AiOutlineMinus, AiOutlinePlus,
 } from 'react-icons/ai';
@@ -14,21 +16,28 @@ import {
 } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { CartItem } from '@/app/config/types';
 
 export default function CartProduct({
-  name, description, price, stock, category,
+  shortTitle, description, price, stock, category, code,
 }: CartItem) {
+  const [image, setImage] = useState(`/images/${category}/${shortTitle}.webp`);
   return (
     <div className="w-full border border-border rounded-xl flex h-36 sm:h-44">
       <div className="bg-secondary rounded-l-xl h-full flex items-center">
-        <Link href="/products/id" className="relative h-28 sm:h-40 w-28 sm:w-40">
-          <Image src={`/images/${category}/${name}.webp`} fill alt={`${name}`} />
+        <Link href={`/products/${code}`} className="relative h-28 sm:h-40 w-28 sm:w-40">
+          <Image
+            src={image}
+            fill
+            alt={`${shortTitle}`}
+            onError={() => setImage('/images/NoImage.webp')}
+          />
         </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-5 gap-x-4 relative h-full w-full p-3">
         <div className="w-[80%] col-span-2">
-          <h2 className="font-semibold text-sm lg:text-lg">{name}</h2>
+          <h2 className="font-semibold text-sm lg:text-lg">{shortTitle}</h2>
           <span className="text-xs lg:text-sm line-clamp-2 leading-5 mt-1">{description}</span>
         </div>
         <div className="max-sm:absolute bottom-3 left-3 flex justify-center items-center">
