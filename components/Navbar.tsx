@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { BiSearch } from 'react-icons/bi';
 import { ROUTES } from '@/config';
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
-import { supabase } from '@/app/auth/confirm/route';
 import { User } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Logo from './logo';
@@ -18,6 +18,11 @@ export default function NavBar() {
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [userLogged, setUserLogged] = useState<User | null>();
 
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
+
   async function getUser() {
     const loggedUser = await supabase.auth.getUser();
     if (!loggedUser.error) {
@@ -27,7 +32,7 @@ export default function NavBar() {
 
   useEffect(() => {
     getUser();
-  }, []);
+  });
 
   useEffect(() => {
     const handleScroll = () => {

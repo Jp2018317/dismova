@@ -19,12 +19,17 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/app/auth/confirm/route';
 import { AuthError } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 
 function LoginForm() {
   const [authError, setAuthError] = useState<AuthError>();
   const router = useRouter();
+
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
 
   async function getUser() {
     const loggedUser = await supabase.auth.getUser();

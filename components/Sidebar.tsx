@@ -21,7 +21,7 @@ import {
 
 import { ROUTES } from '@/config';
 import { User } from '@supabase/supabase-js';
-import { supabase } from '@/app/auth/confirm/route';
+import { createBrowserClient } from '@supabase/ssr';
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
@@ -32,6 +32,11 @@ type Props = {
 
 export default function Sidebar({ user }: Props) {
   const [open, setOpen] = useState(false);
+
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
   return (
     <div className="flex items-center max-xs:text-xs dark:text-zinc-200">
       <Sheet open={open} onOpenChange={setOpen}>
