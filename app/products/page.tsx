@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
 import LandingSlider from './components/LandingSlider';
 import { Product } from '../config/types';
-import { customCookieMethods } from '../config/constants';
+import { INIT_PAGINATION_SLIDER, customCookieMethods } from '../config/constants';
 
 export default async function Home() {
   const cookies = customCookieMethods;
@@ -21,7 +21,7 @@ export default async function Home() {
     },
   );
 
-  const { data } = await supabase.from('Products').select('*');
+  const { data } = await supabase.from('Products').select('*').range(0, INIT_PAGINATION_SLIDER);
 
   const products:Product[] = data || [];
 

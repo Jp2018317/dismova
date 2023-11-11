@@ -12,6 +12,10 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 import ProductCard from '@/app/products/components/ProductCard';
 import { Product } from '@/app/config/types';
+import { createBrowserClient } from '@supabase/ssr';
+import { INIT_PAGINATION_SLIDER } from '@/app/config/constants';
+import Link from 'next/link';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 type SliderProps = {
   swiperInfo: Product[]
@@ -50,13 +54,27 @@ export default function Slider({
       },
     };
 
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
+
+  const [pagination, setPagination] = useState(INIT_PAGINATION_SLIDER + 1);
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function getMoreProducts() {
+    if (!showImages && pagination < 10) {
+      setPagination(pagination + 1);
+      const { data } = await supabase.from('Products').select('*').range(pagination, pagination);
+      if (data?.length) {
+        swiperInfo.push(data[0]);
+      }
+    }
+  }
+
   function cn(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
   }
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLast, setIsLast] = useState(true);
-  const [isFirst, setIsFirst] = useState(false);
 
   return (
     <Swiper
@@ -68,10 +86,6 @@ export default function Slider({
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       }}
-      lazyPreloadPrevNext={1}
-      onSlideChange={() => { setIsLast(true); setIsFirst(true); }}
-      onReachBeginning={() => setIsFirst(false)}
-      onReachEnd={() => setIsLast(false)}
       className={`${showImages && 'h-[22rem] lg:h-[35rem]'}`}
     >
       {
@@ -101,23 +115,33 @@ export default function Slider({
              </SwiperSlide>
            ))
          ))
-         : swiperInfo.map((slide) => (
-           <SwiperSlide className="relative mb-8" key={slide.id}>
-             <ProductCard
-               shortTitle={slide.shortTitle}
-               description={slide.description}
-               category={slide.category}
-               price={slide.price}
-               code={slide.code}
-             />
-           </SwiperSlide>
-         ))
+         : (
+           <>
+             {swiperInfo.map((slide) => (
+               <SwiperSlide className="relative mb-8" key={slide.id}>
+                 <ProductCard
+                   shortTitle={slide.shortTitle}
+                   description={slide.description}
+                   category={slide.category}
+                   price={slide.price}
+                   code={slide.code}
+                 />
+               </SwiperSlide>
+             ))}
+             <SwiperSlide className="relative mb-8">
+               <Link className="group flex flex-col justify-center items-center h-[21rem] rounded-xl bg-secondary gap-y-4" href="/products/categorias">
+                 <div className="text-lg font-semibold">Ver más</div>
+                 <AiOutlinePlus className="w-6 h-6 dark:text-white" />
+               </Link>
+             </SwiperSlide>
+           </>
+         )
       }
 
-      <button disabled={!isFirst} className={`swiper-button-prev absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!showImages ? 'left-3 -translate-y-8' : 'left-6 lg:left-12'}`} type="button">
+      <button className={`swiper-button-prev absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!showImages ? 'left-3 -translate-y-8' : 'left-6 lg:left-12'}`} type="button">
         <BiChevronLeft className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
       </button>
-      <button disabled={!isLast} className={`swiper-button-next absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!showImages ? 'right-3 -translate-y-8' : 'right-6 lg:right-12'}`} type="button">
+      <button onClick={() => getMoreProducts()} className={`swiper-button-next absolute bg-black/60 disabled:bg-black/10 rounded-full top-1/2 z-50 ${!showImages ? 'right-3 -translate-y-8' : 'right-6 lg:right-12'}`} type="button">
         <BiChevronRight className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
       </button>
 
