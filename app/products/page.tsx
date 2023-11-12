@@ -42,19 +42,19 @@ export default async function Home() {
       <section className="w-full h-full px-5 max-w-7xl">
         <h2 className="w-full text-2xl font-semibold lg:text-3xl mb-6">¿Qué estas buscando?</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full max-w-7xl gap-4">
-          <Link href="/products/categorias" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
+          <Link href="/products/categorias/Bafles" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
             <LuMonitorSpeaker className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100" />
             <span className="text-lg xs:text-xl font-semibold">Bocinas</span>
           </Link>
-          <Link href="/products/categorias" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
+          <Link href="/products/categorias/Audifonos" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
             <BsHeadphones className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100" />
             <span className="text-lg xs:text-xl font-semibold">Audifonos</span>
           </Link>
-          <Link href="/products/categorias" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
+          <Link href="/products/categorias/Accesorios" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
             <MdOutlineCable className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100" />
             <span className="text-lg xs:text-xl font-semibold">Accesorios</span>
           </Link>
-          <Link href="/products/categorias" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
+          <Link href="/products/categorias/Otros" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
             <FiMoreHorizontal className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100" />
             <span className="text-lg xs:text-xl font-semibold">Otros</span>
           </Link>

@@ -112,7 +112,7 @@ export default function Slider({
                </SwiperSlide>
              ))}
              <SwiperSlide className="relative mb-8">
-               <Link className="group flex flex-col justify-center items-center h-[21rem] rounded-xl bg-secondary gap-y-4" href="/products/categorias">
+               <Link className="group flex flex-col justify-center items-center h-[21rem] rounded-xl bg-secondary gap-y-4" href={`/products/categorias/${swiperInfo[0].category}`}>
                  <div className="text-lg font-semibold">Ver más</div>
                  <AiOutlinePlus className="w-6 h-6 dark:text-white" />
                </Link>
