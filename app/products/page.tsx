@@ -33,14 +33,14 @@ export default async function Home() {
         <LandingSlider />
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
-        <h2 className="w-full text-2xl font-semibold text-center pt-6 lg:text-3xl">Bocinas</h2>
+        <h2 className="w-full text-2xl font-bold text-center pt-6 lg:text-3xl">Bocinas</h2>
         <p className="w-full text-center lg:text-xl px-4 pt-2 ">Echa un vistazo a la lista de productos que ofrecemos!</p>
         <div className="py-4">
           <Slider swiperInfo={speakers} />
         </div>
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
-        <h2 className="w-full text-2xl font-semibold lg:text-3xl mb-6">¿Qué estas buscando?</h2>
+        <h2 className="w-full text-2xl font-semibold lg:text-3xl mb-6 max-md:text-center">¿Qué estas buscando?</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full max-w-7xl gap-4">
           <Link href="/products/categorias/Bafles" className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4">
             <LuMonitorSpeaker className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100" />
@@ -61,7 +61,7 @@ export default async function Home() {
         </div>
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
-        <h2 className="w-full text-2xl font-semibold text-center pt-6 lg:text-3xl">Audifonos</h2>
+        <h2 className="w-full text-2xl font-bold text-center pt-6 lg:text-3xl">Audifonos</h2>
         <p className="w-full text-center lg:text-xl px-4 pt-2 ">Echa un vistazo a la lista de productos que ofrecemos!</p>
         <div className="py-4">
           <Slider swiperInfo={headSet} />

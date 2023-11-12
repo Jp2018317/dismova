@@ -40,3 +40,8 @@ export type ProductId = {
     name: string
   }[]
 };
+
+export type Tag = {
+  name: string;
+  icon: string;
+};

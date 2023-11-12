@@ -36,17 +36,15 @@ export default async function Category({
   return (
     <section className="w-full h-full max-w-7xl p-4">
       <div className="w-full text-center pb-6">
-        <h1 className="font-bold text-3xl">
-          Categoria
-          {' '}
-          {params.category}
+        <h1 className="font-bold text-xl xs:text-2xl md:text-3xl">
+          {params.category.toUpperCase()}
         </h1>
       </div>
       <div className="w-full h-fit flex max-lg:flex-col gap-6">
         <Filter />
         {
           products.length ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full h-fit">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full h-fit">
               {products.map((item: Product) => (
                 <ProductCard
                   key={item.id}
