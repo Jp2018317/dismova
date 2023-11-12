@@ -28,7 +28,7 @@ export default async function ProducIdView({
   const { data } = await supabase.from('Products').select('*').eq('code', params.id);
   const product: Product[] = data || [];
 
-  const moreProductsData = await supabase.from('Products').select('*');
+  const moreProductsData = await supabase.from('Products').select('*').eq('category', product[0].category).limit(8);
   const moreProducts: Product[] = moreProductsData.data || [];
 
   return (
@@ -92,8 +92,8 @@ export default async function ProducIdView({
 
         <Separator className="my-4 md:my-2 lg:my-4" />
 
-        <h2 className="w-full text-2xl font-semibold text-center py-6 lg:text-3xl">Mas Productos</h2>
-        <p className="w-full text-center lg:text-xl ">Echa un vistazo a las categorias de productos que ofrecemos!</p>
+        <h2 className="w-full text-2xl font-semibold text-center pt-4 lg:text-3xl">Más Productos</h2>
+        <p className="w-full text-center lg:text-xl py-2">Otros productos similares que podrían gustarte</p>
         <div className="py-4">
           <Slider swiperInfo={moreProducts} />
         </div>
