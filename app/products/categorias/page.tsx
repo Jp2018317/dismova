@@ -16,7 +16,7 @@ export default async function Categories() {
     },
   );
 
-  const { data } = await supabase.from('Products').select('*');
+  const { data } = await supabase.from('Products').select('*').limit(49);
 
   const products:Product[] = data || [];
   return (
