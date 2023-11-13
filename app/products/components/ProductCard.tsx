@@ -25,7 +25,7 @@ export default function ProductCard({
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center border border-border rounded-xl">
+    <div className="w-full h-[21rem] flex flex-col justify-center items-center border border-border rounded-xl">
       <Link className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary" href={`/products/${code}`}>
         <div className="rounded-xl relative my-4 w-40 h-40">
           <Image
@@ -42,8 +42,8 @@ export default function ProductCard({
           />
         </div>
       </Link>
-      <div className="w-full">
-        <div className="w-full p-4 dark:text-white space-y-4">
+      <div className="w-full h-full">
+        <div className="w-full h-full p-4 dark:text-white space-y-4">
           <div className="w-full col-span-2">
             <h2 className="font-semibold text-sm lg:text-lg line-clamp-1">{shortTitle}</h2>
             <span className="text-xs line-clamp-2 leading-5 mt-1">{description}</span>

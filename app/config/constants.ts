@@ -85,3 +85,5 @@ export const customCookieMethods: CookieOptions = {
   set: (key: string, value: string, options: any) => Cookies.set(key, value, options),
   remove: (key: string) => Cookies.remove(key),
 };
+
+export const initProducts = 6;
