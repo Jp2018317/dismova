@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
 import LandingSlider from './components/LandingSlider';
 import { Product } from '../config/types';
-import { customCookieMethods } from '../config/constants';
+import { customCookieMethods, initProducts } from '../config/constants';
 
 export default async function Home() {
   const cookies = customCookieMethods;
@@ -21,11 +21,11 @@ export default async function Home() {
     },
   );
 
-  const { data } = await supabase.from('Products').select('*').eq('category', 'Bafles').limit(7);
-  const speakers:Product[] = data || [];
+  const speakersData = await supabase.from('Products').select('*').eq('category', 'Bafles').limit(initProducts);
+  const speakers:Product[] = speakersData.data || [];
 
-  const headSetData = await supabase.from('Products').select('*').eq('category', 'Audifonos').limit(7);
-  const headSet:Product[] = headSetData.data || [];
+  const headPhonesData = await supabase.from('Products').select('*').eq('category', 'Audifonos').limit(initProducts);
+  const headSet:Product[] = headPhonesData.data || [];
 
   return (
     <div className="w-full flex flex-col items-center">
