@@ -22,6 +22,8 @@ import {
 import { ROUTES } from '@/config';
 import { User } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
+import { FiMoreHorizontal } from 'react-icons/fi';
+import { MdOutlineCable } from 'react-icons/md';
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
@@ -45,17 +47,40 @@ export default function Sidebar({ user }: Props) {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>
+            <SheetTitle className="space-y-0">
               <div className="w-full text-center flex justify-center">
-                <Logo className="w-[120px] h-[50px]" />
+                <Logo className="w-[100px] h-[40px]" />
               </div>
-              <p className="text-sm text-center font-bold">DISMOVA</p>
+              <p className="text-sm text-center font-bold max-xs:text-xs">DISMOVA</p>
             </SheetTitle>
             {
               user ? (
-                <SheetDescription className="flex justify-center py-2">
-                  {user.email}
-                </SheetDescription>
+                <ul className="py-1 grid grid-cols-2 gap-2">
+                  <li>
+                    <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full max-xs:px-0">
+                      <Link
+                        href={ROUTES.account}
+                        className="w-full flex items-center justify-center gap-2"
+                      >
+                        <VscAccount className="dark:text-white w-6 h-6" />
+                        Perfil
+                      </Link>
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      onClick={() => {
+                        supabase.auth.signOut();
+                        window.location.reload();
+                      }}
+                      variant="ghost"
+                      className="w-full max-xs:px-0 flex items-center justify-center gap-2 dark:text-white hover:text-red-500 dark:hover:text-red-500"
+                    >
+                      <BsDoorOpen className="w-5 h-5" />
+                      Salir
+                    </Button>
+                  </li>
+                </ul>
               )
                 : (
                   <SheetDescription className="flex justify-evenly py-2">
@@ -76,22 +101,11 @@ export default function Sidebar({ user }: Props) {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href={ROUTES.account}
-                  className="w-full flex items-center justify-start gap-2"
-                >
-                  <VscAccount className="dark:text-white w-6 h-6" />
-                  Mi Perfil
-                </Link>
-              </Button>
-            </li>
-            <li>
-              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
-                <Link
                   href={ROUTES.cart}
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <AiOutlineShoppingCart className="dark:text-white w-6 h-6" />
-                  Mi Carrito
+                  Carrito
                 </Link>
               </Button>
             </li>
@@ -110,31 +124,44 @@ export default function Sidebar({ user }: Props) {
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
-          <ul className="py-1">
-            <li>
-              <h2 className="px-2 py-1 text-sm font-semibold dark:text-white">
-                Productos
-              </h2>
-              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
-                <Link
-                  href={ROUTES.cart}
-                  className="w-full flex items-center justify-start gap-2"
-                >
-                  <LuMonitorSpeaker className="dark:text-white w-6 h-6" />
-                  Bocinas y Bafles
-                </Link>
-              </Button>
-              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
-                <Link
-                  href={ROUTES.cart}
-                  className="w-full flex items-center justify-start gap-2"
-                >
-                  <BsHeadphones className="dark:text-white w-6 h-6" />
-                  Audifonos y otros
-                </Link>
-              </Button>
-            </li>
-          </ul>
+          <div className="py-1">
+            <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
+              <Link
+                href={ROUTES.speakers}
+                className="w-full flex items-center justify-start gap-2"
+              >
+                <LuMonitorSpeaker className="dark:text-white w-6 h-6" />
+                Bocinas
+              </Link>
+            </Button>
+            <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
+              <Link
+                href={ROUTES.headphones}
+                className="w-full flex items-center justify-start gap-2"
+              >
+                <BsHeadphones className="dark:text-white w-6 h-6" />
+                Audifonos
+              </Link>
+            </Button>
+            <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
+              <Link
+                href={ROUTES.accesories}
+                className="w-full flex items-center justify-start gap-2"
+              >
+                <MdOutlineCable className="dark:text-white w-6 h-6" />
+                Accesorios
+              </Link>
+            </Button>
+            <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
+              <Link
+                href={ROUTES.others}
+                className="w-full flex items-center justify-start gap-2"
+              >
+                <FiMoreHorizontal className="dark:text-white w-6 h-6" />
+                Otros
+              </Link>
+            </Button>
+          </div>
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
@@ -174,33 +201,9 @@ export default function Sidebar({ user }: Props) {
             </li>
           </ul>
 
-          {
-            user && (
-            <>
-              <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
-
-              <ul className="py-1">
-                <li>
-                  <Button
-                    onClick={() => {
-                      supabase.auth.signOut();
-                      window.location.reload();
-                    }}
-                    variant="ghost"
-                    className="w-full flex items-center justify-start gap-2 dark:text-white hover:text-red-500 dark:hover:text-red-500"
-                  >
-                    <BsDoorOpen className="w-5 h-5" />
-                    Cerrar sesión
-                  </Button>
-                </li>
-              </ul>
-            </>
-            )
-          }
-
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
-          <div className="w-full text-end p-2">
+          <div className="w-full text-end p-2 ">
             <ModeToggle />
           </div>
         </SheetContent>

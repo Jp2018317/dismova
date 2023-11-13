@@ -21,10 +21,10 @@ export default async function Home() {
     },
   );
 
-  const { data } = await supabase.from('Products').select('*').eq('category', 'Bafles').limit(8);
+  const { data } = await supabase.from('Products').select('*').eq('category', 'Bafles').limit(7);
   const speakers:Product[] = data || [];
 
-  const headSetData = await supabase.from('Products').select('*').eq('category', 'Audifonos').limit(8);
+  const headSetData = await supabase.from('Products').select('*').eq('category', 'Audifonos').limit(7);
   const headSet:Product[] = headSetData.data || [];
 
   return (

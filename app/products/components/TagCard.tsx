@@ -34,11 +34,11 @@ export default function TagCard({ icon, title }: TagProps) {
   }[icon];
 
   return (
-    <div className="flex flex-col items-center lg:w-32">
-      <Link href="/products/Tags" className="text-3xl lg:text-6xl h-16 lg:h-24 px-4 w-fit bg-secondary hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors duration-75 rounded-lg p-1 flex justify-center items-center text-zinc-800 dark:text-zinc-300">
+    <div className="flex flex-col items-center lg:w-28">
+      <Link href="/products/Tags" className="text-3xl lg:text-5xl h-16 lg:h-20 px-4 w-fit bg-secondary hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors duration-75 rounded-lg p-1 flex justify-center items-center text-zinc-800 dark:text-zinc-300">
         {iconComponent}
       </Link>
-      <p className="text-center dark:text-zinc-300 mt-4 text-lg max-lg:text-sm font-semibold">{title}</p>
+      <p className="text-center dark:text-zinc-300 mt-4 max-lg:text-sm font-semibold">{title}</p>
     </div>
   );
 }
