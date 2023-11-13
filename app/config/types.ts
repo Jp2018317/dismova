@@ -19,7 +19,7 @@ export type Product = {
   id: string,
   longTitle?: string,
   shortTitle: string,
-  description?: string,
+  description: string,
   category: string,
   price: number,
   stock?: number,
