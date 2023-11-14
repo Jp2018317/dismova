@@ -40,26 +40,26 @@ export default async function ProducIdView({
   return (
     <div className="w-full flex flex-col items-center">
       <section className="relative w-full flex justify-center">
-        <div className="lg:h-[35rem] w-full flex max-md:flex-col justify-center max-w-7xl ">
+        <div className="h-full lg:h-[35rem] w-full flex max-md:flex-col justify-center md:items-center max-w-7xl ">
           <div className="md:w-1/2 flex">
 
             <Slider swiperInfo={product} showImages />
           </div>
-          <div className="relative md:w-1/2 h-full md:h-[22rem] lg:h-[35rem] w-full p-4 lg:p-6">
-            <h1 className="text-2xl md:text-xl lg:text-3xl font-bold xs:max-w-[70%] mb-2">{product[0].longTitle}</h1>
+          <div className="relative md:w-1/2 h-full lg:h-[35rem] w-full p-4 lg:p-6">
+            <h1 className="text-2xl md:text-xl lg:text-2xl font-semibold mb-2">{product[0].longTitle}</h1>
 
-            <div className="xs:absolute top-4 lg:top-6 right-4 lg:right-6 font-bold">
-              <h3 className="text-xl xs:text-2xl md:text-xl lg:text-3xl flex">
+            <div className="font-bold">
+              <h3 className="text-2xl md:text-xl lg:text-2xl flex">
                 <p className="text-primary">Q</p>
                 {product[0].price.toFixed(2)}
               </h3>
             </div>
 
-            <Separator className="my-4 md:my-2 lg:my-4" />
+            <Separator className="my-2" />
 
             <div>
               <h3 className="w-full max-md:text-base max-lg:text-xs font-bold tracking-wider mb-2">Descripción</h3>
-              <span className="w-full max-md:text-base max-lg:text-xs">{product[0].description}</span>
+              <span className="w-full text-xs">{product[0].description}</span>
 
               <Separator className="my-4 md:my-2 lg:my-4" />
 
@@ -77,7 +77,7 @@ export default async function ProducIdView({
 
             <Separator className="my-4 md:my-2 lg:my-4" />
 
-            <div className="w-full md:absolute bottom-4 lg:bottom-6 left-1/2 md:-translate-x-1/2 md:px-4 lg:px-6 xs:flex justify-between items-end">
+            <div className="w-full xs:flex justify-between items-end">
 
               <div className="flex flex-col justify-end">
                 <p className=" max-md:text-base max-lg:text-xs font-bold pb-1 max-md:pb-2">Cantidad</p>

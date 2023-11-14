@@ -24,6 +24,7 @@ export default function NavBar() {
 
   const [searchLoading, setSearchLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const [inputSearch, setInputSearch] = useState('');
   const [searchedProducts, setSearchedProducts] = useState<SearchProduct[] | null>(null);
 
   const supabase = createBrowserClient(
@@ -62,6 +63,7 @@ export default function NavBar() {
   }, [prevScrollY]);
 
   async function searchProducts(value: string) {
+    setInputSearch(value);
     setSearchLoading(true);
     // Si el buscador es menor a 2 caractéres
     if (value === '' || value.length < 2) {
@@ -96,11 +98,12 @@ export default function NavBar() {
               className="sm:w-96 h-8 pr-10 mx-2 focus-visible:ring-offset-0 text-xs"
               placeholder="Search"
             />
-            <Button
-              type="submit"
-              className="absolute right-0 p-0 h-8 w-8 sm:w-10 mr-2 rounded-l-none border border-primary border-l-0"
-            >
-              <BiSearch className="w-4 h-4" />
+            <Button onClick={(e) => { e.preventDefault(); setOpenSearch(false); }} disabled={inputSearch.length < 2 && openSearch} className="absolute right-0 p-0 h-8 w-8 sm:w-10 mr-2 rounded-l-none border border-primary border-l-0">
+              <Link
+                href={`${ROUTES.search}/${inputSearch}`}
+              >
+                <BiSearch className="w-4 h-4" />
+              </Link>
             </Button>
           </form>
 
@@ -159,7 +162,7 @@ export default function NavBar() {
       <section
         className={`w-full z-20 h-[40px] font-semibold flex flex-wrap items-center justify-center mx-auto bg-secondary transition-all border-gray-200 dark:border-zinc-700 ${fade}`}
       >
-        <ul className="w-full max-w-7xl px-6 xs:px-8 text-center grid grid-cols-4 gap-10 font-normal text-sm text-zinc-900 dark:text-zinc-200">
+        <ul className="w-full max-w-7xl px-6 xs:px-8 text-center grid grid-cols-4 gap-10 font-normal text-[10px] xs:text-sm text-zinc-900 dark:text-zinc-200">
           <li>
             <Link href={ROUTES.speakers} className="hover:underline underline-offset-4">Bocinas</Link>
           </li>

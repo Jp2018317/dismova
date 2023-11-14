@@ -8,7 +8,7 @@ import { Slider } from '@/components/ui/slider';
 export default function Filter() {
   const [openFilter, setOpenFilter] = useState(true);
   return (
-    <div className="relative w-full lg:w-72 bg-secondary lg:h-[30rem] rounded-xl p-6 space-y-4">
+    <div className="relative w-full lg:w-72 bg-secondary h-full lg:min-h-[21rem] rounded-xl p-6 space-y-4">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold">Filtro de Búsqueda:</h1>
         <Button

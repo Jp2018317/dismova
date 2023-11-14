@@ -45,7 +45,7 @@ export default function Sidebar({ user }: Props) {
         <SheetTrigger>
           <LiaBarsSolid className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-6 h-6" />
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent className="overflow-y-auto">
           <SheetHeader>
             <SheetTitle className="space-y-0">
               <div className="w-full text-center flex justify-center">
