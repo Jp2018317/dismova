@@ -9,9 +9,9 @@ import {
 } from 'react-icons/ai';
 import { User } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
-import { Product } from '@/app/config/types';
+import { SearchProduct } from '@/app/config/types';
 import { BiSearch } from 'react-icons/bi';
-import SearchProduct from '@/app/products/components/SearchProduct';
+import SearchProductCard from '@/app/products/components/SearchProductCard';
 import Logo from './logo';
 import Sidebar from './Sidebar';
 import { Input } from './ui/input';
@@ -24,9 +24,7 @@ export default function NavBar() {
 
   const [searchLoading, setSearchLoading] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
-
-  const [searchValue, setSearchValue] = useState<string | null>(null);
-  const [searchedProducts, setSearchedProducts] = useState<Product[] | null>(null);
+  const [searchedProducts, setSearchedProducts] = useState<SearchProduct[] | null>(null);
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -65,13 +63,13 @@ export default function NavBar() {
 
   async function searchProducts(value: string) {
     setSearchLoading(true);
-    setSearchValue(value);
-    if (value === '') {
+    // Si el buscador es menor a 2 caractéres
+    if (value === '' || value.length < 2) {
       setSearchedProducts(null);
       setSearchLoading(false);
       return;
     }
-    const { data } = await supabase.from('Products').select().ilike('longTitle', `%${searchValue}%`).limit(5);
+    const { data } = await supabase.from('Products').select('shortTitle, description, category, price, code').ilike('longTitle', `%${value}%`).limit(5);
     if (data?.length) {
       setSearchedProducts(data);
     }
@@ -95,7 +93,7 @@ export default function NavBar() {
               onFocus={() => setOpenSearch(true)}
               onChange={(e) => searchProducts(e.target.value)}
               type="text"
-              className="md:w-96 sm:w-72 h-8 pr-10 mx-2 focus-visible:ring-offset-0 text-xs"
+              className="sm:w-96 h-8 pr-10 mx-2 focus-visible:ring-offset-0 text-xs"
               placeholder="Search"
             />
             <Button
@@ -108,7 +106,7 @@ export default function NavBar() {
 
           {
             openSearch && (
-              <div className="max-h-[30rem] md:max-h-96 overflow-y-auto space-y-3 absolute top-16 left-1/2 -translate-x-1/2 w-full xs:w-96 md:w-[40rem] p-4 rounded-lg bg-background border border-zinc-300 dark:border-zinc-600 dark:text-white">
+              <div className="space-y-3 absolute top-16 left-1/2 -translate-x-1/2 w-full xs:w-[25rem] p-4 rounded-lg bg-background border border-zinc-300 dark:border-zinc-600 dark:text-white">
                 <div className="flex justify-between">
                   <div className="text-sm font-semibold dark:text-white">Sugerencias:</div>
                   <button type="button" onClick={() => setOpenSearch(false)}>
@@ -116,34 +114,37 @@ export default function NavBar() {
                   </button>
                 </div>
                 {
-                  !searchValue && (
-                    <div className="text-xs font-medium dark:text-white">No hay sugerencias</div>
-                  )
-                }
-                {
                   searchLoading ? (
                     <div className="flex justify-center">
                       <AiOutlineLoading3Quarters className="w-6 h-6 text-primary animate-spin" />
                     </div>
                   ) : (
-                    searchedProducts?.map((product) => (
-                      <SearchProduct
-                        shortTitle={product.shortTitle}
-                        description={product.description}
-                        category={product.category}
-                        price={product.price}
-                        code={product.code}
-                        stock={product.stock || 0}
-                        setOpenSearch={setOpenSearch}
-                      />
-                    ))
+                    <div className="overflow-y-auto max-h-[30rem] space-y-3 px-1">
+                      {
+                        searchedProducts ? (
+                          searchedProducts.map((product) => (
+                            <SearchProductCard
+                              key={product.code}
+                              shortTitle={product.shortTitle}
+                              description={product.description}
+                              category={product.category}
+                              price={product.price}
+                              code={product.code}
+                              setOpenSearch={setOpenSearch}
+                            />
+                          ))
+                        ) : (
+                          <div className="text-xs text-zinc-600 dark:text-zinc-400 w-full text-center">No hay sugerencias</div>
+                        )
+                      }
+                    </div>
                   )
                 }
               </div>
             )
           }
 
-          <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4 md:gap-8">
+          <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4">
             <Link href="/products/favoritos" className="max-sm:hidden hover:text-primary">
               <AiOutlineHeart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
             </Link>
@@ -160,16 +161,16 @@ export default function NavBar() {
       >
         <ul className="w-full max-w-7xl px-6 xs:px-8 text-center grid grid-cols-4 gap-10 font-normal text-sm text-zinc-900 dark:text-zinc-200">
           <li>
-            <Link href={ROUTES.root} className="hover:underline underline-offset-4">Ofertas</Link>
+            <Link href={ROUTES.speakers} className="hover:underline underline-offset-4">Bocinas</Link>
           </li>
           <li>
-            <Link href={ROUTES.root} className="hover:underline underline-offset-4">Ofertas</Link>
+            <Link href={ROUTES.headphones} className="hover:underline underline-offset-4">Audífonos</Link>
           </li>
           <li>
-            <Link href={ROUTES.root} className="hover:underline underline-offset-4">Ofertas</Link>
+            <Link href={ROUTES.accesories} className="hover:underline underline-offset-4">Accesorios</Link>
           </li>
           <li>
-            <Link href={ROUTES.root} className="hover:underline underline-offset-4">Ofertas</Link>
+            <Link href={ROUTES.others} className="hover:underline underline-offset-4">Otros</Link>
           </li>
         </ul>
       </section>
