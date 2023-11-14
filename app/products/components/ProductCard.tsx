@@ -22,14 +22,16 @@ export default function ProductCard({
   shortTitle, description, category, price, code,
 }: SwiperInfoProps) {
   const { toast } = useToast();
+
   const [isLoading, setIsLoading] = useState(true);
+  const [image, setImage] = useState(`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
 
   return (
     <div className="w-full h-[21rem] flex flex-col justify-center items-center border border-border rounded-xl">
       <Link className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary" href={`/products/${code}`}>
         <div className="rounded-xl relative my-4 w-40 h-40">
           <Image
-            src={`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`}
+            src={image}
             fill
             alt={code}
             className={cn(
@@ -39,6 +41,7 @@ export default function ProductCard({
                 : 'grayscale-0 blur-0 scale-100',
             )}
             onLoadingComplete={() => setIsLoading(false)}
+            onError={() => setImage('/images/NoImage.webp')}
           />
         </div>
       </Link>

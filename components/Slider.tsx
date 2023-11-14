@@ -80,6 +80,7 @@ export default function Slider({
                  <div className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary rounded-xl">
                    <div className="rounded-xl relative my-4 w-44 h-44 xs:w-52 xs:h-52 lg:w-96 lg:h-96">
                      <Image
+                       key={slide.code}
                        src={`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${slide.category}/${slide.code}/${index + 1}.webp?t=2023-11-05T02%3A42%3A54.379Z`}
                        fill
                        loading="lazy"
