@@ -31,6 +31,14 @@ export type Product = {
   }[]
 };
 
+export type SearchProduct = {
+  shortTitle: string,
+  description: string,
+  category: string,
+  price: number,
+  code: string,
+};
+
 export type ProductId = {
   id: string,
   shortTitle: string,
