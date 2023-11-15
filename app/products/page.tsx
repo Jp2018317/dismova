@@ -3,12 +3,13 @@ import Slider from '@/components/Slider';
 import { LuMonitorSpeaker } from 'react-icons/lu';
 import { BsHeadphones } from 'react-icons/bs';
 import { MdOutlineCable } from 'react-icons/md';
+import { FaWhatsapp } from 'react-icons/fa';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
 import LandingSlider from './components/LandingSlider';
 import { Product } from '../config/types';
-import { customCookieMethods, initProducts } from '../config/constants';
+import { customCookieMethods, initProducts, whatsAppNumber } from '../config/constants';
 
 export default async function Home() {
   const cookies = customCookieMethods;
@@ -69,6 +70,11 @@ export default async function Home() {
           <Slider swiperInfo={headSet} />
         </div>
       </section>
+      <div className="fixed z-40 bottom-5 right-5 rounded-full bg-green-500 border border-zinc-100 w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center">
+        <a href={`https://api.whatsapp.com/send?phone=${whatsAppNumber}`} target="_blank" rel="noreferrer">
+          <FaWhatsapp className="w-5 sm:w-6 h-5 sm:h-6 text-white" />
+        </a>
+      </div>
     </div>
   );
 }
