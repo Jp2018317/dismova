@@ -1,17 +1,34 @@
 'use client';
 
-import { useToast } from '@/components/ui/use-toast';
+import { Dispatch, SetStateAction, useState } from 'react';
 import Link from 'next/link';
-import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import Image from 'next/image';
-import { useState } from 'react';
+
+import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import { TbHeartBroken } from 'react-icons/tb';
+
+import { useToast } from '@/components/ui/use-toast';
+import { FavItem } from '@/app/config/types';
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 type SwiperInfoProps = {
-  shortTitle?: string
-  description?: string
+  shortTitle: string
+  description: string
   category: string
   code: string;
-  price?: number
+  price: number
+  setFavorites?: Dispatch<SetStateAction<FavItem[]>>;
 };
 
 function cn(...classes: string[]) {
@@ -19,15 +36,72 @@ function cn(...classes: string[]) {
 }
 
 export default function ProductCard({
-  shortTitle, description, category, price, code,
+  shortTitle, description, category, price, code, setFavorites,
 }: SwiperInfoProps) {
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(true);
   const [image, setImage] = useState(`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
 
+  function addItemToFavorite() {
+    const favorites: FavItem[] = JSON.parse(localStorage.getItem('Favorites') || '[]');
+    // Si no hay favoritos, agregar el item
+    if (favorites.length === 0) {
+      favorites.push({
+        shortTitle, description, category, price, code,
+      });
+    } else {
+      // Hay favoritos, buscar si el item ya esta agregado
+      const res = favorites.some((element) => element.code === code);
+      // Si no se encuentra el item, agregarlo
+      if (!res) {
+        favorites.push({
+          shortTitle, description, category, price, code,
+        });
+      } else {
+        // Si existe el item, eliminarlo de la lista
+        const favItemsFiltered = favorites.filter((element) => element.code !== code);
+        toast({
+          title: 'Eliminado de Favoritos',
+          description: `${code} ha sido eliminado de favoritos`,
+          action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+        });
+        localStorage.setItem('Favorites', JSON.stringify(favItemsFiltered));
+        if (setFavorites) {
+          setFavorites(favItemsFiltered);
+        }
+        return;
+      }
+    }
+
+    toast({
+      title: 'Añadido a Favoritos',
+      description: `${code} ha sido añadido a favoritos`,
+      action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+    });
+
+    localStorage.setItem('Favorites', JSON.stringify(favorites));
+    if (setFavorites) {
+      setFavorites(favorites);
+    }
+  }
+
+  function removeFavorite() {
+    const favorites: FavItem[] = JSON.parse(localStorage.getItem('Favorites') || '[]');
+    const favItemsFiltered = favorites.filter((element) => element.code !== code);
+    toast({
+      title: 'Eliminado de Favoritos',
+      description: `${code} ha sido eliminado de favoritos`,
+      action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+    });
+    localStorage.setItem('Favorites', JSON.stringify(favItemsFiltered));
+    if (setFavorites) {
+      setFavorites(favItemsFiltered);
+    }
+  }
+
   return (
-    <div className="w-full h-[21rem] flex flex-col justify-center items-center border border-border rounded-xl">
+    <div className=" relative w-full h-[21rem] flex flex-col justify-center items-center border border-border rounded-xl">
       <Link className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary" href={`/products/${code}`}>
         <div className="rounded-xl relative my-4 w-40 h-40">
           <Image
@@ -77,17 +151,37 @@ export default function ProductCard({
             <AiOutlineShoppingCart className="w-5 h-5" />
           </button>
           <button
-            onClick={() => {
-              toast({
-                title: 'Añadido a Favoritos',
-                description: `${shortTitle} ha sido añadido a la lista de favoritos`,
-                action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
-              });
-            }}
+            onClick={() => (!setFavorites && addItemToFavorite())}
             type="button"
             className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary px-2 py-1 transition-all"
           >
-            <AiFillHeart className="w-5 h-5" />
+            {
+              setFavorites ? (
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <TbHeartBroken className="w-5 h-5 text-zinc-700 dark:text-zinc-500 hover:text-red-600" />
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Remover producto?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Esta acción eliminará el producto de tu lista de favoritos
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => removeFavorite()}
+                      >
+                        Continuar
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              ) : (
+                <AiFillHeart className="w-5 h-5" />
+              )
+            }
           </button>
         </div>
       </div>
