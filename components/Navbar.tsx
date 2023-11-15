@@ -18,8 +18,6 @@ import { Input } from './ui/input';
 import { Button } from './ui/button';
 
 export default function NavBar() {
-  const [fade, setFade] = useState('border-b');
-  const [prevScrollY, setPrevScrollY] = useState(0);
   const [userLogged, setUserLogged] = useState<User | null>();
 
   const [searchLoading, setSearchLoading] = useState(false);
@@ -41,31 +39,12 @@ export default function NavBar() {
 
   useEffect(() => {
     getUser();
-  });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > 30 && currentScrollY > prevScrollY) {
-        setFade('-translate-y-24 duration-300');
-      } else {
-        setFade('duration-200');
-      }
-      setPrevScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [prevScrollY]);
+  }, []);
 
   async function searchProducts(value: string) {
     setInputSearch(value);
     setSearchLoading(true);
-    // Si el buscador es menor a 2 caractéres
+    // No buscar si el buscador es menor a 2 caractéres
     if (value === '' || value.length < 2) {
       setSearchedProducts(null);
       setSearchLoading(false);
@@ -160,7 +139,7 @@ export default function NavBar() {
         </div>
       </section>
       <section
-        className={`w-full z-20 h-[40px] font-semibold flex flex-wrap items-center justify-center mx-auto bg-secondary transition-all border-gray-200 dark:border-zinc-700 ${fade}`}
+        className="w-full z-20 h-8 font-semibold flex flex-wrap items-center justify-center mx-auto bg-secondary border-gray-200 dark:border-zinc-700"
       >
         <ul className="w-full max-w-7xl px-6 xs:px-8 text-center grid grid-cols-4 gap-10 font-normal text-[10px] xs:text-sm text-zinc-900 dark:text-zinc-200">
           <li>

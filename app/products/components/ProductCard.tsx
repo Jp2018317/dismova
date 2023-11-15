@@ -63,8 +63,7 @@ export default function ProductCard({
         const favItemsFiltered = favorites.filter((element) => element.code !== code);
         toast({
           title: 'Eliminado de Favoritos',
-          description: `${code} ha sido eliminado de favoritos`,
-          action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+          description: `${code} eliminado de favoritos`,
         });
         localStorage.setItem('Favorites', JSON.stringify(favItemsFiltered));
         if (setFavorites) {
@@ -76,8 +75,8 @@ export default function ProductCard({
 
     toast({
       title: 'Añadido a Favoritos',
-      description: `${code} ha sido añadido a favoritos`,
-      action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+      description: `${code} añadido a favoritos`,
+      action: <Link href="/products/favoritos" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
     });
 
     localStorage.setItem('Favorites', JSON.stringify(favorites));
@@ -91,8 +90,7 @@ export default function ProductCard({
     const favItemsFiltered = favorites.filter((element) => element.code !== code);
     toast({
       title: 'Eliminado de Favoritos',
-      description: `${code} ha sido eliminado de favoritos`,
-      action: <Link href="/products/favoritos" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+      description: `${code} eliminado de favoritos`,
     });
     localStorage.setItem('Favorites', JSON.stringify(favItemsFiltered));
     if (setFavorites) {
@@ -142,7 +140,7 @@ export default function ProductCard({
               toast({
                 title: 'Añadido al Carrito',
                 description: `${shortTitle} ha sido añadido al carrito de compras`,
-                action: <Link href="/products/cart" className="text-sm border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+                action: <Link href="/products/cart" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
               });
             }}
             type="button"
@@ -150,39 +148,39 @@ export default function ProductCard({
           >
             <AiOutlineShoppingCart className="w-5 h-5" />
           </button>
-          <button
-            onClick={() => (!setFavorites && addItemToFavorite())}
-            type="button"
-            className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary px-2 py-1 transition-all"
-          >
-            {
-              setFavorites ? (
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <TbHeartBroken className="w-5 h-5 text-zinc-700 dark:text-zinc-500 hover:text-red-600" />
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Remover producto?</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        Esta acción eliminará el producto de tu lista de favoritos
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => removeFavorite()}
-                      >
-                        Continuar
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              ) : (
+          {
+            setFavorites ? (
+              <AlertDialog>
+                <AlertDialogTrigger>
+                  <TbHeartBroken className="w-5 h-5 text-zinc-700 dark:text-zinc-500 hover:text-red-600 dark:hover:text-red-600" />
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Remover producto?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Esta acción eliminará el producto de tu lista de favoritos
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => removeFavorite()}
+                    >
+                      Continuar
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            ) : (
+              <button
+                onClick={() => addItemToFavorite()}
+                type="button"
+                className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary px-2 py-1 transition-all"
+              >
                 <AiFillHeart className="w-5 h-5" />
-              )
-            }
-          </button>
+              </button>
+            )
+          }
         </div>
       </div>
     </div>
