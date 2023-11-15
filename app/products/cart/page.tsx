@@ -37,7 +37,7 @@ export default async function Cart() {
   const products:Product[] = data || [];
 
   return (
-    <div className="w-full h-full max-w-7xl px-5 max-h-[29rem] sm:max-h-[35rem]">
+    <div className="w-full h-full max-w-7xl px-5">
       <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 py-4 lg:py-8">
         <div className="w-full h-full">
           <div className="flex w-full pb-4">

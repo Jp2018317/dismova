@@ -29,7 +29,7 @@ export default function FavItems() {
         ))}
       </div>
       {favorites.length === 0 && (
-        <div className="w-full flex flex-col justify-center items-center h-80">
+        <div className="w-full flex flex-col justify-center items-center h-96">
           <h2 className="text-xl font-semibold w-full text-center mb-2">Aun no hay productos!</h2>
           <h3 className="text-xs md:text-sm w-full text-center mb-6">Aqui se mostraran los productos que agregues a lista de favoritos</h3>
         </div>
