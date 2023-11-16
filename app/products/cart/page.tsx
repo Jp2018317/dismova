@@ -18,9 +18,8 @@ export default async function Cart() {
     },
   );
 
-  const { data } = await supabase.from('Products').select('*');
-
-  const products:Product[] = data || [];
+  const productsData = await supabase.from('Products').select('*');
+  const products:Product[] = productsData.data || [];
 
   return (
     <div className="w-full h-full max-w-7xl px-5">

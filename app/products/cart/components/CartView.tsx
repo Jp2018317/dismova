@@ -58,6 +58,12 @@ export default function CartView() {
               price={item.price}
               stock={item.stock}
               code={item.code}
+              totalPrice={totalPrice}
+              totalProducts={totalProducts}
+              setTotalPrice={setTotalPrice}
+              setTotalProducts={setTotalProducts}
+              setCartItem={setCartItem}
+
             />
           ))}
         </div>
