@@ -3,8 +3,8 @@ import { Product } from '@/app/config/types';
 import { createServerClient } from '@supabase/ssr';
 import { customCookieMethods } from '@/app/config/constants';
 import ProductCard from '@/app/products/components/ProductCard';
-import { ROUTES } from '@/config';
 import { redirect } from 'next/navigation';
+import { ROUTES } from '@/app/config/routes';
 import Filter from '../components/Filter';
 
 export default async function Category({

@@ -19,11 +19,11 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
-import { ROUTES } from '@/config';
 import { User } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { MdOutlineCable } from 'react-icons/md';
+import { ROUTES } from '@/app/config/routes';
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';

@@ -1,21 +1,14 @@
 import React from 'react';
 
 import { Separator } from '@/components/ui/separator';
-import { SidebarNav } from '@/app/account/components/sidebar-nav';
-import { ROUTES } from '@/config';
+import { SidebarNav } from '@/app/perfil/components/sidebar-nav';
+import { UserLogged } from './components/UserLogged';
+import { ROUTES } from '../config/routes';
 
 const routes = [
   {
-    title: 'Mi Cuenta',
+    title: 'Mi Perfil',
     href: ROUTES.account,
-  },
-  {
-    title: 'Mis Pedidos',
-    href: ROUTES.account + ROUTES.orders,
-  },
-  {
-    title: 'Apariencia',
-    href: ROUTES.account + ROUTES.appearance,
   },
   {
     title: 'Configuración',
@@ -41,6 +34,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
         <aside className="  lg:w-1/5">
           <SidebarNav items={routes} />
           <Separator className="mt-5" />
+          <UserLogged />
         </aside>
         <div className="flex-1 lg:max-w-2xl">{children}</div>
       </div>
