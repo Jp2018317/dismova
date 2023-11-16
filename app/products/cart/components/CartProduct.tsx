@@ -42,15 +42,36 @@ export default function CartProduct({
   const [image, setImage] = useState(`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
 
   function increaseStock() {
-    setCartItemStock(cartItemStock + 1);
-    setTotalPrice(totalPrice + price);
-    setTotalProducts(totalProducts + 1);
+    const cartItems: CartItem[] = JSON.parse(localStorage.getItem('CartItems') || '[]');
+    const findItem = cartItems.findIndex((element) => element.code === code);
+
+    if (findItem !== -1) {
+    // Actualizar el stock del elemento
+      cartItems[findItem].stock = cartItemStock + 1;
+      setCartItemStock(cartItemStock + 1);
+      // Actualizar el precio total y la cantidad total de productos
+      setTotalPrice(totalPrice + price);
+      setTotalProducts(totalProducts + 1);
+
+      localStorage.setItem('CartItems', JSON.stringify(cartItems));
+    }
   }
 
   function decreaseStock() {
-    setCartItemStock(cartItemStock - 1);
-    setTotalPrice(totalPrice - price);
-    setTotalProducts(totalProducts - 1);
+    if (cartItemStock <= 1) return;
+    const cartItems: CartItem[] = JSON.parse(localStorage.getItem('CartItems') || '[]');
+    const findItem = cartItems.findIndex((element) => element.code === code);
+
+    if (findItem !== -1) {
+    // Actualizar el stock del elemento
+      cartItems[findItem].stock = cartItemStock - 1;
+      setCartItemStock(cartItemStock - 1);
+      // Actualizar el precio total y la cantidad total de productos
+      setTotalPrice(totalPrice - price);
+      setTotalProducts(totalProducts - 1);
+
+      localStorage.setItem('CartItems', JSON.stringify(cartItems));
+    }
   }
 
   function removeCartItem() {
@@ -85,7 +106,7 @@ export default function CartProduct({
         </div>
         <div className="sm:flex justify-center items-center">
           <div className="flex">
-            <button onClick={() => (cartItemStock > 1 && decreaseStock())} type="button" className="w-6 h-6 rounded-l-lg bg-primary flex justify-center items-center">
+            <button onClick={() => decreaseStock()} type="button" className="w-6 h-6 rounded-l-lg bg-primary flex justify-center items-center">
               <AiOutlineMinus className="text-white" />
             </button>
             <div className="w-9 h-6 lg:w-11  bg-secondary flex justify-center items-center text-xs">{cartItemStock}</div>

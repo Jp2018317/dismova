@@ -116,16 +116,12 @@ export default function ProductCard({
           shortTitle, description, category, price, code, stock,
         });
       } else {
-        // Si existe el item, eliminarlo de la lista
-        const cartItemsFiltered = cartItems.filter((element) => element.code !== code);
+        // Si existe el item, hacer saber al usuario de que ya existe
         toast({
-          title: 'Eliminado del Carrito',
-          description: `${code} eliminado del carrito`,
+          title: 'Producto ya agregado',
+          description: `${code} ya está agregado al carrito`,
+          action: <Link href="/products/cart" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
         });
-        localStorage.setItem('CartItems', JSON.stringify(cartItemsFiltered));
-        if (setCartItems) {
-          setCartItems(cartItemsFiltered);
-        }
         return;
       }
     }
