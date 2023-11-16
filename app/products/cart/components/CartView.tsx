@@ -95,7 +95,7 @@ export default function CartView() {
       </div>
       <div className="relative w-full lg:w-96 bg-secondary h-full rounded-xl p-6 space-y-4">
         <h1 className="text-lg font-semibold">Resúmen:</h1>
-        <div className="max-lg:flex lg:space-y-2 gap-x-8 items-center">
+        <div className="flex max-xs:flex-col lg:flex-col lg:space-y-2 gap-x-8 gap-y-2">
           <h2 className="flex gap-x-2 text-sm font-medium">
             Total:
             {' '}

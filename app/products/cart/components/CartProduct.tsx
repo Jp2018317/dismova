@@ -67,9 +67,9 @@ export default function CartProduct({
   }
 
   return (
-    <div className="w-full border border-border rounded-xl flex h-28 sm:h-36">
-      <div className="bg-secondary rounded-l-xl h-full flex items-center">
-        <Link href={`/products/${code}`} className="relative h-24 sm:h-36 w-24 sm:w-36">
+    <div className="w-full border border-border rounded-xl flex max-sm:flex-col h-full sm:h-40">
+      <div className="bg-secondary rounded-t-xl sm:rounded-l-xl h-full flex items-center max-sm:justify-center">
+        <Link href={`/products/${code}`} className="relative h-40 w-40">
           <Image
             src={image}
             fill
@@ -78,12 +78,12 @@ export default function CartProduct({
           />
         </Link>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-5 gap-x-4 relative h-full w-full p-3">
-        <div className="w-[80%] col-span-2">
-          <h2 className="font-semibold text-sm lg:text-lg line-clamp-2">{shortTitle}</h2>
-          <span className="text-xs lg:text-sm line-clamp-2 leading-5 mt-1">{description}</span>
+      <div className="sm:grid sm:grid-cols-5 gap-x-4 relative h-full w-full p-4 space-y-3">
+        <div className="w-[90%] flex flex-col col-span-2 sm:text-center justify-center gap-1 sm:gap-4 lg:px-2">
+          <h2 className="font-semibold text-sm line-clamp-3">{shortTitle}</h2>
+          <span className="text-[10px] lg:text-xs line-clamp-2 leading-5 mt-1">{description}</span>
         </div>
-        <div className="max-sm:absolute bottom-3 left-3 flex justify-center items-center">
+        <div className="sm:flex justify-center items-center">
           <div className="flex">
             <button onClick={() => (cartItemStock > 1 && decreaseStock())} type="button" className="w-6 h-6 rounded-l-lg bg-primary flex justify-center items-center">
               <AiOutlineMinus className="text-white" />
@@ -94,19 +94,23 @@ export default function CartProduct({
             </button>
           </div>
         </div>
-        <div className="max-sm:absolute bottom-10 right-3 w-full flex justify-end sm:justify-center items-center">
-          <h2 className="max-sm:text-xs max-lg:text-sm font-semibold flex">
-            <p className="text-primary">Q</p>
-            {price.toFixed(2)}
-          </h2>
+        <div className="w-full flex max-xs:flex-col sm:justify-center items-center col-span-2 gap-2">
+          <div className="w-full flex sm:justify-center items-center">
+            <h2 className="max-sm:text-sm max-lg:text-sm font-semibold flex">
+              <p className="font-semibold sm:hidden pr-2">Precio:</p>
+              <p className="text-primary">Q</p>
+              {price.toFixed(2)}
+            </h2>
+          </div>
+          <div className="w-full flex sm:justify-center items-center">
+            <h2 className="max-sm:text-sm max-lg:text-sm font-semibold flex">
+              <p className="font-semibold sm:hidden pr-2">Subtotal:</p>
+              <p className="text-primary">Q</p>
+              {(price * cartItemStock).toFixed(2)}
+            </h2>
+          </div>
         </div>
-        <div className="max-sm:absolute bottom-3 right-3 w-full flex justify-end sm:justify-center items-center">
-          <h2 className="max-sm:text-base max-lg:text-sm font-semibold flex">
-            <p className="text-primary">Q</p>
-            {(price * cartItemStock).toFixed(2)}
-          </h2>
-        </div>
-        <div className="absolute top-3 right-3">
+        <div className="absolute top-0 right-3">
           <AlertDialog>
             <AlertDialogTrigger>
               <AiFillDelete className="w-5 h-5 text-zinc-700 dark:text-white hover:text-red-600" />
