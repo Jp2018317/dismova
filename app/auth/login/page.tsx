@@ -1,9 +1,9 @@
 import LoginForm from '@/components/login/login-form';
 import { montserrat } from '@/lib/fonts';
 import Link from 'next/link';
-import { ROUTES } from '@/config';
 import Logo from '@/components/logo';
 import { BiChevronLeft } from 'react-icons/bi';
+import { ROUTES } from '@/app/config/routes';
 
 export default async function LoginPage() {
   return (

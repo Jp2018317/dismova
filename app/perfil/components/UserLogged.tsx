@@ -37,6 +37,7 @@ export function UserLogged() {
           <Button
             onClick={() => {
               supabase.auth.signOut();
+              window.location.reload();
             }}
             variant="ghost"
             className="hover:text-red-500 flex justify-center lg:justify-start w-full"
@@ -49,7 +50,7 @@ export function UserLogged() {
             <Button
               className="flex justify-center lg:justify-start w-full"
             >
-              <Link href="/auth/signUp">
+              <Link href="/auth/login" className="w-full text-start">
                 <p>Ingresar</p>
               </Link>
             </Button>
@@ -57,7 +58,7 @@ export function UserLogged() {
               variant="ghost"
               className="flex justify-center lg:justify-start w-full"
             >
-              <Link href="/auth/login">
+              <Link href="/auth/signup" className="w-full text-start">
                 <p>Registro</p>
               </Link>
             </Button>

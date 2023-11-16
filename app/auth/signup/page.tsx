@@ -1,9 +1,9 @@
 import { montserrat } from '@/lib/fonts';
 import SignupForm from '@/components/signup/signup-form';
 import Link from 'next/link';
-import { ROUTES } from '@/config';
 import { BiChevronLeft } from 'react-icons/bi';
 import Logo from '@/components/logo';
+import { ROUTES } from '@/app/config/routes';
 
 export default async function SignUpPage() {
   return (

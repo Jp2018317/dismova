@@ -38,11 +38,11 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
         </div>
       </div>
       <Separator className="max-lg:hidden" />
-      <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 ">
+      <div className="flex flex-col lg:flex-row lg:space-x-12 ">
         <aside className="lg:w-1/5">
           <SidebarNav items={routes} />
         </aside>
-        <div className="flex-1 lg:max-w-2xl">{children}</div>
+        <div className="flex-1 max-w-3xl">{children}</div>
       </div>
     </div>
   );
