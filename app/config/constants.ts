@@ -68,3 +68,5 @@ export const customCookieMethods: CookieOptions = {
 export const initProducts = 6;
 
 export const whatsAppNumber = '40254222';
+
+export const landingSliderImages = 4;

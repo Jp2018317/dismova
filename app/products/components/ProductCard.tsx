@@ -8,7 +8,7 @@ import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import { TbHeartBroken } from 'react-icons/tb';
 
 import { useToast } from '@/components/ui/use-toast';
-import { FavItem } from '@/app/config/types';
+import { CartItem, FavItem } from '@/app/config/types';
 
 import {
   AlertDialog,
@@ -29,6 +29,7 @@ type SwiperInfoProps = {
   code: string;
   price: number
   setFavorites?: Dispatch<SetStateAction<FavItem[]>>;
+  setCartItems?: Dispatch<SetStateAction<CartItem[]>>;
 };
 
 function cn(...classes: string[]) {
@@ -36,7 +37,7 @@ function cn(...classes: string[]) {
 }
 
 export default function ProductCard({
-  shortTitle, description, category, price, code, setFavorites,
+  shortTitle, description, category, price, code, setFavorites, setCartItems,
 }: SwiperInfoProps) {
   const { toast } = useToast();
 
@@ -98,6 +99,49 @@ export default function ProductCard({
     }
   }
 
+  function addItemToCart() {
+    const stock = 1;
+    const cartItems: CartItem[] = JSON.parse(localStorage.getItem('CartItems') || '[]');
+    // Si no hay favoritos, agregar el item
+    if (cartItems.length === 0) {
+      cartItems.push({
+        shortTitle, description, category, price, code, stock,
+      });
+    } else {
+      // Hay favoritos, buscar si el item ya esta agregado
+      const res = cartItems.some((element) => element.code === code);
+      // Si no se encuentra el item, agregarlo
+      if (!res) {
+        cartItems.push({
+          shortTitle, description, category, price, code, stock,
+        });
+      } else {
+        // Si existe el item, eliminarlo de la lista
+        const cartItemsFiltered = cartItems.filter((element) => element.code !== code);
+        toast({
+          title: 'Eliminado del Carrito',
+          description: `${code} eliminado del carrito`,
+        });
+        localStorage.setItem('CartItems', JSON.stringify(cartItemsFiltered));
+        if (setCartItems) {
+          setCartItems(cartItemsFiltered);
+        }
+        return;
+      }
+    }
+
+    toast({
+      title: 'Añadido al Carrito',
+      description: `${code} añadido al carrito`,
+      action: <Link href="/products/cart" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+    });
+
+    localStorage.setItem('CartItems', JSON.stringify(cartItems));
+    if (setCartItems) {
+      setCartItems(cartItems);
+    }
+  }
+
   return (
     <div className=" relative w-full h-[21rem] flex flex-col justify-center items-center border border-border rounded-xl">
       <Link className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary" href={`/products/${code}`}>
@@ -136,13 +180,7 @@ export default function ProductCard({
         </div>
         <div className="absolute flex flex-col items-center justify-center top-4 right-4 space-y-2">
           <button
-            onClick={() => {
-              toast({
-                title: 'Añadido al Carrito',
-                description: `${shortTitle} ha sido añadido al carrito de compras`,
-                action: <Link href="/products/cart" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
-              });
-            }}
+            onClick={() => addItemToCart()}
             type="button"
             className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary px-2 py-1 transition-all"
           >
