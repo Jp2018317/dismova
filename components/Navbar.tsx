@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import { ROUTES } from '@/config';
 import {
   AiOutlineClose, AiOutlineHeart, AiOutlineLoading3Quarters, AiOutlineShoppingCart,
 } from 'react-icons/ai';
@@ -12,6 +11,7 @@ import { createBrowserClient } from '@supabase/ssr';
 import { SearchProduct } from '@/app/config/types';
 import { BiSearch } from 'react-icons/bi';
 import SearchProductCard from '@/app/products/components/SearchProductCard';
+import { ROUTES } from '@/app/config/routes';
 import Logo from './logo';
 import Sidebar from './Sidebar';
 import { Input } from './ui/input';
@@ -62,7 +62,7 @@ export default function NavBar() {
       <section className="w-full z-30 h-[60px] bg-background flex flex-col items-center">
         <div className="w-full h-full max-w-7xl flex justify-between px-4">
           <Link
-            href={ROUTES.root}
+            href={ROUTES.products}
             className="h-full flex flex-col items-center justify-center"
           >
             <Logo className="max-sm:w-[70px] max-sm:h-[25]" />

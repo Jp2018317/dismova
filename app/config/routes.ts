@@ -12,10 +12,8 @@ export const ROUTES = {
   search: '/products/buscar',
   cart: '/products/cart',
   favorites: '/products/favoritos',
-  account: '/account',
-  orders: '/orders',
-  appearance: '/appearance',
-  settings: '/settings',
+  account: '/perfil',
+  settings: '/configuraciones',
 };
 
 export const AUTH_ZOD_MESSAGES = {

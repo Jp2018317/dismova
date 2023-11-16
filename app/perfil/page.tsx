@@ -1,17 +1,19 @@
 import React from 'react';
 
 import { Separator } from '@/components/ui/separator';
+import { Profile } from './components/Profile';
 
-export default function SettingsProfilePage() {
+export default async function SettingsProfilePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-medium">Profile</h3>
+        <h3 className="text-lg font-medium">Mi Perfil</h3>
         <p className="text-sm text-muted-foreground">
-          This is how others will see you on the site.
+          Información sobre la cuenta ingresada
         </p>
       </div>
       <Separator />
+      <Profile />
     </div>
   );
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Separator } from '@/components/ui/separator';
-import {
-  AiOutlineShoppingCart,
-} from 'react-icons/ai';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import Slider from '@/components/Slider';
 import { Product } from '@/app/config/types';
 import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
-import { customCookieMethods } from '@/app/config/constants';
+import { customCookieMethods, onlinePurchase } from '@/app/config/constants';
 import Image from 'next/image';
-import ProductsAmount from '../components/ProductsAmount';
+import { Button } from '@/components/ui/button';
+import ProductsAmount from './components/ProductsAmount';
 import TagCard from '../components/TagCard';
+import AddItem from './components/AddItem';
 
 export default async function ProducIdView({
   params,
@@ -72,6 +72,13 @@ export default async function ProducIdView({
                   <h3 className="my-2 font-bold tracking-wider">Stock:</h3>
                   <p className="my-2">{product[0].stock}</p>
                 </div>
+                <AddItem
+                  shortTitle={product[0].shortTitle}
+                  description={product[0].description}
+                  category={product[0].category}
+                  code={product[0].code}
+                  price={product[0].price}
+                />
               </div>
             </div>
 
@@ -81,15 +88,22 @@ export default async function ProducIdView({
 
               <div className="flex flex-col justify-end">
                 <p className=" max-md:text-base max-lg:text-xs font-bold pb-1 max-md:pb-2">Cantidad</p>
-                <ProductsAmount stock={product[0].stock ? product[0].stock : 0} />
+                <ProductsAmount stock={product[0].stock ? product[0].stock : 1} />
               </div>
 
-              <button type="submit" className="max-xs:w-full bg-primary h-8 lg:h-10 rounded-2xl  max-xs:text-sm max-lg:text-xs text-sm px-4 lg:px-6 flex justify-center items-center text-white font-bold max-xs:mt-8">
-                <AiOutlineShoppingCart className="w-4 lg:w-5 h-4 lg:h-5 mr-2" />
-                Añadir al carrito
-              </button>
+              <div className="w-full flex xs:justify-end mt-4">
+                <Button disabled={!onlinePurchase} type="submit" className="rounded-2xl max-xs:w-full">
+                  <AiOutlineShoppingCart className="w-4 lg:w-5 h-4 lg:h-5 mr-2" />
+                  Comprar
+                </Button>
+              </div>
+
+              { !onlinePurchase && (
+              <p className="w-full text-center text-xs text-red-500 pt-8">¡Aviso! La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
+              )}
 
             </div>
+
           </div>
         </div>
       </section>
@@ -105,7 +119,7 @@ export default async function ProducIdView({
               <div className="grid max-xs:grid-cols-2 max-lg:grid-cols-4 lg:flex justify-evenly gap-4 w-full h-fit py-8">
                 {
             tags.map((tag) => (
-              <TagCard title={tag.Tags.name} icon={tag.Tags.icon} />
+              <TagCard key={tag.Tags.name} title={tag.Tags.name} icon={tag.Tags.icon} />
             ))
           }
               </div>

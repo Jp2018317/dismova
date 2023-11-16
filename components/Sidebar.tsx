@@ -19,11 +19,11 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 
-import { ROUTES } from '@/config';
 import { User } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { MdOutlineCable } from 'react-icons/md';
+import { ROUTES } from '@/app/config/routes';
 import { Button } from './ui/button';
 import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
@@ -203,8 +203,10 @@ export default function Sidebar({ user }: Props) {
 
           <div className="border-t border-zinc-200 dark:border-zinc-700 my-2" />
 
-          <div className="w-full text-end p-2 ">
+          <div className="w-full flex p-2 gap-x-6 items-center">
             <ModeToggle />
+            <p className="font-medium text-sm dark:text-white dark:hidden">Modo Claro</p>
+            <p className="font-medium text-sm dark:text-white hidden dark:block">Modo Oscuro</p>
           </div>
         </SheetContent>
       </Sheet>
