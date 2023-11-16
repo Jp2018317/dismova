@@ -69,10 +69,6 @@ export function Profile() {
         <p className="font-semibold">Último ingreso:</p>
         <p className="font-medium text-sm p-4 text-zinc-600 dark:text-zinc-400">{ getLastSignIn(userLogged?.last_sign_in_at || '') }</p>
       </div>
-      <div className="max-sm:text-center">
-        <p className="font-semibold">Correo electrónico:</p>
-        <p className="font-medium text-sm p-4 text-zinc-600 dark:text-zinc-400">{userLogged?.created_at}</p>
-      </div>
     </section>
   );
 }
