@@ -104,6 +104,7 @@ export default function Slider({
              {swiperInfo.map((slide) => (
                <SwiperSlide className="relative mb-8" key={slide.id}>
                  <ProductCard
+                   key={slide.code}
                    shortTitle={slide.shortTitle}
                    description={slide.description}
                    category={slide.category}
