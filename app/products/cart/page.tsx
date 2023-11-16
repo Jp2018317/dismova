@@ -3,7 +3,7 @@ import { Product } from '@/app/config/types';
 import { Separator } from '@/components/ui/separator';
 import Slider from '@/components/Slider';
 
-import { customCookieMethods } from '@/app/config/constants';
+import { customCookieMethods, onlinePurchase } from '@/app/config/constants';
 import { createServerClient } from '@supabase/ssr';
 import CartView from './components/CartView';
 
@@ -18,12 +18,15 @@ export default async function Cart() {
     },
   );
 
-  const productsData = await supabase.from('Products').select('*');
+  const productsData = await supabase.from('Products').select('*').limit(1000);
   const products:Product[] = productsData.data || [];
 
   return (
     <div className="w-full h-full max-w-7xl px-5">
-      <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 py-4 lg:py-8">
+      { !onlinePurchase && (
+        <p className="w-full text-center text-xs text-red-500 pt-8">¡Aviso! La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
+      )}
+      <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 pb-4 lg:pb-8">
         <CartView />
       </section>
       <section className="w-full h-full max-w-7xl">

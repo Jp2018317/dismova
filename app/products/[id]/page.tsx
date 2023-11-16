@@ -5,7 +5,7 @@ import Slider from '@/components/Slider';
 import { Product } from '@/app/config/types';
 import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
-import { customCookieMethods } from '@/app/config/constants';
+import { customCookieMethods, onlinePurchase } from '@/app/config/constants';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import ProductsAmount from './components/ProductsAmount';
@@ -92,11 +92,15 @@ export default async function ProducIdView({
               </div>
 
               <div className="w-full flex xs:justify-end mt-4">
-                <Button type="submit" className="rounded-2xl max-xs:w-full">
+                <Button disabled={!onlinePurchase} type="submit" className="rounded-2xl max-xs:w-full">
                   <AiOutlineShoppingCart className="w-4 lg:w-5 h-4 lg:h-5 mr-2" />
                   Comprar
                 </Button>
               </div>
+
+              { !onlinePurchase && (
+              <p className="w-full text-center text-xs text-red-500 pt-8">¡Aviso! La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
+              )}
 
             </div>
 

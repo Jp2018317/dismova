@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useEffect, useState } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { onlinePurchase } from '@/app/config/constants';
 import CartProduct from './CartProduct';
 
 export default function CartView() {
@@ -117,7 +118,7 @@ export default function CartView() {
 
         <div className="flex max-xs:flex-col lg:flex-col gap-4">
           <div className="w-full">
-            <Button className="w-full">Comprar</Button>
+            <Button disabled={!onlinePurchase} className="w-full">Comprar</Button>
           </div>
           <AlertDialog>
             <AlertDialogTrigger className="w-full">
