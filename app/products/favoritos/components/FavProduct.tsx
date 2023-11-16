@@ -2,14 +2,18 @@
 
 import { FavItem } from '@/app/config/types';
 import { useState, useEffect } from 'react';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import ProductCard from '../../components/ProductCard';
 
 export default function FavItems() {
   const [favorites, setFavorites] = useState<FavItem[]>([]);
 
+  const [loadingFavorites, setLoadingFavorites] = useState(true);
+
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('Favorites') || '[]');
     setFavorites(storedFavorites);
+    setLoadingFavorites(false);
   }, []);
 
   return (
@@ -28,12 +32,20 @@ export default function FavItems() {
           />
         ))}
       </div>
-      {favorites.length === 0 && (
-        <div className="w-full flex flex-col justify-center items-center h-96">
-          <h2 className="text-xl font-semibold w-full text-center mb-2">Aun no hay productos!</h2>
-          <h3 className="text-xs md:text-sm w-full text-center mb-6">Aqui se mostraran los productos que agregues a lista de favoritos</h3>
-        </div>
-      )}
+      {
+            loadingFavorites ? (
+              <div className="w-full flex flex-col justify-center items-center h-96">
+                <AiOutlineLoading3Quarters className="w-6 h-6 text-primary animate-spin" />
+              </div>
+            )
+              : favorites.length === 0 && (
+                <div className="w-full flex flex-col justify-center items-center h-96">
+                  <h2 className="text-xl font-semibold w-full text-center mb-2">Aun no hay productos!</h2>
+                  <h3 className="text-xs md:text-sm w-full text-center mb-6">Aqui se mostraran los productos que agregues a lista de favoritos</h3>
+                </div>
+              )
+
+        }
     </div>
   );
 }

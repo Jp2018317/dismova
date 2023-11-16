@@ -14,21 +14,32 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { useEffect, useState } from 'react';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import CartProduct from './CartProduct';
 
 export default function CartView() {
-  const [cartItem, setCartItem] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
 
+  const [loadingCartItems, setLoadingCartItems] = useState(true);
+
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('CartItems') || '[]');
-    setCartItem(storedCart);
+    setCartItems(storedCart);
     setTotalPrice(
       storedCart.reduce((acc: number, item: CartItem) => acc + item.price * item.stock, 0),
     );
     setTotalProducts(storedCart.reduce((acc: number, item: CartItem) => acc + item.stock, 0));
+    setLoadingCartItems(false);
   }, []);
+
+  function emptyCart() {
+    localStorage.setItem('CartItems', '[]');
+    setTotalPrice(0);
+    setTotalProducts(0);
+    setCartItems([]);
+  }
 
   return (
     <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 py-4 lg:py-8">
@@ -37,7 +48,7 @@ export default function CartView() {
         <div className="flex w-full pb-4">
           <h1 className="w-48 font-semibold text-2xl">Mi Carrito</h1>
           {
-              cartItem.length > 0
+              cartItems.length > 0
                && (
                <div className="max-sm:hidden grid grid-cols-5 gap-x-4 items-end w-full px-4">
                  <h2 className="w-full col-span-2 font-semibold text-sm pb-1 text-center">Nombre:</h2>
@@ -49,7 +60,7 @@ export default function CartView() {
             }
         </div>
         <div className="max-h-[29rem] sm:max-h-[35rem] overflow-y-auto space-y-4">
-          { cartItem.map((item: CartItem) => (
+          { cartItems.map((item: CartItem) => (
             <CartProduct
               key={item.code}
               shortTitle={item.shortTitle}
@@ -62,22 +73,25 @@ export default function CartView() {
               totalProducts={totalProducts}
               setTotalPrice={setTotalPrice}
               setTotalProducts={setTotalProducts}
-              setCartItem={setCartItem}
+              setCartItems={setCartItems}
 
             />
           ))}
         </div>
         {
-            cartItem.length === 0 && (
-            <div className="w-full flex flex-col justify-center items-center h-80">
-              <h2 className="text-xl font-semibold w-full text-center mb-2">Aun no hay productos!</h2>
-              <h3 className="font-medium w-full text-center mb-6">Aqui se mostraran los productos que agregues a tu carrito de compra</h3>
-              <div className="w-full flex justify-center">
-                <Button>Buscar Productos</Button>
+            loadingCartItems ? (
+              <div className="w-full flex flex-col justify-center items-center h-40">
+                <AiOutlineLoading3Quarters className="w-6 h-6 text-primary animate-spin" />
               </div>
-            </div>
             )
-          }
+              : cartItems.length === 0 && (
+                <div className="w-full flex flex-col justify-center items-center h-40">
+                  <h2 className="text-xl font-semibold w-full text-center mb-2">Aun no hay productos!</h2>
+                  <h3 className="font-medium w-full text-center mb-6">Aqui se mostraran los productos que agregues a tu carrito de compra</h3>
+                </div>
+              )
+
+        }
       </div>
       <div className="relative w-full lg:w-96 bg-secondary h-full rounded-xl p-6 space-y-4">
         <h1 className="text-lg font-semibold">Resúmen:</h1>
@@ -118,7 +132,7 @@ export default function CartView() {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                <AlertDialogAction>Continuar</AlertDialogAction>
+                <AlertDialogAction onClick={() => emptyCart()}>Continuar</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>

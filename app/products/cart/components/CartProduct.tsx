@@ -31,12 +31,12 @@ type CartItemCard = {
   totalProducts: number;
   setTotalPrice: Dispatch<SetStateAction<number>>;
   setTotalProducts: Dispatch<SetStateAction<number>>;
-  setCartItem: Dispatch<SetStateAction<CartItem[]>>;
+  setCartItems: Dispatch<SetStateAction<CartItem[]>>;
 };
 
 export default function CartProduct({
   shortTitle, description, price, stock, category, code,
-  totalPrice, totalProducts, setTotalPrice, setTotalProducts, setCartItem,
+  totalPrice, totalProducts, setTotalPrice, setTotalProducts, setCartItems,
 }: CartItemCard) {
   const [cartItemStock, setCartItemStock] = useState(stock);
   const [image, setImage] = useState(`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
@@ -63,13 +63,13 @@ export default function CartProduct({
       description: `${code} eliminado del carrito`,
     });
     localStorage.setItem('CartItems', JSON.stringify(cartItemsFiltered));
-    setCartItem(cartItemsFiltered);
+    setCartItems(cartItemsFiltered);
   }
 
   return (
-    <div className="w-full border border-border rounded-xl flex h-36 sm:h-44">
+    <div className="w-full border border-border rounded-xl flex h-28 sm:h-36">
       <div className="bg-secondary rounded-l-xl h-full flex items-center">
-        <Link href={`/products/${code}`} className="relative h-28 sm:h-40 w-28 sm:w-40">
+        <Link href={`/products/${code}`} className="relative h-24 sm:h-36 w-24 sm:w-36">
           <Image
             src={image}
             fill
@@ -80,7 +80,7 @@ export default function CartProduct({
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-5 gap-x-4 relative h-full w-full p-3">
         <div className="w-[80%] col-span-2">
-          <h2 className="font-semibold text-sm lg:text-lg">{shortTitle}</h2>
+          <h2 className="font-semibold text-sm lg:text-lg line-clamp-2">{shortTitle}</h2>
           <span className="text-xs lg:text-sm line-clamp-2 leading-5 mt-1">{description}</span>
         </div>
         <div className="max-sm:absolute bottom-3 left-3 flex justify-center items-center">
