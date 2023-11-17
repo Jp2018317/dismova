@@ -19,7 +19,7 @@ export default async function SearchItems({
     },
   );
 
-  const { data } = await supabase.from('Products').select('*').ilike('longTitle', `%${params.search}%`).limit(1000);
+  const { data } = await supabase.from('Products').select('*').ilike('longTitle', `%${params.search}%`).limit(500);
 
   const products:Product[] = data || [];
 

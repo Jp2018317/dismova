@@ -18,7 +18,7 @@ export default async function Cart() {
     },
   );
 
-  const productsData = await supabase.from('Products').select('*').limit(1000);
+  const productsData = await supabase.from('Products').select('*').limit(500);
   const products:Product[] = productsData.data || [];
 
   return (

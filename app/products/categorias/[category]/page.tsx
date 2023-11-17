@@ -29,7 +29,10 @@ export default async function Category({
     return redirect(ROUTES.products);
   }
 
-  const { data } = await supabase.from('Products').select('*').eq('category', params.category).limit(1000);
+  const { data } = await supabase.from('Products').select('*')
+    .eq('category', params.category)
+    .limit(800)
+    .order('stock', { ascending: false });
 
   const products:Product[] = data || [];
 
