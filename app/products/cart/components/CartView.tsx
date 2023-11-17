@@ -86,9 +86,9 @@ export default function CartView() {
               </div>
             )
               : cartItems.length === 0 && (
-                <div className="w-full flex flex-col justify-center items-center h-40">
+                <div className="w-full flex flex-col justify-center items-center h-96">
                   <h2 className="text-xl font-semibold w-full text-center mb-2">Aun no hay productos!</h2>
-                  <h3 className="font-medium w-full text-center mb-6">Aqui se mostraran los productos que agregues a tu carrito de compra</h3>
+                  <h3 className="text-xs md:text-sm w-full text-center mb-6">Aqui se mostraran los productos que agregues a tu carrito de compras</h3>
                 </div>
               )
 

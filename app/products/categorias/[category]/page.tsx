@@ -60,8 +60,8 @@ export default async function Category({
               ))}
             </div>
           ) : (
-            <div className="w-full h-full lg:h-[30rem] flex items-center justify-center">
-              <div className="text-3xl dark:text-white font-semibold">No se encontraron Productos!</div>
+            <div className="w-full h-full min-h-[200px] lg:h-80 flex items-center justify-center">
+              <div className="text-lg lg:text-2xl dark:text-white font-semibold text-center">No se encontraron productos</div>
             </div>
           )
         }

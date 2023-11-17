@@ -101,7 +101,7 @@ export default function NavBar() {
                       <AiOutlineLoading3Quarters className="w-6 h-6 text-primary animate-spin" />
                     </div>
                   ) : (
-                    <div className="overflow-y-auto max-h-[30rem] space-y-3 px-1">
+                    <div className="overflow-y-auto max-h-64 space-y-2 px-1">
                       {
                         searchedProducts ? (
                           searchedProducts.map((product) => (

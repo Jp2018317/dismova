@@ -70,8 +70,9 @@ export default function Sidebar({ user }: Props) {
                   <li>
                     <Button
                       onClick={() => {
-                        supabase.auth.signOut();
-                        window.location.reload();
+                        supabase.auth.signOut().then(() => {
+                          window.location.reload();
+                        });
                       }}
                       variant="ghost"
                       className="w-full max-xs:px-0 flex items-center justify-center gap-2 dark:text-white hover:text-red-500 dark:hover:text-red-500"

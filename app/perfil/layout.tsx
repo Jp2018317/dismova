@@ -8,7 +8,7 @@ import { ROUTES } from '../config/routes';
 
 const routes = [
   {
-    title: 'Mi Perfil',
+    title: 'Mi Cuenta',
     href: ROUTES.account,
   },
   {
@@ -33,7 +33,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
         <div className="space-y-0.5">
           <h2 className="text-2xl font-bold tracking-tight">Mi Perfil</h2>
           <p className="text-muted-foreground">
-            Personaliza tu cuenta para una mejor experiencia
+            Personaliza tu perfil para una mejor experiencia
           </p>
         </div>
       </div>

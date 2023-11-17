@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ROUTES } from '@/app/config/routes';
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import { UserLogged } from './UserLogged';
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -24,12 +23,12 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
     <div className="w-full flex max-xs:flex-col xs:items-center gap-2">
       <div className="h-full lg:hidden">
         <Link href={ROUTES.products} className="hover:text-primary">
-          <IoMdArrowRoundBack className="w-8 h-8" />
+          <IoMdArrowRoundBack className="sm:w-8 w-6 sm:h-8 h-6" />
         </Link>
       </div>
       <nav
         className={cn(
-          'lg:flex lg:flex-col grid grid-cols-2 md:grid-cols-4 gap-1 sm:gap-5 w-full',
+          'lg:flex lg:flex-col grid grid-cols-2 gap-1 sm:gap-5 w-full',
           className,
         )}
         {...props}
@@ -48,8 +47,6 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
             <Link href={item.href}>{item.title}</Link>
           </Button>
         ))}
-
-        <UserLogged />
       </nav>
 
     </div>
