@@ -41,10 +41,10 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
               pathname === item.href
                 ? 'bg-muted hover:bg-muted'
                 : 'hover:bg-transparent hover:underline',
-              'w-full lg:justify-start justify-center',
+              'w-full lg:justify-start justify-center p-0',
             )}
           >
-            <Link href={item.href}>{item.title}</Link>
+            <Link href={item.href} className="w-full flex justify-start px-4 py-2">{item.title}</Link>
           </Button>
         ))}
       </nav>
