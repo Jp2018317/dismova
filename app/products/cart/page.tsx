@@ -3,7 +3,7 @@ import { Product } from '@/app/config/types';
 import { Separator } from '@/components/ui/separator';
 import Slider from '@/components/Slider';
 
-import { customCookieMethods, onlinePurchase } from '@/app/config/constants';
+import { customCookieMethods, initProducts, onlinePurchase } from '@/app/config/constants';
 import { createServerClient } from '@supabase/ssr';
 import CartView from './components/CartView';
 
@@ -18,7 +18,7 @@ export default async function Cart() {
     },
   );
 
-  const productsData = await supabase.from('Products').select('*').limit(1000);
+  const productsData = await supabase.from('Products').select('*').limit(initProducts);
   const products:Product[] = productsData.data || [];
 
   return (

@@ -5,7 +5,7 @@ import { ModeToggle } from '@/components/ui/ModeToggle';
 
 export default function SettingsProfilePage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-lg:pt-5">
       <div>
         <h3 className="text-lg font-medium">Configuraciones</h3>
         <p className="text-sm text-muted-foreground">
@@ -13,8 +13,8 @@ export default function SettingsProfilePage() {
         </p>
       </div>
       <Separator className="my-3" />
-      <section className="grid sm:grid-cols-2 gap-4 overflow-y-auto lg:max-h-[30rem] max-sm:justify-center">
-        <div className="max-sm:text-center">
+      <section className="grid sm:grid-cols-2 gap-4 overflow-y-auto lg:max-h-[30rem]">
+        <div>
           <p className="font-semibold">Cambiar Tema: </p>
           <div className="w-full flex p-4 gap-x-6 items-center">
             <ModeToggle />

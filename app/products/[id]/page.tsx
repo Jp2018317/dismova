@@ -5,7 +5,7 @@ import Slider from '@/components/Slider';
 import { Product } from '@/app/config/types';
 import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
-import { customCookieMethods, onlinePurchase } from '@/app/config/constants';
+import { customCookieMethods, initProducts, onlinePurchase } from '@/app/config/constants';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import ProductsAmount from './components/ProductsAmount';
@@ -34,7 +34,10 @@ export default async function ProducIdView({
   const productTags = await supabase.from('ProductTags').select('Tags(name, icon)').eq('product_code', params.id).limit(10);
   const tags: any[] = productTags.data || [];
 
-  const moreProductsData = await supabase.from('Products').select('*').eq('category', product[0].category).limit(8);
+  const moreProductsData = await supabase.from('Products').select('*')
+    .eq('category', product[0].category)
+    .limit(initProducts)
+    .order('stock', { ascending: false });
   const moreProducts: Product[] = moreProductsData.data || [];
 
   return (
@@ -98,11 +101,11 @@ export default async function ProducIdView({
                 </Button>
               </div>
 
-              { !onlinePurchase && (
-              <p className="w-full text-center text-xs text-red-500 pt-8">¡Aviso! La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
-              )}
-
             </div>
+
+            { !onlinePurchase && (
+            <p className="w-full text-center text-xs text-red-500 pt-8">¡Aviso! La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
+            )}
 
           </div>
         </div>

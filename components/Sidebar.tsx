@@ -7,7 +7,7 @@ import { VscAccount } from 'react-icons/vsc';
 import { AiOutlineShoppingCart, AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { LiaBarsSolid } from 'react-icons/lia';
 import { IoMdSettings } from 'react-icons/io';
-import { BsHeadphones, BsTelephone, BsDoorOpen } from 'react-icons/bs';
+import { BsHeadphones, BsDoorOpen } from 'react-icons/bs';
 import { LuMonitorSpeaker } from 'react-icons/lu';
 
 import {
@@ -70,8 +70,9 @@ export default function Sidebar({ user }: Props) {
                   <li>
                     <Button
                       onClick={() => {
-                        supabase.auth.signOut();
-                        window.location.reload();
+                        supabase.auth.signOut().then(() => {
+                          window.location.reload();
+                        });
                       }}
                       variant="ghost"
                       className="w-full max-xs:px-0 flex items-center justify-center gap-2 dark:text-white hover:text-red-500 dark:hover:text-red-500"
@@ -174,17 +175,6 @@ export default function Sidebar({ user }: Props) {
                 >
                   <AiOutlineHome className="dark:text-white w-5 h-5" />
                   Inicio
-                </Link>
-              </Button>
-            </li>
-            <li>
-              <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
-                <Link
-                  href="/contacto"
-                  className="w-full flex items-center justify-start gap-2"
-                >
-                  <BsTelephone className="dark:text-white w-5 h-5" />
-                  Contactanos
                 </Link>
               </Button>
             </li>

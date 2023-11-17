@@ -91,11 +91,11 @@ export default function ProductsAmount({
   return (
 
     <div className="flex gap-2 max-sm:mt-2">
-      <button type="button" onClick={() => addItemToCart()} className="max-xs:w-full border boder-border rounded-2xl  max-xs:text-sm max-lg:text-xs text-sm py-2 px-4 flex justify-center items-center text-primary font-bold hover:bg-primary hover:text-white">
+      <button type="button" onClick={() => addItemToCart()} className="max-xs:w-full border boder-border rounded-2xl  max-xs:text-sm max-lg:text-xs text-sm py-2 px-4 flex justify-center items-center text-white font-bold hover:bg-primary">
         <AiOutlineShoppingCart className="w-4 lg:w-5 h-4 lg:h-5" />
       </button>
 
-      <button type="button" onClick={() => addItemToFavorite()} className="max-xs:w-full border boder-border rounded-2xl  max-xs:text-sm max-lg:text-xs text-sm py-2 px-4 flex justify-center items-center text-primary font-bold hover:bg-primary hover:text-white">
+      <button type="button" onClick={() => addItemToFavorite()} className="max-xs:w-full border boder-border rounded-2xl  max-xs:text-sm max-lg:text-xs text-sm py-2 px-4 flex justify-center items-center text-white font-bold hover:bg-primary">
         <AiFillHeart className="w-4 lg:w-5 h-4 lg:h-5" />
       </button>
     </div>

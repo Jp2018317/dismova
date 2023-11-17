@@ -22,12 +22,18 @@ export default async function Home() {
     },
   );
 
-  const speakersData = await supabase.from('Products').select().eq('category', 'Bafles').gt('stock', 0)
-    .limit(initProducts);
+  const speakersData = await supabase.from('Products').select()
+    .eq('category', 'Bafles')
+    .gt('stock', 0)
+    .limit(initProducts)
+    .order('stock', { ascending: false });
   const speakers:Product[] = speakersData.data || [];
 
-  const headPhonesData = await supabase.from('Products').select().eq('category', 'Audifonos').gt('stock', 0)
-    .limit(initProducts);
+  const headPhonesData = await supabase.from('Products').select()
+    .eq('category', 'Audifonos')
+    .gt('stock', 0)
+    .limit(initProducts)
+    .order('stock', { ascending: false });
   const headSet:Product[] = headPhonesData.data || [];
 
   return (
