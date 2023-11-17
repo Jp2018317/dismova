@@ -1,8 +1,5 @@
 'use client';
 
-import { IoCashOutline } from 'react-icons/io5';
-import { RiVisaFill } from 'react-icons/ri';
-
 import Logo from './logo';
 
 export default function Footer() {
@@ -16,7 +13,7 @@ export default function Footer() {
             <Logo className="max-md:w-20 w-28 max-md:h-8 h-12" />
             <p className="max-md:text-[10px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476]">DISMOVA</p>
           </div>
-          <div className="grid xs:grid-cols-3 gap-6 items-center w-full px-6 md:max-w-3xl h-full">
+          <div className="grid xs:grid-cols-3 gap-6 items-center w-full px-10 md:px-6 md:max-w-3xl h-full">
             <div className="text-center flex flex-col gap-2">
               <span className="font-bold underline underline-offset-2 max-md:text-xs">Bueno</span>
               <p className="font-medium text-[10px] md:text-xs">Productos con una calidad comprobada excelente</p>
@@ -32,11 +29,8 @@ export default function Footer() {
           </div>
         </div>
       </section>
-      <section className="w-full p-2 bg-background ">
-        <div className="flex items-center justify-center gap-6">
-          <IoCashOutline className="w-5 h-5 text-green-700" />
-          <RiVisaFill className="w-5 h-5 text-blue-600" />
-        </div>
+      <section className="w-full p-2 bg-background">
+        <p className="font-medium text-[10px] md:text-xs text-center">DISMOVA</p>
       </section>
     </footer>
   );
