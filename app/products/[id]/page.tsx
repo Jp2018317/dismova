@@ -27,7 +27,7 @@ export default async function ProducIdView({
     },
   );
 
-  const { data } = await supabase.from('Products').select('*').eq('code', params.id);
+  const { data } = await supabase.from('Products').select('*').eq('code', params.id).limit(1);
   const product: Product[] = data || [];
 
   // Select all the info from Tags with the same product´s code on table 'ProductTags'
