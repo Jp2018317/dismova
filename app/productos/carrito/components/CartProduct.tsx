@@ -1,8 +1,6 @@
 'use client';
 
-import {
-  AiFillDelete, AiOutlineMinus, AiOutlinePlus,
-} from 'react-icons/ai';
+import { AiFillDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -39,14 +37,14 @@ export default function CartProduct({
   totalPrice, totalProducts, setTotalPrice, setTotalProducts, setCartItems,
 }: CartItemCard) {
   const [cartItemStock, setCartItemStock] = useState(stock);
-  const [image, setImage] = useState(`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
+  const [image, setImage] = useState(`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET}/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
 
   function increaseStock() {
     const cartItems: CartItem[] = JSON.parse(localStorage.getItem('CartItems') || '[]');
     const findItem = cartItems.findIndex((element) => element.code === code);
 
     if (findItem !== -1) {
-    // Actualizar el stock del elemento
+      // Actualizar el stock del elemento
       cartItems[findItem].stock = cartItemStock + 1;
       setCartItemStock(cartItemStock + 1);
       // Actualizar el precio total y la cantidad total de productos
@@ -63,7 +61,7 @@ export default function CartProduct({
     const findItem = cartItems.findIndex((element) => element.code === code);
 
     if (findItem !== -1) {
-    // Actualizar el stock del elemento
+      // Actualizar el stock del elemento
       cartItems[findItem].stock = cartItemStock - 1;
       setCartItemStock(cartItemStock - 1);
       // Actualizar el precio total y la cantidad total de productos
@@ -106,11 +104,23 @@ export default function CartProduct({
         </div>
         <div className="sm:flex justify-center items-center">
           <div className="flex">
-            <button onClick={() => decreaseStock()} type="button" className="w-6 h-6 rounded-l-lg bg-primary flex justify-center items-center">
+            <button
+              onClick={() => decreaseStock()}
+              type="button"
+              className="w-6 h-6 rounded-l-lg bg-primary flex justify-center items-center"
+            >
               <AiOutlineMinus className="text-white" />
             </button>
-            <div className="w-9 h-6 lg:w-11  bg-secondary flex justify-center items-center text-xs">{cartItemStock}</div>
-            <button onClick={() => increaseStock()} type="button" className="w-6 h-6 rounded-r-lg bg-primary flex justify-center items-center">
+            <div
+              className="w-9 h-6 lg:w-11  bg-secondary flex justify-center items-center text-xs"
+            >
+              {cartItemStock}
+            </div>
+            <button
+              onClick={() => increaseStock()}
+              type="button"
+              className="w-6 h-6 rounded-r-lg bg-primary flex justify-center items-center"
+            >
               <AiOutlinePlus className="text-white" />
             </button>
           </div>

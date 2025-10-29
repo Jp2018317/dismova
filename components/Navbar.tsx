@@ -11,7 +11,6 @@ import { createBrowserClient } from '@supabase/ssr';
 import { SearchProduct } from '@/app/config/types';
 import { BiSearch } from 'react-icons/bi';
 import SearchProductCard from '@/app/productos/components/SearchProductCard';
-import { ROUTES } from '@/app/config/routes';
 import Logo from '@/public/images/Logo.png';
 import Image from 'next/image';
 import Sidebar from './Sidebar';
@@ -82,7 +81,14 @@ export default function NavBar() {
               className="sm:w-96 h-8 pr-10 mx-2 focus-visible:ring-offset-0 text-xs"
               placeholder="Search"
             />
-            <Button onClick={(e) => { e.preventDefault(); setOpenSearch(false); }} disabled={inputSearch.length < 2 && openSearch} className="absolute right-0 p-0 h-8 w-8 sm:w-10 mr-2 rounded-l-none border border-primary border-l-0">
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenSearch(false);
+              }}
+              disabled={inputSearch.length < 2 && openSearch}
+              className="absolute right-0 p-0 h-8 w-8 sm:w-10 mr-2 rounded-l-none border border-primary border-l-0"
+            >
               <Link
                 href={`/productos/buscar/${inputSearch}`}
               >
@@ -92,51 +98,62 @@ export default function NavBar() {
           </form>
 
           {
-            openSearch && (
-              <div className="space-y-3 absolute top-16 left-1/2 -translate-x-1/2 w-full xs:w-[25rem] p-4 rounded-lg bg-background border border-zinc-300 dark:border-zinc-600 dark:text-white">
-                <div className="flex justify-between">
-                  <div className="text-sm font-semibold dark:text-white">Sugerencias:</div>
-                  <button type="button" onClick={() => setOpenSearch(false)}>
-                    <AiOutlineClose className="text-sm font-semibold dark:text-white" />
-                  </button>
-                </div>
-                {
-                  searchLoading ? (
-                    <div className="flex justify-center">
-                      <AiOutlineLoading3Quarters className="w-6 h-6 text-primary animate-spin" />
-                    </div>
-                  ) : (
-                    <div className="overflow-y-auto max-h-64 space-y-2 px-1">
-                      {
-                        searchedProducts ? (
-                          searchedProducts.map((product) => (
-                            <SearchProductCard
-                              key={product.code}
-                              shortTitle={product.shortTitle}
-                              description={product.description}
-                              category={product.category}
-                              price={product.price}
-                              code={product.code}
-                              setOpenSearch={setOpenSearch}
-                            />
-                          ))
-                        ) : (
-                          <div className="text-xs text-zinc-600 dark:text-zinc-400 w-full text-center">No hay sugerencias</div>
+                        openSearch && (
+                        <div
+                          className="space-y-3 absolute top-16 left-1/2 -translate-x-1/2 w-full xs:w-[25rem] p-4 rounded-lg bg-background border border-zinc-300 dark:border-zinc-600 dark:text-white"
+                        >
+                          <div className="flex justify-between">
+                            <div className="text-sm font-semibold dark:text-white">Sugerencias:</div>
+                            <button type="button" onClick={() => setOpenSearch(false)}>
+                              <AiOutlineClose className="text-sm font-semibold dark:text-white" />
+                            </button>
+                          </div>
+                          {
+                                    searchLoading ? (
+                                      <div className="flex justify-center">
+                                        <AiOutlineLoading3Quarters className="w-6 h-6 text-primary animate-spin" />
+                                      </div>
+                                    ) : (
+                                      <div className="overflow-y-auto max-h-64 space-y-2 px-1">
+                                        {
+                                                searchedProducts ? (
+                                                  searchedProducts.map((product) => (
+                                                    <SearchProductCard
+                                                      key={product.code}
+                                                      shortTitle={product.shortTitle}
+                                                      description={product.description}
+                                                      category={product.category}
+                                                      price={product.price}
+                                                      code={product.code}
+                                                      setOpenSearch={setOpenSearch}
+                                                    />
+                                                  ))
+                                                ) : (
+                                                  <div
+                                                    className="text-xs text-zinc-600 dark:text-zinc-400 w-full text-center"
+                                                  >
+                                                    No
+                                                    hay sugerencias
+                                                  </div>
+                                                )
+                                            }
+                                      </div>
+                                    )
+                                }
+                        </div>
                         )
-                      }
-                    </div>
-                  )
-                }
-              </div>
-            )
-          }
+                    }
 
           <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4">
             <Link href="/app/productos/favoritos" className="max-sm:hidden hover:text-primary">
-              <AiOutlineHeart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
+              <AiOutlineHeart
+                className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5"
+              />
             </Link>
             <Link href="/app/productos/carrito" className="max-sm:hidden hover:text-primary">
-              <AiOutlineShoppingCart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
+              <AiOutlineShoppingCart
+                className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5"
+              />
             </Link>
 
             <Sidebar user={userLogged || null} />

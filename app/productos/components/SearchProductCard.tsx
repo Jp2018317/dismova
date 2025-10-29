@@ -16,9 +16,13 @@ type SearchItem = {
 export default function SearchProductCard({
   shortTitle, description, price, category, code, setOpenSearch,
 }: SearchItem) {
-  const [image, setImage] = useState(`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
+  const [image, setImage] = useState(`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET}/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
   return (
-    <Link onClick={() => setOpenSearch(false)} href={`/productos/${code}`} className="w-full border hover:border-zinc-400 dark:hover:border-zinc-700 border-border rounded-xl flex h-28 sm:h-32">
+    <Link
+      onClick={() => setOpenSearch(false)}
+      href={`/productos/${code}`}
+      className="w-full border hover:border-zinc-400 dark:hover:border-zinc-700 border-border rounded-xl flex h-28 sm:h-32"
+    >
       <div className="bg-secondary rounded-l-xl h-full flex items-center">
         <div className="relative h-20 sm:h-28 w-20 sm:w-28">
           <Image

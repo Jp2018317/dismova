@@ -43,7 +43,9 @@ export default async function ProducIdView({
   return (
     <div className="w-full flex flex-col items-center">
       <section className="relative w-full flex justify-center">
-        <div className="h-full lg:h-[35rem] w-full flex max-md:flex-col justify-center md:items-center max-w-7xl ">
+        <div
+          className="h-full lg:h-[35rem] w-full flex max-md:flex-col justify-center md:items-center max-w-7xl "
+        >
           <div className="md:w-1/2 flex">
 
             <Slider swiperInfo={product} showImages />
@@ -69,7 +71,11 @@ export default async function ProducIdView({
               <div className="xs:flex gap-x-4">
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Categoría:</h3>
-                  <Link href="/app/productos/categorias" className="my-2 hover:underline underline-offset-2  ">{product[0].category}</Link>
+                  <Link
+                    href="/app/productos/categorias"
+                    className="my-2 hover:underline underline-offset-2  "
+                  >{product[0].category}
+                  </Link>
                 </div>
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Stock:</h3>
@@ -103,35 +109,43 @@ export default async function ProducIdView({
 
             </div>
 
-            { !onlinePurchase && (
-            <p className="w-full text-center text-xs text-red-500 pt-8">La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
+            {!onlinePurchase && (
+            <p className="w-full text-center text-xs text-red-500 pt-8">
+              La compra en línea está
+              deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.
+            </p>
             )}
 
           </div>
         </div>
       </section>
       {
-        tags.length ? (
-          <section className="w-full h-full px-5 max-w-7xl">
+                tags.length ? (
+                  <section className="w-full h-full px-5 max-w-7xl">
 
-            <Separator className="my-4 md:my-2 lg:my-4" />
+                    <Separator className="my-4 md:my-2 lg:my-4" />
 
-            <h2 className="w-full text-2xl font-bold text-center lg:text-3xl pt-2">ETIQUETAS</h2>
+                    <h2 className="w-full text-2xl font-bold text-center lg:text-3xl pt-2">ETIQUETAS</h2>
 
-            <div className="flex justify-center items-center">
-              <div className="grid max-xs:grid-cols-2 max-lg:grid-cols-4 lg:flex justify-evenly gap-4 w-full h-fit py-8">
-                {
-            tags.map((tag) => (
-              <TagCard key={tag.Tags.name} title={tag.Tags.name} icon={tag.Tags.icon} />
-            ))
-          }
-              </div>
-            </div>
+                    <div className="flex justify-center items-center">
+                      <div
+                        className="grid max-xs:grid-cols-2 max-lg:grid-cols-4 lg:flex justify-evenly gap-4 w-full h-fit py-8"
+                      >
+                        {
+                                    tags.map((tag) => (
+                                      <TagCard key={tag.Tags.name} title={tag.Tags.name} icon={tag.Tags.icon} />
+                                    ))
+                                }
+                      </div>
+                    </div>
 
-            <h5 className="w-full text-center max-lg:text-sm text-zinc-500 dark:text-zinc-400">Las etiquetas muestran características destacables del producto</h5>
-          </section>
-        ) : null
-      }
+                    <h5 className="w-full text-center max-lg:text-sm text-zinc-500 dark:text-zinc-400">
+                      Las etiquetas
+                      muestran características destacables del producto
+                    </h5>
+                  </section>
+                ) : null
+            }
       <section className="w-full h-full px-5 max-w-7xl">
 
         <Separator className="my-4 md:my-2 lg:my-4" />
@@ -144,7 +158,7 @@ export default async function ProducIdView({
           <div className="flex items-center justify-center rounded-xl bg-secondary max-sm:w-full">
             <div className="rounded-xl relative my-4 w-44 h-44 xs:w-52 xs:h-52 lg:w-96 lg:h-96">
               <Image
-                src={`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${product[0].category}/${product[0].code}/2.webp?t=2023-11-05T02%3A42%3A54.379Z`}
+                src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET}/${product[0].category}/${product[0].code}/2.webp?t=2023-11-05T02%3A42%3A54.379Z`}
                 fill
                 loading="lazy"
                 alt="Details image"

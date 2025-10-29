@@ -42,7 +42,7 @@ export default function ProductCard({
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [image, setImage] = useState(`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
+  const [image, setImage] = useState(`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET}/${category}/${code}/1.webp?t=2023-11-05T02%3A42%3A54.379Z`);
 
   function addItemToFavorite() {
     const favorites: FavItem[] = JSON.parse(localStorage.getItem('Favorites') || '[]');
@@ -77,7 +77,12 @@ export default function ProductCard({
     toast({
       title: 'Añadido a Favoritos',
       description: `${code} añadido a favoritos`,
-      action: <Link href="/app/productos/favoritos" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+      action: <Link
+        href="/app/productos/favoritos"
+        className="text-xs border border-border px-3 py-2 rounded-lg text-center"
+      >
+        Ver
+      </Link>,
     });
 
     localStorage.setItem('Favorites', JSON.stringify(favorites));
@@ -120,7 +125,12 @@ export default function ProductCard({
         toast({
           title: 'Producto ya agregado',
           description: `${code} ya está agregado al carrito`,
-          action: <Link href="/app/productos/carrito" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+          action: <Link
+            href="/app/productos/carrito"
+            className="text-xs border border-border px-3 py-2 rounded-lg text-center"
+          >
+            Ver
+          </Link>,
         });
         return;
       }
@@ -129,7 +139,12 @@ export default function ProductCard({
     toast({
       title: 'Añadido al Carrito',
       description: `${code} añadido al carrito`,
-      action: <Link href="/app/productos/carrito" className="text-xs border border-border px-3 py-2 rounded-lg text-center">Ver</Link>,
+      action: <Link
+        href="/app/productos/carrito"
+        className="text-xs border border-border px-3 py-2 rounded-lg text-center"
+      >
+        Ver
+      </Link>,
     });
 
     localStorage.setItem('CartItems', JSON.stringify(cartItems));
@@ -139,8 +154,13 @@ export default function ProductCard({
   }
 
   return (
-    <div className=" relative w-full h-[21rem] flex flex-col justify-center items-center border border-border rounded-xl">
-      <Link className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary" href={`/productos/${code}`}>
+    <div
+      className=" relative w-full h-[21rem] flex flex-col justify-center items-center border border-border rounded-xl"
+    >
+      <Link
+        className="group flex flex-col justify-center items-center w-full h-full rounded-t-xl bg-secondary"
+        href={`/productos/${code}`}
+      >
         <div className="rounded-xl relative my-4 w-40 h-40">
           <Image
             src={image}
@@ -164,15 +184,15 @@ export default function ProductCard({
             <span className="text-xs line-clamp-2 leading-5 mt-1">{description}</span>
           </div>
           {
-                price ? (
-                  <div className="w-full flex justify-between max-lg:text-sm font-semibold ">
-                    <h2 className="flex">
-                      <p className="text-primary">Q</p>
-                      {price.toFixed(2)}
-                    </h2>
-                  </div>
-                ) : null
-              }
+                        price ? (
+                          <div className="w-full flex justify-between max-lg:text-sm font-semibold ">
+                            <h2 className="flex">
+                              <p className="text-primary">Q</p>
+                              {price.toFixed(2)}
+                            </h2>
+                          </div>
+                        ) : null
+                    }
         </div>
         <div className="absolute flex flex-col items-center justify-center top-4 right-4 space-y-2">
           <button
@@ -183,38 +203,40 @@ export default function ProductCard({
             <AiOutlineShoppingCart className="w-5 h-5" />
           </button>
           {
-            setFavorites ? (
-              <AlertDialog>
-                <AlertDialogTrigger>
-                  <TbHeartBroken className="w-5 h-5 text-zinc-700 dark:text-zinc-500 hover:text-red-600 dark:hover:text-red-600" />
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Remover producto?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Esta acción eliminará el producto de tu lista de favoritos
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                    <AlertDialogAction
-                      onClick={() => removeFavorite()}
-                    >
-                      Continuar
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            ) : (
-              <button
-                onClick={() => addItemToFavorite()}
-                type="button"
-                className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary px-2 py-1 transition-all"
-              >
-                <AiFillHeart className="w-5 h-5" />
-              </button>
-            )
-          }
+                        setFavorites ? (
+                          <AlertDialog>
+                            <AlertDialogTrigger>
+                              <TbHeartBroken
+                                className="w-5 h-5 text-zinc-700 dark:text-zinc-500 hover:text-red-600 dark:hover:text-red-600"
+                              />
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Remover producto?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Esta acción eliminará el producto de tu lista de favoritos
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                <AlertDialogAction
+                                  onClick={() => removeFavorite()}
+                                >
+                                  Continuar
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        ) : (
+                          <button
+                            onClick={() => addItemToFavorite()}
+                            type="button"
+                            className="text-zinc-700 dark:text-zinc-500 hover:text-primary dark:hover:text-primary px-2 py-1 transition-all"
+                          >
+                            <AiFillHeart className="w-5 h-5" />
+                          </button>
+                        )
+                    }
         </div>
       </div>
     </div>

@@ -1,11 +1,8 @@
 import React from 'react';
 import Slider from '@/components/Slider';
-import { LuMonitorSpeaker } from 'react-icons/lu';
-import { BsHeadphones } from 'react-icons/bs';
-import { MdOutlineCable } from 'react-icons/md';
-import { FiMoreHorizontal } from 'react-icons/fi';
 import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
+import { FaFutbol } from 'react-icons/fa';
 import LandingSlider from './components/LandingSlider';
 import { Product } from '../config/types';
 import { customCookieMethods, initProducts } from '../config/constants';
@@ -21,12 +18,10 @@ export default async function Home() {
     },
   );
 
-  const speakersData = await supabase.from('Products').select()
-    .eq('category', 'Bafles')
+  const productsData = await supabase.from('Products').select()
     .gt('stock', 0)
-    .limit(initProducts)
-    .order('stock', { ascending: false });
-  const speakers: Product[] = speakersData.data || [];
+    .limit(initProducts);
+  const products: Product[] = productsData.data || [];
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -40,7 +35,7 @@ export default async function Home() {
           ofrecemos!
         </p>
         <div className="py-4">
-          <Slider swiperInfo={speakers} />
+          <Slider swiperInfo={products} />
         </div>
       </section>
       <section className="w-full h-full px-5 max-w-7xl">
@@ -50,44 +45,18 @@ export default async function Home() {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full max-w-7xl gap-4">
           <Link
-            href="/app/productos/categorias/Bafles"
+            href="/productos/categorias/Futbol"
             className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4"
           >
-            <LuMonitorSpeaker
+            <FaFutbol
               className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100"
             />
-            <span className="text-lg xs:text-xl font-semibold">Bocinas</span>
-          </Link>
-          <Link
-            href="/app/productos/categorias/Audifonos"
-            className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4"
-          >
-            <BsHeadphones
-              className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100"
-            />
-            <span className="text-lg xs:text-xl font-semibold">Audifonos</span>
-          </Link>
-          <Link
-            href="/app/productos/categorias/Accesorios"
-            className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4"
-          >
-            <MdOutlineCable
-              className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100"
-            />
-            <span className="text-lg xs:text-xl font-semibold">Accesorios</span>
-          </Link>
-          <Link
-            href="/app/productos/categorias/Otros"
-            className="group bg-secondary rounded-xl h-full p-5 flex flex-col justify-center items-center gap-4"
-          >
-            <FiMoreHorizontal
-              className="w-10 h-10 xs:w-12 xs:h-12 group-hover:text-primary transition-all duration-100"
-            />
-            <span className="text-lg xs:text-xl font-semibold">Otros</span>
+            <span className="text-lg xs:text-xl font-semibold">Futbol</span>
           </Link>
         </div>
       </section>
-      {/* <div className="fixed z-40 bottom-6 right-6 rounded-full bg-green-500 border border-zinc-100 w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center"> */}
+      {/* <div className="fixed z-40 bottom-6 right-6 rounded-full bg-green-500 border
+      border-zinc-100 w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center"> */}
       {/*  <a href={`https://api.whatsapp.com/send?phone=${whatsAppNumber}`} target="_blank" rel="noreferrer"> */}
       {/*    <FaWhatsapp className="w-6 h-6 text-white" /> */}
       {/*  </a> */}
