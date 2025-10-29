@@ -22,7 +22,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
   return (
     <div className="w-full flex max-xs:flex-col xs:items-center gap-2">
       <div className="h-full lg:hidden">
-        <Link href={ROUTES.products} className="hover:text-primary">
+        <Link href="/productos" className="hover:text-primary">
           <IoMdArrowRoundBack className="sm:w-8 w-6 sm:h-8 h-6" />
         </Link>
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Product } from '@/app/config/types';
 import { createServerClient } from '@supabase/ssr';
 import { customCookieMethods } from '@/app/config/constants';
-import ProductCard from '@/app/products/components/ProductCard';
+import ProductCard from '@/app/productos/components/ProductCard';
 
 export default async function SearchItems({
   params,

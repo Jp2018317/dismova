@@ -34,7 +34,7 @@ function LoginForm() {
   async function getUser() {
     const loggedUser = await supabase.auth.getUser();
     if (loggedUser.data.user) {
-      router.push('/products');
+      router.push('/productos');
     }
   }
 

@@ -10,7 +10,7 @@ import { User } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
 import { SearchProduct } from '@/app/config/types';
 import { BiSearch } from 'react-icons/bi';
-import SearchProductCard from '@/app/products/components/SearchProductCard';
+import SearchProductCard from '@/app/productos/components/SearchProductCard';
 import { ROUTES } from '@/app/config/routes';
 import Logo from '@/public/images/Logo.png';
 import Image from 'next/image';
@@ -63,7 +63,7 @@ export default function NavBar() {
       <section className="w-full z-30 h-[70px] bg-background flex flex-col items-center">
         <div className="w-full h-full max-w-7xl flex justify-between px-4">
           <Link
-            href={ROUTES.products}
+            href="/productos"
             className="h-full flex flex-col items-center justify-center"
           >
             <Image
@@ -84,7 +84,7 @@ export default function NavBar() {
             />
             <Button onClick={(e) => { e.preventDefault(); setOpenSearch(false); }} disabled={inputSearch.length < 2 && openSearch} className="absolute right-0 p-0 h-8 w-8 sm:w-10 mr-2 rounded-l-none border border-primary border-l-0">
               <Link
-                href={`${ROUTES.search}/${inputSearch}`}
+                href={`/productos/buscar/${inputSearch}`}
               >
                 <BiSearch className="w-4 h-4" />
               </Link>
@@ -132,10 +132,10 @@ export default function NavBar() {
           }
 
           <div className="flex items-center max-xs:text-xs dark:text-zinc-200 gap-4">
-            <Link href="/products/favoritos" className="max-sm:hidden hover:text-primary">
+            <Link href="/app/productos/favoritos" className="max-sm:hidden hover:text-primary">
               <AiOutlineHeart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
             </Link>
-            <Link href="/products/cart" className="max-sm:hidden hover:text-primary">
+            <Link href="/app/productos/carrito" className="max-sm:hidden hover:text-primary">
               <AiOutlineShoppingCart className="text-zinc-900 dark:text-zinc-200 hover:text-primary dark:hover:text-primary duration-150 w-5 h-5" />
             </Link>
 

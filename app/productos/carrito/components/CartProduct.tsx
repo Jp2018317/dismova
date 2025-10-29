@@ -90,7 +90,7 @@ export default function CartProduct({
   return (
     <div className="w-full border border-border rounded-xl flex max-sm:flex-col h-full sm:h-40">
       <div className="bg-secondary rounded-t-xl sm:rounded-l-xl h-full flex items-center max-sm:justify-center">
-        <Link href={`/products/${code}`} className="relative h-40 w-40">
+        <Link href={`/productos/${code}`} className="relative h-40 w-40">
           <Image
             src={image}
             fill

@@ -9,11 +9,11 @@ import { ROUTES } from '../config/routes';
 const routes = [
   {
     title: 'Mi Cuenta',
-    href: ROUTES.account,
+    href: '/perfil',
   },
   {
     title: 'Configuración',
-    href: ROUTES.account + ROUTES.settings,
+    href: '/perfil/configuraciones',
   },
 ];
 
@@ -26,7 +26,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
     <div className="lg:space-y-6 space-y-0 lg:p-10 lg:pb-16 p-5">
       <div className="flex items-center gap-4 max-lg:hidden">
         <div className="h-full">
-          <Link href={ROUTES.products} className="hover:text-primary">
+          <Link href="/productos" className="hover:text-primary">
             <IoMdArrowRoundBack className="w-8 h-8" />
           </Link>
         </div>

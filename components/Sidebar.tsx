@@ -64,7 +64,7 @@ export default function Sidebar({ user }: Props) {
                   <li>
                     <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full max-xs:px-0">
                       <Link
-                        href={ROUTES.account}
+                        href="/perfil"
                         className="w-full flex items-center justify-center gap-2"
                       >
                         <VscAccount className="dark:text-white w-6 h-6" />
@@ -91,10 +91,10 @@ export default function Sidebar({ user }: Props) {
                 : (
                   <SheetDescription className="flex justify-evenly py-2">
                     <Button asChild>
-                      <Link href={ROUTES.auth.login}>Ingresar</Link>
+                      <Link href="/auth/login">Ingresar</Link>
                     </Button>
                     <Button asChild variant="ghost">
-                      <Link href={ROUTES.auth.signup}>Registrarme</Link>
+                      <Link href="/auth/signup">Registrarme</Link>
                     </Button>
                   </SheetDescription>
                 )
@@ -107,7 +107,7 @@ export default function Sidebar({ user }: Props) {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href={ROUTES.cart}
+                  href="/productos/carrito"
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <AiOutlineShoppingCart className="dark:text-white w-6 h-6" />
@@ -118,7 +118,7 @@ export default function Sidebar({ user }: Props) {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href={ROUTES.favorites}
+                  href="/productos/favoritos"
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <AiOutlineHeart className="dark:text-white w-6 h-6" />
@@ -133,38 +133,11 @@ export default function Sidebar({ user }: Props) {
           <div className="py-1">
             <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
               <Link
-                href={ROUTES.speakers}
+                href="/productos/categorias/bafles"
                 className="w-full flex items-center justify-start gap-2"
               >
                 <LuMonitorSpeaker className="dark:text-white w-6 h-6" />
                 Bocinas
-              </Link>
-            </Button>
-            <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
-              <Link
-                href={ROUTES.headphones}
-                className="w-full flex items-center justify-start gap-2"
-              >
-                <BsHeadphones className="dark:text-white w-6 h-6" />
-                Audifonos
-              </Link>
-            </Button>
-            <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
-              <Link
-                href={ROUTES.accesories}
-                className="w-full flex items-center justify-start gap-2"
-              >
-                <MdOutlineCable className="dark:text-white w-6 h-6" />
-                Accesorios
-              </Link>
-            </Button>
-            <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
-              <Link
-                href={ROUTES.others}
-                className="w-full flex items-center justify-start gap-2"
-              >
-                <FiMoreHorizontal className="dark:text-white w-6 h-6" />
-                Otros
               </Link>
             </Button>
           </div>
@@ -175,7 +148,7 @@ export default function Sidebar({ user }: Props) {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href={ROUTES.root}
+                  href="/"
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <AiOutlineHome className="dark:text-white w-5 h-5" />
@@ -186,7 +159,7 @@ export default function Sidebar({ user }: Props) {
             <li>
               <Button onClick={() => setOpen(!open)} variant="ghost" className="w-full">
                 <Link
-                  href={ROUTES.account + ROUTES.settings}
+                  href="/perfil/configuraciones"
                   className="w-full flex items-center justify-start gap-2"
                 >
                   <IoMdSettings className="dark:text-white w-5 h-5" />

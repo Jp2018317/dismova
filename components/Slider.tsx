@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
-import ProductCard from '@/app/products/components/ProductCard';
+import ProductCard from '@/app/productos/components/ProductCard';
 import { Product } from '@/app/config/types';
 import Link from 'next/link';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -81,7 +81,7 @@ export default function Slider({
                    <div className="rounded-xl relative my-4 w-44 h-44 xs:w-52 xs:h-52 lg:w-96 lg:h-96">
                      <Image
                        key={slide.code}
-                       src={`https://ttcctffsichnykxnkaob.supabase.co/storage/v1/object/public/products/${slide.category}/${slide.code}/${index + 1}.webp?t=2023-11-05T02%3A42%3A54.379Z`}
+                       src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET}/${slide.category}/${slide.code}/${index + 1}.webp?t=2023-11-05T02%3A42%3A54.379Z`}
                        fill
                        loading="lazy"
                        alt={slide.code}
@@ -114,7 +114,7 @@ export default function Slider({
                </SwiperSlide>
              ))}
              <SwiperSlide className="relative mb-8">
-               <Link className="group flex flex-col justify-center items-center h-[21rem] rounded-xl bg-secondary gap-y-4" href={`/products/categorias/${swiperInfo[0].category}`}>
+               <Link className="group flex flex-col justify-center items-center h-[21rem] rounded-xl bg-secondary gap-y-4" href={`/productos/categorias/${swiperInfo[0].category}`}>
                  <div className="text-lg font-semibold">Ver más</div>
                  <AiOutlinePlus className="w-6 h-6 dark:text-white" />
                </Link>

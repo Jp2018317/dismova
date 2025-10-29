@@ -69,7 +69,7 @@ export default async function ProducIdView({
               <div className="xs:flex gap-x-4">
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Categoría:</h3>
-                  <Link href="/products/categorias" className="my-2 hover:underline underline-offset-2  ">{product[0].category}</Link>
+                  <Link href="/app/productos/categorias" className="my-2 hover:underline underline-offset-2  ">{product[0].category}</Link>
                 </div>
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
                   <h3 className="my-2 font-bold tracking-wider">Stock:</h3>
