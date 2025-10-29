@@ -24,7 +24,7 @@ export default async function Cart() {
   return (
     <div className="w-full h-full max-w-7xl px-5">
       { !onlinePurchase && (
-        <p className="w-full text-center text-xs text-red-500 pt-8">¡Aviso! La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
+        <p className="w-full text-center text-xs text-red-500 pt-8">La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
       )}
       <section className="w-full h-full max-w-7xl flex max-lg:flex-col gap-6 pb-4 lg:pb-8">
         <CartView />

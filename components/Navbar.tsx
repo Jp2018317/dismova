@@ -12,7 +12,8 @@ import { SearchProduct } from '@/app/config/types';
 import { BiSearch } from 'react-icons/bi';
 import SearchProductCard from '@/app/products/components/SearchProductCard';
 import { ROUTES } from '@/app/config/routes';
-import Logo from './logo';
+import Logo from '@/public/images/Logo.png';
+import Image from 'next/image';
 import Sidebar from './Sidebar';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
@@ -59,14 +60,18 @@ export default function NavBar() {
 
   return (
     <nav className="w-full sticky z-40 top-0 flex flex-col items-center">
-      <section className="w-full z-30 h-[60px] bg-background flex flex-col items-center">
+      <section className="w-full z-30 h-[70px] bg-background flex flex-col items-center">
         <div className="w-full h-full max-w-7xl flex justify-between px-4">
           <Link
             href={ROUTES.products}
             className="h-full flex flex-col items-center justify-center"
           >
-            <Logo className="max-sm:w-[70px] max-sm:h-[25]" />
-            <p className="text-[10px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476]">DISMOVA</p>
+            <Image
+              src={Logo}
+              alt="Crea Caps Logo"
+              width={100}
+              height={100}
+            />
           </Link>
 
           <form className="relative flex items-center">
@@ -137,24 +142,6 @@ export default function NavBar() {
             <Sidebar user={userLogged || null} />
           </div>
         </div>
-      </section>
-      <section
-        className="w-full z-20 h-8 font-semibold flex flex-wrap items-center justify-center mx-auto bg-secondary border-gray-200 dark:border-zinc-700"
-      >
-        <ul className="w-full max-w-7xl px-6 xs:px-8 text-center grid grid-cols-4 gap-10 font-normal text-[10px] xs:text-sm text-zinc-900 dark:text-zinc-200">
-          <li>
-            <Link href={ROUTES.speakers} className="hover:underline underline-offset-4">Bocinas</Link>
-          </li>
-          <li>
-            <Link href={ROUTES.headphones} className="hover:underline underline-offset-4">Audífonos</Link>
-          </li>
-          <li>
-            <Link href={ROUTES.accesories} className="hover:underline underline-offset-4">Accesorios</Link>
-          </li>
-          <li>
-            <Link href={ROUTES.others} className="hover:underline underline-offset-4">Otros</Link>
-          </li>
-        </ul>
       </section>
     </nav>
   );

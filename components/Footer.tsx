@@ -1,6 +1,8 @@
 'use client';
 
-import Logo from './logo';
+import Logo from '@/public/images/Logo.png';
+import Image from 'next/image';
+import React from 'react';
 
 export default function Footer() {
   return (
@@ -10,8 +12,12 @@ export default function Footer() {
           <div
             className="max-md:w-full h-full flex flex-col items-center justify-center"
           >
-            <Logo className="max-md:w-20 w-28 max-md:h-8 h-12" />
-            <p className="max-md:text-[10px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476]">DISMOVA</p>
+            <Image
+              src={Logo}
+              alt="Crea Caps Logo"
+              width={100}
+              height={100}
+            />
           </div>
           <div className="grid xs:grid-cols-3 gap-6 items-center w-full px-10 md:px-6 md:max-w-3xl h-full">
             <div className="text-center flex flex-col gap-2">
@@ -30,7 +36,7 @@ export default function Footer() {
         </div>
       </section>
       <section className="w-full p-2 bg-background">
-        <p className="font-medium text-[10px] md:text-xs text-center">DISMOVA</p>
+        <p className="font-medium text-[10px] md:text-xs text-center">CREACAPS</p>
       </section>
     </footer>
   );

@@ -104,7 +104,7 @@ export default async function ProducIdView({
             </div>
 
             { !onlinePurchase && (
-            <p className="w-full text-center text-xs text-red-500 pt-8">¡Aviso! La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
+            <p className="w-full text-center text-xs text-red-500 pt-8">La compra en línea está deshabilitada en este momento. Estamos trabajando para mejorar nuestros servicios.</p>
             )}
 
           </div>

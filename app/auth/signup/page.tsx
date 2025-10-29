@@ -2,8 +2,10 @@ import { montserrat } from '@/lib/fonts';
 import SignupForm from '@/components/signup/signup-form';
 import Link from 'next/link';
 import { BiChevronLeft } from 'react-icons/bi';
-import Logo from '@/components/logo';
+import Logo from '@/public/images/Logo.png';
 import { ROUTES } from '@/app/config/routes';
+import Image from 'next/image';
+import React from 'react';
 
 export default async function SignUpPage() {
   return (
@@ -15,8 +17,12 @@ export default async function SignUpPage() {
         <div
           className="lg:hidden flex flex-col items-center justify-center"
         >
-          <Logo className="xs:w-60 xs:h-24 w-48 h-20" />
-          <p className={`text-2xl tracking-[1rem] pl-[1rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476] ${montserrat.className}`}>DISMOVA</p>
+          <Image
+            src={Logo}
+            alt="Crea Caps Logo"
+            width={200}
+            height={200}
+          />
         </div>
         <h2 className={`text-center text-xl lg:text-3xl ${montserrat.className}`}>REGISTRO</h2>
         <SignupForm />

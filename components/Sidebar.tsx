@@ -24,8 +24,9 @@ import { createBrowserClient } from '@supabase/ssr';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { MdOutlineCable } from 'react-icons/md';
 import { ROUTES } from '@/app/config/routes';
+import Logo from '@/public/images/Logo.png';
+import Image from 'next/image';
 import { Button } from './ui/button';
-import Logo from './logo';
 import { ModeToggle } from './ui/ModeToggle';
 
 type Props = {
@@ -47,11 +48,15 @@ export default function Sidebar({ user }: Props) {
         </SheetTrigger>
         <SheetContent className="overflow-y-auto">
           <SheetHeader>
-            <SheetTitle className="space-y-0">
+            <SheetTitle className="py-4">
               <div className="w-full text-center flex justify-center">
-                <Logo className="w-[100px] h-[40px]" />
+                <Image
+                  src={Logo}
+                  alt="Crea Caps Logo"
+                  width={140}
+                  height={120}
+                />
               </div>
-              <p className="text-sm text-center font-bold max-xs:text-xs">DISMOVA</p>
             </SheetTitle>
             {
               user ? (

@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import Logo from '@/components/logo';
-import { montserrat } from '@/lib/fonts';
+import React, { ReactNode } from 'react';
+import Logo from '@/public/images/Logo.png';
+import Image from 'next/image';
 
 export default async function AuthLayout({ children }: { children: ReactNode }) {
   return (
@@ -9,8 +9,12 @@ export default async function AuthLayout({ children }: { children: ReactNode }) 
         <div
           className="h-full py-20 flex flex-col items-center justify-center space-y-2"
         >
-          <Logo className="w-96 h-28 text-white" />
-          <p className={`text-4xl tracking-[1rem] pl-[1rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476] ${montserrat.className}`}>DISMOVA</p>
+          <Image
+            src={Logo}
+            alt="Crea Caps Logo"
+            width={400}
+            height={300}
+          />
         </div>
       </section>
       {children}

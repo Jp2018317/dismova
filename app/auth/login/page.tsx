@@ -1,9 +1,11 @@
 import LoginForm from '@/components/login/login-form';
 import { montserrat } from '@/lib/fonts';
 import Link from 'next/link';
-import Logo from '@/components/logo';
+import Logo from '@/public/images/Logo.png';
 import { BiChevronLeft } from 'react-icons/bi';
 import { ROUTES } from '@/app/config/routes';
+import Image from 'next/image';
+import React from 'react';
 
 export default async function LoginPage() {
   return (
@@ -15,8 +17,12 @@ export default async function LoginPage() {
         <div
           className="lg:hidden flex flex-col items-center justify-center"
         >
-          <Logo className="xs:w-60 xs:h-24 w-48 h-20" />
-          <p className={`text-2xl tracking-[1rem] pl-[1rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF512F] to-[#DD2476] ${montserrat.className}`}>DISMOVA</p>
+          <Image
+            src={Logo}
+            alt="Crea Caps Logo"
+            width={200}
+            height={200}
+          />
         </div>
         <h2 className={`text-center text-xl lg:text-3xl ${montserrat.className}`}>LOGIN</h2>
         <LoginForm />
