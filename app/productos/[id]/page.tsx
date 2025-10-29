@@ -12,7 +12,7 @@ import ProductsAmount from './components/ProductsAmount';
 import TagCard from '../components/TagCard';
 import AddItem from './components/AddItem';
 
-export default async function ProducIdView({
+export default async function ProductIdView({
   params,
 }: {
   params: { id: string };
@@ -74,7 +74,8 @@ export default async function ProducIdView({
                   <Link
                     href="/app/productos/categorias"
                     className="my-2 hover:underline underline-offset-2  "
-                  >{product[0].category}
+                  >
+                    {product[0].category}
                   </Link>
                 </div>
                 <div className="flex gap-x-2 w-1/2 max-md:text-base max-lg:text-xs">
@@ -120,32 +121,32 @@ export default async function ProducIdView({
         </div>
       </section>
       {
-                tags.length ? (
-                  <section className="w-full h-full px-5 max-w-7xl">
+        tags.length ? (
+          <section className="w-full h-full px-5 max-w-7xl">
 
-                    <Separator className="my-4 md:my-2 lg:my-4" />
+            <Separator className="my-4 md:my-2 lg:my-4" />
 
-                    <h2 className="w-full text-2xl font-bold text-center lg:text-3xl pt-2">ETIQUETAS</h2>
+            <h2 className="w-full text-2xl font-bold text-center lg:text-3xl pt-2">ETIQUETAS</h2>
 
-                    <div className="flex justify-center items-center">
-                      <div
-                        className="grid max-xs:grid-cols-2 max-lg:grid-cols-4 lg:flex justify-evenly gap-4 w-full h-fit py-8"
-                      >
-                        {
-                                    tags.map((tag) => (
-                                      <TagCard key={tag.Tags.name} title={tag.Tags.name} icon={tag.Tags.icon} />
-                                    ))
-                                }
-                      </div>
-                    </div>
+            <div className="flex justify-center items-center">
+              <div
+                className="grid max-xs:grid-cols-2 max-lg:grid-cols-4 lg:flex justify-evenly gap-4 w-full h-fit py-8"
+              >
+                {
+                    tags.map((tag) => (
+                      <TagCard key={tag.Tags.name} title={tag.Tags.name} icon={tag.Tags.icon} />
+                    ))
+                }
+              </div>
+            </div>
 
-                    <h5 className="w-full text-center max-lg:text-sm text-zinc-500 dark:text-zinc-400">
-                      Las etiquetas
-                      muestran características destacables del producto
-                    </h5>
-                  </section>
-                ) : null
-            }
+            <h5 className="w-full text-center max-lg:text-sm text-zinc-500 dark:text-zinc-400">
+              Las etiquetas
+              muestran características destacables del producto
+            </h5>
+          </section>
+        ) : null
+    }
       <section className="w-full h-full px-5 max-w-7xl">
 
         <Separator className="my-4 md:my-2 lg:my-4" />

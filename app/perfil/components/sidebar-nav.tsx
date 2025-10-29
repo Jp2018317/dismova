@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ROUTES } from '@/app/config/routes';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {

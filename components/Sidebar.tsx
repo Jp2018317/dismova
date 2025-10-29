@@ -4,26 +4,18 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { VscAccount } from 'react-icons/vsc';
-import { AiOutlineShoppingCart, AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineHome, AiOutlineShoppingCart } from 'react-icons/ai';
 import { LiaBarsSolid } from 'react-icons/lia';
 import { IoMdSettings } from 'react-icons/io';
-import { BsHeadphones, BsDoorOpen } from 'react-icons/bs';
+import { BsDoorOpen } from 'react-icons/bs';
 import { LuMonitorSpeaker } from 'react-icons/lu';
 
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
+  Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger,
 } from '@/components/ui/sheet';
 
 import { User } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
-import { FiMoreHorizontal } from 'react-icons/fi';
-import { MdOutlineCable } from 'react-icons/md';
-import { ROUTES } from '@/app/config/routes';
 import Logo from '@/public/images/Logo.png';
 import Image from 'next/image';
 import { Button } from './ui/button';

@@ -77,12 +77,13 @@ export default function ProductCard({
     toast({
       title: 'Añadido a Favoritos',
       description: `${code} añadido a favoritos`,
-      action: <Link
-        href="/app/productos/favoritos"
-        className="text-xs border border-border px-3 py-2 rounded-lg text-center"
-      >
-        Ver
-      </Link>,
+      action:
+  <Link
+    href="/app/productos/favoritos"
+    className="text-xs border border-border px-3 py-2 rounded-lg text-center"
+  >
+    Ver
+  </Link>,
     });
 
     localStorage.setItem('Favorites', JSON.stringify(favorites));
@@ -125,12 +126,13 @@ export default function ProductCard({
         toast({
           title: 'Producto ya agregado',
           description: `${code} ya está agregado al carrito`,
-          action: <Link
-            href="/app/productos/carrito"
-            className="text-xs border border-border px-3 py-2 rounded-lg text-center"
-          >
-            Ver
-          </Link>,
+          action:
+  <Link
+    href="/app/productos/carrito"
+    className="text-xs border border-border px-3 py-2 rounded-lg text-center"
+  >
+    Ver
+  </Link>,
         });
         return;
       }
@@ -139,12 +141,13 @@ export default function ProductCard({
     toast({
       title: 'Añadido al Carrito',
       description: `${code} añadido al carrito`,
-      action: <Link
-        href="/app/productos/carrito"
-        className="text-xs border border-border px-3 py-2 rounded-lg text-center"
-      >
-        Ver
-      </Link>,
+      action:
+  <Link
+    href="/app/productos/carrito"
+    className="text-xs border border-border px-3 py-2 rounded-lg text-center"
+  >
+    Ver
+  </Link>,
     });
 
     localStorage.setItem('CartItems', JSON.stringify(cartItems));

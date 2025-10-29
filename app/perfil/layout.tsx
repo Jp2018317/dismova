@@ -4,7 +4,6 @@ import { Separator } from '@/components/ui/separator';
 import { SidebarNav } from '@/app/perfil/components/sidebar-nav';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Link from 'next/link';
-import { ROUTES } from '../config/routes';
 
 const routes = [
   {
